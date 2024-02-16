@@ -1,0 +1,2 @@
+"0","logic2 <- mat_apply(miley(), vrules = ""OR"")"
+"0","draw(logic2)"
