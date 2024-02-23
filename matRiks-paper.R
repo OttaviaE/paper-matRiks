@@ -128,6 +128,28 @@ kbl(error_types, align = "l",
 draw(square())
 
 
+## ----figures-list-interactive-------------------------------------------------
+tbl_img <- data.table(
+  "Figure Category" = c("Black figures", "Circle sections", "Closed figures"),
+  Example = "", 
+  "Figure Category"  = c("Flower figures", "Eight-shaped figures", "Lines"), 
+  Example = "", 
+  "Figure Category" = c("Other figures", "", ""),
+  Example = ""
+)
+
+tbl_img %>%
+  kbl(booktabs = T) %>%
+  kable_paper(full_width = F) %>%
+  column_spec(2, image = spec_image(
+    c("black-figures.png", "circle-sections.png", "closed-figures.png"), 50, 50, 50)) %>% 
+  column_spec(4, image = spec_image(
+    c("flowers.png", "eight-shapes-figures.png", "lines.png"), 50, 50, 50)) %>% 
+    column_spec(6, 
+                image = spec_image(
+    c("other-figures.png","other-figures.png","other-figures.png" ), 50,50,50))
+
+
 ## ----out.width="50%", fig.cap="[Black figures](https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html)"----
 draw(biscuit())
 

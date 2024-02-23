@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.11.26)  16 FEB 2024 12:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.11.26)  22 FEB 2024 17:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1030,371 +1030,373 @@ Overfull \hbox (71.41528pt too wide) in paragraph at lines 205--206
  [][] 
  []
 
-<matRiks-paper_files/figure-latex/unnamed-chunk-2-1.pdf, id=112, 469.755pt x 32
+<black-figures.png, id=112, 339.06676pt x 225.84375pt>
+File: black-figures.png Graphic file (type png)
+<use black-figures.png>
+Package pdftex.def Info: black-figures.png  used on input line 219.
+(pdftex.def)             Requested size: 72.26672pt x 72.27147pt.
+<flowers.png, id=113, 258.9675pt x 150.5625pt>
+File: flowers.png Graphic file (type png)
+<use flowers.png>
+Package pdftex.def Info: flowers.png  used on input line 219.
+(pdftex.def)             Requested size: 72.26935pt x 72.27147pt.
+<other-figures.png, id=114, 339.06676pt x 225.84375pt>
+File: other-figures.png Graphic file (type png)
+<use other-figures.png>
+Package pdftex.def Info: other-figures.png  used on input line 219.
+(pdftex.def)             Requested size: 72.26672pt x 72.27147pt.
+<circle-sections.png, id=115, 339.06676pt x 225.84375pt>
+File: circle-sections.png Graphic file (type png)
+<use circle-sections.png>
+Package pdftex.def Info: circle-sections.png  used on input line 220.
+(pdftex.def)             Requested size: 72.26672pt x 72.27147pt.
+<eight-shapes-figures.png, id=116, 258.9675pt x 150.5625pt>
+File: eight-shapes-figures.png Graphic file (type png)
+<use eight-shapes-figures.png>
+Package pdftex.def Info: eight-shapes-figures.png  used on input line 220.
+(pdftex.def)             Requested size: 72.26935pt x 72.27147pt.
+File: other-figures.png Graphic file (type png)
+<use other-figures.png>
+Package pdftex.def Info: other-figures.png  used on input line 220.
+(pdftex.def)             Requested size: 72.26672pt x 72.27147pt.
+<closed-figures.png, id=117, 258.9675pt x 150.5625pt>
+File: closed-figures.png Graphic file (type png)
+<use closed-figures.png>
+Package pdftex.def Info: closed-figures.png  used on input line 221.
+(pdftex.def)             Requested size: 72.26935pt x 72.27147pt.
+<lines.png, id=118, 258.9675pt x 150.5625pt>
+File: lines.png Graphic file (type png)
+<use lines.png>
+Package pdftex.def Info: lines.png  used on input line 221.
+(pdftex.def)             Requested size: 72.26935pt x 72.27147pt.
+File: other-figures.png Graphic file (type png)
+<use other-figures.png>
+Package pdftex.def Info: other-figures.png  used on input line 221.
+(pdftex.def)             Requested size: 72.26672pt x 72.27147pt.
+
+Overfull \hbox (125.94412pt too wide) in paragraph at lines 215--224
+ [][] 
+ []
+
+<matRiks-paper_files/figure-latex/unnamed-chunk-2-1.pdf, id=119, 469.755pt x 32
 5.215pt>
 File: matRiks-paper_files/figure-latex/unnamed-chunk-2-1.pdf Graphic file (type
  pdf)
 <use matRiks-paper_files/figure-latex/unnamed-chunk-2-1.pdf>
 Package pdftex.def Info: matRiks-paper_files/figure-latex/unnamed-chunk-2-1.pdf
-  used on input line 214.
+  used on input line 227.
 (pdftex.def)             Requested size: 199.16928pt x 137.88454pt.
 
-Underfull \hbox (badness 3769) in paragraph at lines 214--214
+Underfull \hbox (badness 3769) in paragraph at lines 227--227
 []\T1/ppl/b/n/9 (+20) Figure 4: |\T1/ppl/m/n/9 (+20) [Black figures](https://cr
 an.r-project.org/web/packages/matRiks/vignettes/black-
  []
 
-<matRiks-paper_files/figure-latex/unnamed-chunk-3-1.pdf, id=113, 469.755pt x 32
+<matRiks-paper_files/figure-latex/unnamed-chunk-3-1.pdf, id=120, 469.755pt x 32
 5.215pt>
 File: matRiks-paper_files/figure-latex/unnamed-chunk-3-1.pdf Graphic file (type
  pdf)
 <use matRiks-paper_files/figure-latex/unnamed-chunk-3-1.pdf>
 Package pdftex.def Info: matRiks-paper_files/figure-latex/unnamed-chunk-3-1.pdf
-  used on input line 218.
+  used on input line 231.
 (pdftex.def)             Requested size: 199.16928pt x 137.88454pt.
 
-Underfull \hbox (badness 1152) in paragraph at lines 218--218
+Underfull \hbox (badness 1152) in paragraph at lines 231--231
 []\T1/ppl/b/n/9 (+20) Figure 5: |\T1/ppl/m/n/9 (+20) [Cir-cle sections](https:/
 /cran.r-project.org/web/packages/matRiks/vignettes/circle-
  []
 
-<matRiks-paper_files/figure-latex/unnamed-chunk-4-1.pdf, id=114, 469.755pt x 32
+<matRiks-paper_files/figure-latex/unnamed-chunk-4-1.pdf, id=121, 469.755pt x 32
 5.215pt>
 File: matRiks-paper_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type
  pdf)
 <use matRiks-paper_files/figure-latex/unnamed-chunk-4-1.pdf>
 Package pdftex.def Info: matRiks-paper_files/figure-latex/unnamed-chunk-4-1.pdf
-  used on input line 222.
+  used on input line 235.
 (pdftex.def)             Requested size: 199.16928pt x 137.88454pt.
 
-Underfull \hbox (badness 3058) in paragraph at lines 222--222
+Underfull \hbox (badness 3058) in paragraph at lines 235--235
 []\T1/ppl/b/n/9 (+20) Figure 6: |\T1/ppl/m/n/9 (+20) [Other figures](https://cr
 an.r-project.org/web/packages/matRiks/vignettes/other-
  []
 
-<matRiks-paper_files/figure-latex/unnamed-chunk-5-1.pdf, id=115, 469.755pt x 32
+<matRiks-paper_files/figure-latex/unnamed-chunk-5-1.pdf, id=122, 469.755pt x 32
 5.215pt>
 File: matRiks-paper_files/figure-latex/unnamed-chunk-5-1.pdf Graphic file (type
  pdf)
 <use matRiks-paper_files/figure-latex/unnamed-chunk-5-1.pdf>
 Package pdftex.def Info: matRiks-paper_files/figure-latex/unnamed-chunk-5-1.pdf
-  used on input line 226.
+  used on input line 239.
 (pdftex.def)             Requested size: 199.16928pt x 137.88454pt.
-<matRiks-paper_files/figure-latex/unnamed-chunk-6-1.pdf, id=116, 469.755pt x 32
+<matRiks-paper_files/figure-latex/unnamed-chunk-6-1.pdf, id=123, 469.755pt x 32
 5.215pt>
 File: matRiks-paper_files/figure-latex/unnamed-chunk-6-1.pdf Graphic file (type
  pdf)
 <use matRiks-paper_files/figure-latex/unnamed-chunk-6-1.pdf>
 Package pdftex.def Info: matRiks-paper_files/figure-latex/unnamed-chunk-6-1.pdf
-  used on input line 230.
+  used on input line 243.
 (pdftex.def)             Requested size: 199.16928pt x 137.88454pt.
-<matRiks-paper_files/figure-latex/unnamed-chunk-7-1.pdf, id=117, 469.755pt x 32
+<matRiks-paper_files/figure-latex/unnamed-chunk-7-1.pdf, id=124, 469.755pt x 32
 5.215pt>
 File: matRiks-paper_files/figure-latex/unnamed-chunk-7-1.pdf Graphic file (type
  pdf)
 <use matRiks-paper_files/figure-latex/unnamed-chunk-7-1.pdf>
 Package pdftex.def Info: matRiks-paper_files/figure-latex/unnamed-chunk-7-1.pdf
-  used on input line 234.
+  used on input line 247.
 (pdftex.def)             Requested size: 199.16928pt x 137.88454pt.
-<matRiks-paper_files/figure-latex/unnamed-chunk-8-1.pdf, id=118, 469.755pt x 32
+<matRiks-paper_files/figure-latex/unnamed-chunk-8-1.pdf, id=125, 469.755pt x 32
 5.215pt>
 File: matRiks-paper_files/figure-latex/unnamed-chunk-8-1.pdf Graphic file (type
  pdf)
 <use matRiks-paper_files/figure-latex/unnamed-chunk-8-1.pdf>
 Package pdftex.def Info: matRiks-paper_files/figure-latex/unnamed-chunk-8-1.pdf
-  used on input line 238.
+  used on input line 251.
 (pdftex.def)             Requested size: 199.16928pt x 137.88454pt.
 
-Overfull \hbox (13.1825pt too wide) in paragraph at lines 251--251
+Overfull \hbox (13.1825pt too wide) in paragraph at lines 264--264
 []\T1/zi4/m/n/9 eye <- cof(circle(), dot()) # create the new figure eye by conc
 atenating the circle and the dot[] 
  []
 
-<matRiks-paper_files/figure-latex/eye-1.pdf, id=120, 469.755pt x 325.215pt>
+<matRiks-paper_files/figure-latex/eye-1.pdf, id=127, 469.755pt x 325.215pt>
 File: matRiks-paper_files/figure-latex/eye-1.pdf Graphic file (type pdf)
 <use matRiks-paper_files/figure-latex/eye-1.pdf>
 Package pdftex.def Info: matRiks-paper_files/figure-latex/eye-1.pdf  used on in
-put line 255.
+put line 268.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Overfull \hbox (71.41528pt too wide) in paragraph at lines 255--256
+Overfull \hbox (71.41528pt too wide) in paragraph at lines 268--269
  [][] 
  []
 
-[5 <./matRiks-paper_files/figure-latex/square-1.pdf>] [6 <./matRiks-paper_files
-/figure-latex/unnamed-chunk-2-1.pdf> <./matRiks-paper_files/figure-latex/unname
-d-chunk-3-1.pdf> <./matRiks-paper_files/figure-latex/unnamed-chunk-4-1.pdf> <./
-matRiks-paper_files/figure-latex/unnamed-chunk-5-1.pdf>] [7 <./matRiks-paper_fi
-les/figure-latex/unnamed-chunk-6-1.pdf> <./matRiks-paper_files/figure-latex/unn
-amed-chunk-7-1.pdf> <./matRiks-paper_files/figure-latex/unnamed-chunk-8-1.pdf>]
-[8 <./matRiks-paper_files/figure-latex/eye-1.pdf>]
-<matRiks-paper_files/figure-latex/incremental-1.pdf, id=182, 469.755pt x 325.21
+[5 <./matRiks-paper_files/figure-latex/square-1.pdf>] [6 <./black-figures.png> 
+<./flowers.png> <./other-figures.png> <./circle-sections.png> <./eight-shapes-f
+igures.png> <./closed-figures.png> <./lines.png> <./matRiks-paper_files/figure-
+latex/unnamed-chunk-2-1.pdf> <./matRiks-paper_files/figure-latex/unnamed-chunk-
+3-1.pdf>] [7 <./matRiks-paper_files/figure-latex/unnamed-chunk-4-1.pdf> <./matR
+iks-paper_files/figure-latex/unnamed-chunk-5-1.pdf> <./matRiks-paper_files/figu
+re-latex/unnamed-chunk-6-1.pdf> <./matRiks-paper_files/figure-latex/unnamed-chu
+nk-7-1.pdf>] [8 <./matRiks-paper_files/figure-latex/unnamed-chunk-8-1.pdf> <./m
+atRiks-paper_files/figure-latex/eye-1.pdf>] [9]
+<matRiks-paper_files/figure-latex/incremental-1.pdf, id=201, 469.755pt x 325.21
 5pt>
 File: matRiks-paper_files/figure-latex/incremental-1.pdf Graphic file (type pdf
 )
 <use matRiks-paper_files/figure-latex/incremental-1.pdf>
 Package pdftex.def Info: matRiks-paper_files/figure-latex/incremental-1.pdf  us
-ed on input line 352.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-
-Overfull \hbox (71.41528pt too wide) in paragraph at lines 352--353
- [][] 
- []
-
-<matRiks-paper_files/figure-latex/permutational-1.pdf, id=184, 469.755pt x 325.
-215pt>
-File: matRiks-paper_files/figure-latex/permutational-1.pdf Graphic file (type p
-df)
-<use matRiks-paper_files/figure-latex/permutational-1.pdf>
-Package pdftex.def Info: matRiks-paper_files/figure-latex/permutational-1.pdf  
-used on input line 365.
+ed on input line 365.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
 Overfull \hbox (71.41528pt too wide) in paragraph at lines 365--366
  [][] 
  []
 
+<matRiks-paper_files/figure-latex/permutational-1.pdf, id=203, 469.755pt x 325.
+215pt>
+File: matRiks-paper_files/figure-latex/permutational-1.pdf Graphic file (type p
+df)
+<use matRiks-paper_files/figure-latex/permutational-1.pdf>
+Package pdftex.def Info: matRiks-paper_files/figure-latex/permutational-1.pdf  
+used on input line 378.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-LaTeX Warning: Reference `(' on page 9 undefined on input line 376.
+Overfull \hbox (71.41528pt too wide) in paragraph at lines 378--379
+ [][] 
+ []
 
-<matRiks-paper_files/figure-latex/IncrementalInv-1.pdf, id=186, 469.755pt x 325
+
+LaTeX Warning: Reference `(' on page 10 undefined on input line 389.
+
+<matRiks-paper_files/figure-latex/IncrementalInv-1.pdf, id=205, 469.755pt x 325
 .215pt>
 File: matRiks-paper_files/figure-latex/IncrementalInv-1.pdf Graphic file (type 
 pdf)
 <use matRiks-paper_files/figure-latex/IncrementalInv-1.pdf>
 Package pdftex.def Info: matRiks-paper_files/figure-latex/IncrementalInv-1.pdf 
- used on input line 380.
+ used on input line 393.
 (pdftex.def)             Requested size: 278.83578pt x 193.04134pt.
-<matRiks-paper_files/figure-latex/PermutationalInv-1.pdf, id=189, 469.755pt x 3
+<matRiks-paper_files/figure-latex/PermutationalInv-1.pdf, id=208, 469.755pt x 3
 25.215pt>
 File: matRiks-paper_files/figure-latex/PermutationalInv-1.pdf Graphic file (typ
 e pdf)
 <use matRiks-paper_files/figure-latex/PermutationalInv-1.pdf>
 Package pdftex.def Info: matRiks-paper_files/figure-latex/PermutationalInv-1.pd
-f  used on input line 391.
+f  used on input line 404.
 (pdftex.def)             Requested size: 278.83578pt x 193.04134pt.
-[9] [10 <./matRiks-paper_files/figure-latex/incremental-1.pdf> <./matRiks-paper
-_files/figure-latex/permutational-1.pdf>] [11 <./matRiks-paper_files/figure-lat
-ex/IncrementalInv-1.pdf> <./matRiks-paper_files/figure-latex/PermutationalInv-1
-.pdf>]
-<matRiks-paper_files/figure-latex/examplestep1-1.pdf, id=218, 469.755pt x 325.2
+[10 <./matRiks-paper_files/figure-latex/incremental-1.pdf>] [11 <./matRiks-pape
+r_files/figure-latex/permutational-1.pdf> <./matRiks-paper_files/figure-latex/I
+ncrementalInv-1.pdf>]
+<matRiks-paper_files/figure-latex/examplestep1-1.pdf, id=229, 469.755pt x 325.2
 15pt>
 File: matRiks-paper_files/figure-latex/examplestep1-1.pdf Graphic file (type pd
 f)
 <use matRiks-paper_files/figure-latex/examplestep1-1.pdf>
 Package pdftex.def Info: matRiks-paper_files/figure-latex/examplestep1-1.pdf  u
-sed on input line 413.
+sed on input line 426.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Overfull \hbox (71.41528pt too wide) in paragraph at lines 413--414
+Overfull \hbox (71.41528pt too wide) in paragraph at lines 426--427
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 421--423
+Underfull \hbox (badness 10000) in paragraph at lines 434--436
 
  []
 
-[12 <./matRiks-paper_files/figure-latex/examplestep1-1.pdf>]
+[12 <./matRiks-paper_files/figure-latex/PermutationalInv-1.pdf>]
 
 LaTeX Warning: Reference `fig:multi-matrix' on page 13 undefined on input line 
-440.
+453.
 
-<matRiks-paper_files/figure-latex/single-matrix-1.pdf, id=228, 469.755pt x 325.
+<matRiks-paper_files/figure-latex/single-matrix-1.pdf, id=240, 469.755pt x 325.
 215pt>
 File: matRiks-paper_files/figure-latex/single-matrix-1.pdf Graphic file (type p
 df)
 <use matRiks-paper_files/figure-latex/single-matrix-1.pdf>
 Package pdftex.def Info: matRiks-paper_files/figure-latex/single-matrix-1.pdf  
-used on input line 444.
+used on input line 457.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Overfull \hbox (71.41528pt too wide) in paragraph at lines 444--445
+Overfull \hbox (71.41528pt too wide) in paragraph at lines 457--458
  [][] 
  []
 
-<matRiks-paper_files/figure-latex/multi-matrix-1.pdf, id=229, 469.755pt x 325.2
+<matRiks-paper_files/figure-latex/multi-matrix-1.pdf, id=241, 469.755pt x 325.2
 15pt>
 File: matRiks-paper_files/figure-latex/multi-matrix-1.pdf Graphic file (type pd
 f)
 <use matRiks-paper_files/figure-latex/multi-matrix-1.pdf>
 Package pdftex.def Info: matRiks-paper_files/figure-latex/multi-matrix-1.pdf  u
-sed on input line 448.
+sed on input line 461.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
 LaTeX Warning: Reference `fig:multi-matrix' on page 13 undefined on input line 
-449.
+462.
 
 
-Overfull \hbox (86.41528pt too wide) in paragraph at lines 448--450
+Overfull \hbox (86.41528pt too wide) in paragraph at lines 461--463
 [][]
  []
 
-[13 <./matRiks-paper_files/figure-latex/single-matrix-1.pdf>]
+[13 <./matRiks-paper_files/figure-latex/examplestep1-1.pdf>] [14 <./matRiks-pap
+er_files/figure-latex/single-matrix-1.pdf>]
 
-LaTeX Warning: Reference `fig:multi-matrix' on page 14 undefined on input line 
-453.
+LaTeX Warning: Reference `fig:multi-matrix' on page 15 undefined on input line 
+466.
 
-<matRiks-paper_files/figure-latex/multi-a-1.pdf, id=242, 469.755pt x 325.215pt>
+<matRiks-paper_files/figure-latex/multi-a-1.pdf, id=261, 469.755pt x 325.215pt>
 
 File: matRiks-paper_files/figure-latex/multi-a-1.pdf Graphic file (type pdf)
 <use matRiks-paper_files/figure-latex/multi-a-1.pdf>
 Package pdftex.def Info: matRiks-paper_files/figure-latex/multi-a-1.pdf  used o
-n input line 459.
+n input line 472.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Overfull \hbox (71.41528pt too wide) in paragraph at lines 459--460
+Overfull \hbox (71.41528pt too wide) in paragraph at lines 472--473
  [][] 
  []
 
-<matRiks-paper_files/figure-latex/multi-b-1.pdf, id=244, 469.755pt x 325.215pt>
+<matRiks-paper_files/figure-latex/multi-b-1.pdf, id=263, 469.755pt x 325.215pt>
 
 File: matRiks-paper_files/figure-latex/multi-b-1.pdf Graphic file (type pdf)
 <use matRiks-paper_files/figure-latex/multi-b-1.pdf>
 Package pdftex.def Info: matRiks-paper_files/figure-latex/multi-b-1.pdf  used o
-n input line 467.
+n input line 480.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Overfull \hbox (71.41528pt too wide) in paragraph at lines 467--468
+Overfull \hbox (71.41528pt too wide) in paragraph at lines 480--481
  [][] 
  []
 
-<matRiks-paper_files/figure-latex/multi-c-1.pdf, id=246, 469.755pt x 325.215pt>
+<matRiks-paper_files/figure-latex/multi-c-1.pdf, id=265, 469.755pt x 325.215pt>
 
 File: matRiks-paper_files/figure-latex/multi-c-1.pdf Graphic file (type pdf)
 <use matRiks-paper_files/figure-latex/multi-c-1.pdf>
 Package pdftex.def Info: matRiks-paper_files/figure-latex/multi-c-1.pdf  used o
-n input line 475.
+n input line 488.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Overfull \hbox (71.41528pt too wide) in paragraph at lines 475--476
+Overfull \hbox (71.41528pt too wide) in paragraph at lines 488--489
  [][] 
  []
 
 
-LaTeX Warning: Reference `(' on page 14 undefined on input line 479.
+LaTeX Warning: Reference `(' on page 15 undefined on input line 492.
 
-[14 <./matRiks-paper_files/figure-latex/multi-matrix-1.pdf>] [15 <./matRiks-pap
+[15 <./matRiks-paper_files/figure-latex/multi-matrix-1.pdf>] [16 <./matRiks-pap
 er_files/figure-latex/multi-a-1.pdf> <./matRiks-paper_files/figure-latex/multi-
 b-1.pdf>]
-Overfull \hbox (542.29024pt too wide) in paragraph at lines 501--544
+Overfull \hbox (542.29024pt too wide) in paragraph at lines 514--557
  [][] 
  []
 
-[16 <./matRiks-paper_files/figure-latex/multi-c-1.pdf>]
-<matRiks-paper_files/figure-latex/unnamed-chunk-15-1.pdf, id=282, 469.755pt x 3
+[17 <./matRiks-paper_files/figure-latex/multi-c-1.pdf>]
+<matRiks-paper_files/figure-latex/unnamed-chunk-15-1.pdf, id=301, 469.755pt x 3
 25.215pt>
 File: matRiks-paper_files/figure-latex/unnamed-chunk-15-1.pdf Graphic file (typ
 e pdf)
 <use matRiks-paper_files/figure-latex/unnamed-chunk-15-1.pdf>
 Package pdftex.def Info: matRiks-paper_files/figure-latex/unnamed-chunk-15-1.pd
-f  used on input line 574.
+f  used on input line 587.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Overfull \hbox (86.41528pt too wide) in paragraph at lines 574--576
+Overfull \hbox (86.41528pt too wide) in paragraph at lines 587--589
 [][]
  []
 
-[17 <./matRiks-paper_files/figure-latex/unnamed-chunk-15-1.pdf>]
+[18 <./matRiks-paper_files/figure-latex/unnamed-chunk-15-1.pdf>]
 
-LaTeX Warning: Reference `fig:multi-matrix' on page 18 undefined on input line 
-577.
+LaTeX Warning: Reference `fig:multi-matrix' on page 19 undefined on input line 
+590.
 
-<matRiks-paper_files/figure-latex/unnamed-chunk-16-1.pdf, id=293, 469.755pt x 3
+<matRiks-paper_files/figure-latex/unnamed-chunk-16-1.pdf, id=312, 469.755pt x 3
 25.215pt>
 File: matRiks-paper_files/figure-latex/unnamed-chunk-16-1.pdf Graphic file (typ
 e pdf)
 <use matRiks-paper_files/figure-latex/unnamed-chunk-16-1.pdf>
 Package pdftex.def Info: matRiks-paper_files/figure-latex/unnamed-chunk-16-1.pd
-f  used on input line 579.
+f  used on input line 592.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Overfull \hbox (86.41528pt too wide) in paragraph at lines 579--580
+Overfull \hbox (86.41528pt too wide) in paragraph at lines 592--593
 [][] 
  []
 
-<matRiks-paper_files/figure-latex/unnamed-chunk-17-1.pdf, id=294, 469.755pt x 3
+<matRiks-paper_files/figure-latex/unnamed-chunk-17-1.pdf, id=313, 469.755pt x 3
 25.215pt>
 File: matRiks-paper_files/figure-latex/unnamed-chunk-17-1.pdf Graphic file (typ
 e pdf)
 <use matRiks-paper_files/figure-latex/unnamed-chunk-17-1.pdf>
 Package pdftex.def Info: matRiks-paper_files/figure-latex/unnamed-chunk-17-1.pd
-f  used on input line 588.
+f  used on input line 601.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Overfull \hbox (86.41528pt too wide) in paragraph at lines 588--590
+Overfull \hbox (86.41528pt too wide) in paragraph at lines 601--603
 [][]
  []
 
-[18 <./matRiks-paper_files/figure-latex/unnamed-chunk-16-1.pdf>]
-<matRiks-paper_files/figure-latex/unnamed-chunk-18-1.pdf, id=304, 469.755pt x 3
+[19 <./matRiks-paper_files/figure-latex/unnamed-chunk-16-1.pdf>]
+<matRiks-paper_files/figure-latex/unnamed-chunk-18-1.pdf, id=324, 469.755pt x 3
 25.215pt>
 File: matRiks-paper_files/figure-latex/unnamed-chunk-18-1.pdf Graphic file (typ
 e pdf)
 <use matRiks-paper_files/figure-latex/unnamed-chunk-18-1.pdf>
 Package pdftex.def Info: matRiks-paper_files/figure-latex/unnamed-chunk-18-1.pd
-f  used on input line 595.
+f  used on input line 608.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
-Overfull \hbox (86.41528pt too wide) in paragraph at lines 595--596
+Overfull \hbox (86.41528pt too wide) in paragraph at lines 608--609
 [][] 
  []
 
-[19 <./matRiks-paper_files/figure-latex/unnamed-chunk-17-1.pdf>]
-<matRiks-paper_files/figure-latex/unnamed-chunk-19-1.pdf, id=315, 469.755pt x 3
+[20 <./matRiks-paper_files/figure-latex/unnamed-chunk-17-1.pdf>]
+<matRiks-paper_files/figure-latex/unnamed-chunk-19-1.pdf, id=334, 469.755pt x 3
 25.215pt>
 File: matRiks-paper_files/figure-latex/unnamed-chunk-19-1.pdf Graphic file (typ
 e pdf)
 <use matRiks-paper_files/figure-latex/unnamed-chunk-19-1.pdf>
 Package pdftex.def Info: matRiks-paper_files/figure-latex/unnamed-chunk-19-1.pd
-f  used on input line 599.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-
-Overfull \hbox (86.41528pt too wide) in paragraph at lines 599--600
-[][] 
- []
-
-<matRiks-paper_files/figure-latex/unnamed-chunk-20-1.pdf, id=316, 469.755pt x 3
-25.215pt>
-File: matRiks-paper_files/figure-latex/unnamed-chunk-20-1.pdf Graphic file (typ
-e pdf)
-<use matRiks-paper_files/figure-latex/unnamed-chunk-20-1.pdf>
-Package pdftex.def Info: matRiks-paper_files/figure-latex/unnamed-chunk-20-1.pd
-f  used on input line 603.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-
-Overfull \hbox (86.41528pt too wide) in paragraph at lines 603--604
-[][] 
- []
-
-[20 <./matRiks-paper_files/figure-latex/unnamed-chunk-18-1.pdf> <./matRiks-pape
-r_files/figure-latex/unnamed-chunk-19-1.pdf>]
-Overfull \hbox (16.49532pt too wide) in paragraph at lines 605--606
-[]\T1/ppl/m/n/9 (-20) The re-sponse op-tions as-so-ci-ated with the multi-layer
- ma-trix can be gen-er-ated with the \T1/zi4/m/n/9 response_list()
- []
-
-<matRiks-paper_files/figure-latex/unnamed-chunk-21-1.pdf, id=327, 469.755pt x 3
-25.215pt>
-File: matRiks-paper_files/figure-latex/unnamed-chunk-21-1.pdf Graphic file (typ
-e pdf)
-<use matRiks-paper_files/figure-latex/unnamed-chunk-21-1.pdf>
-Package pdftex.def Info: matRiks-paper_files/figure-latex/unnamed-chunk-21-1.pd
-f  used on input line 607.
-(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
-
-Overfull \hbox (86.41528pt too wide) in paragraph at lines 607--608
-[][] 
- []
-
-[21 <./matRiks-paper_files/figure-latex/unnamed-chunk-20-1.pdf> <./matRiks-pape
-r_files/figure-latex/unnamed-chunk-21-1.pdf>]
-<matRiks-paper_files/figure-latex/unnamed-chunk-22-1.pdf, id=340, 469.755pt x 3
-25.215pt>
-File: matRiks-paper_files/figure-latex/unnamed-chunk-22-1.pdf Graphic file (typ
-e pdf)
-<use matRiks-paper_files/figure-latex/unnamed-chunk-22-1.pdf>
-Package pdftex.def Info: matRiks-paper_files/figure-latex/unnamed-chunk-22-1.pd
 f  used on input line 612.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
@@ -1402,12 +1404,12 @@ Overfull \hbox (86.41528pt too wide) in paragraph at lines 612--613
 [][] 
  []
 
-<matRiks-paper_files/figure-latex/unnamed-chunk-23-1.pdf, id=341, 469.755pt x 3
+<matRiks-paper_files/figure-latex/unnamed-chunk-20-1.pdf, id=335, 469.755pt x 3
 25.215pt>
-File: matRiks-paper_files/figure-latex/unnamed-chunk-23-1.pdf Graphic file (typ
+File: matRiks-paper_files/figure-latex/unnamed-chunk-20-1.pdf Graphic file (typ
 e pdf)
-<use matRiks-paper_files/figure-latex/unnamed-chunk-23-1.pdf>
-Package pdftex.def Info: matRiks-paper_files/figure-latex/unnamed-chunk-23-1.pd
+<use matRiks-paper_files/figure-latex/unnamed-chunk-20-1.pdf>
+Package pdftex.def Info: matRiks-paper_files/figure-latex/unnamed-chunk-20-1.pd
 f  used on input line 616.
 (pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
 
@@ -1415,36 +1417,84 @@ Overfull \hbox (86.41528pt too wide) in paragraph at lines 616--617
 [][] 
  []
 
-[22 <./matRiks-paper_files/figure-latex/unnamed-chunk-22-1.pdf>] [23 <./matRiks
+[21 <./matRiks-paper_files/figure-latex/unnamed-chunk-18-1.pdf> <./matRiks-pape
+r_files/figure-latex/unnamed-chunk-19-1.pdf>]
+Overfull \hbox (16.49532pt too wide) in paragraph at lines 618--619
+[]\T1/ppl/m/n/9 (-20) The re-sponse op-tions as-so-ci-ated with the multi-layer
+ ma-trix can be gen-er-ated with the \T1/zi4/m/n/9 response_list()
+ []
+
+<matRiks-paper_files/figure-latex/unnamed-chunk-21-1.pdf, id=346, 469.755pt x 3
+25.215pt>
+File: matRiks-paper_files/figure-latex/unnamed-chunk-21-1.pdf Graphic file (typ
+e pdf)
+<use matRiks-paper_files/figure-latex/unnamed-chunk-21-1.pdf>
+Package pdftex.def Info: matRiks-paper_files/figure-latex/unnamed-chunk-21-1.pd
+f  used on input line 620.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+
+Overfull \hbox (86.41528pt too wide) in paragraph at lines 620--621
+[][] 
+ []
+
+[22 <./matRiks-paper_files/figure-latex/unnamed-chunk-20-1.pdf> <./matRiks-pape
+r_files/figure-latex/unnamed-chunk-21-1.pdf>]
+<matRiks-paper_files/figure-latex/unnamed-chunk-22-1.pdf, id=359, 469.755pt x 3
+25.215pt>
+File: matRiks-paper_files/figure-latex/unnamed-chunk-22-1.pdf Graphic file (typ
+e pdf)
+<use matRiks-paper_files/figure-latex/unnamed-chunk-22-1.pdf>
+Package pdftex.def Info: matRiks-paper_files/figure-latex/unnamed-chunk-22-1.pd
+f  used on input line 625.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+
+Overfull \hbox (86.41528pt too wide) in paragraph at lines 625--626
+[][] 
+ []
+
+<matRiks-paper_files/figure-latex/unnamed-chunk-23-1.pdf, id=360, 469.755pt x 3
+25.215pt>
+File: matRiks-paper_files/figure-latex/unnamed-chunk-23-1.pdf Graphic file (typ
+e pdf)
+<use matRiks-paper_files/figure-latex/unnamed-chunk-23-1.pdf>
+Package pdftex.def Info: matRiks-paper_files/figure-latex/unnamed-chunk-23-1.pd
+f  used on input line 629.
+(pdftex.def)             Requested size: 469.75386pt x 325.2142pt.
+
+Overfull \hbox (86.41528pt too wide) in paragraph at lines 629--630
+[][] 
+ []
+
+[23 <./matRiks-paper_files/figure-latex/unnamed-chunk-22-1.pdf>] [24 <./matRiks
 -paper_files/figure-latex/unnamed-chunk-23-1.pdf>]
-<figures/penguins.png, id=362, 72.27pt x 42.9605pt>
+<figures/penguins.png, id=381, 72.27pt x 42.9605pt>
 File: figures/penguins.png Graphic file (type png)
 <use figures/penguins.png>
-Package pdftex.def Info: figures/penguins.png  used on input line 646.
+Package pdftex.def Info: figures/penguins.png  used on input line 659.
 (pdftex.def)             Requested size: 398.44772pt x 212.57635pt.
-<matRiks-paper_files/figure-latex/penguins-ggplot-1.pdf, id=367, 469.755pt x 36
+<matRiks-paper_files/figure-latex/penguins-ggplot-1.pdf, id=386, 469.755pt x 36
 1.35pt>
 File: matRiks-paper_files/figure-latex/penguins-ggplot-1.pdf Graphic file (type
  pdf)
 <use matRiks-paper_files/figure-latex/penguins-ggplot-1.pdf>
 Package pdftex.def Info: matRiks-paper_files/figure-latex/penguins-ggplot-1.pdf
-  used on input line 686.
+  used on input line 699.
 (pdftex.def)             Requested size: 469.75386pt x 361.34912pt.
 
-Overfull \hbox (71.41528pt too wide) in paragraph at lines 686--687
+Overfull \hbox (71.41528pt too wide) in paragraph at lines 699--700
  [][] 
  []
 
-[24 <./figures/penguins.png>] [25 <./matRiks-paper_files/figure-latex/penguins-
+[25 <./figures/penguins.png>] [26 <./matRiks-paper_files/figure-latex/penguins-
 ggplot-1.pdf>]
 No file RJwrapper.bbl.
 
 LaTeX Font Warning: Font shape `T1/zi4/m/it' undefined
-(Font)              using `T1/zi4/m/n' instead on input line 737.
+(Font)              using `T1/zi4/m/n' instead on input line 750.
 
 LaTeX Font Info:    Font shape `T1/zi4/m/it' will be
-(Font)              scaled to size 9.18004pt on input line 737.
-) [26] (RJwrapper.aux)
+(Font)              scaled to size 9.18004pt on input line 750.
+) [27] (RJwrapper.aux)
  ***********
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-11-09>
@@ -1459,10 +1509,10 @@ Package rerunfilecheck Info: File `RJwrapper.out' has not changed.
 (rerunfilecheck)             Checksum: 95C17EC2C835EC8E7F297E2AE4AB0FF8;2479.
  ) 
 Here is how much of TeX's memory you used:
- 27401 strings out of 474586
- 509457 string characters out of 5745680
+ 27452 strings out of 474586
+ 510621 string characters out of 5745680
  1945558 words of memory out of 5000000
- 48729 multiletter control sequences out of 15000+600000
+ 48778 multiletter control sequences out of 15000+600000
  604270 words of font info for 279 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  117i,12n,131p,1091b,905s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1473,9 +1523,9 @@ s/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/ottae/AppData/Local/Programs/Mi
 KTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/ottae/AppData/Local/Programs
 /MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb><C:/Users/ottae/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/urw/palatino/uplri8a.pfb>
-Output written on RJwrapper.pdf (26 pages, 637152 bytes).
+Output written on RJwrapper.pdf (27 pages, 646342 bytes).
 PDF statistics:
- 466 PDF objects out of 1000 (max. 8388607)
- 94 named destinations out of 1000 (max. 500000)
- 65309 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 485 PDF objects out of 1000 (max. 8388607)
+ 96 named destinations out of 1000 (max. 500000)
+ 65344 words of extra memory for PDF output out of 74296 (max. 10000000)
 

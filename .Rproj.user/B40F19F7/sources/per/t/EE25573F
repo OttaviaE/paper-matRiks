@@ -3,7 +3,7 @@
     "path": "~/GitHub/paper-matRiks/matRiks-paper.Rmd",
     "project_path": "matRiks-paper.Rmd",
     "type": "r_markdown",
-    "hash": "2892226617",
+    "hash": "783226278",
     "contents": "",
     "dirty": false,
     "created": 1706868732851.0,
@@ -12,15 +12,16 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "652,77",
-        "scrollLine": "640"
+        "cursorPosition": "293,65",
+        "scrollLine": "272",
+        "chunk_output_type": "console"
     },
     "folds": "",
-    "lastKnownWriteTime": 1707392291,
+    "lastKnownWriteTime": 1708620942,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1707392291617,
+    "last_content_update": 1708620942270,
     "read_only": false,
     "read_only_alternatives": []
 }
