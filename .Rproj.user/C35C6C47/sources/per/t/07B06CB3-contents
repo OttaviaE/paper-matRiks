@@ -1,0 +1,821 @@
+---
+title: "matRiks: An R package for the automatic generation of rule-based matrices"
+date: "2022-11-09"
+abstract: >
+ Few resources are available for the automatic generation of Raven-like matrices. Some of them are no longer working, while others are hardly customizable without strong programming skills. An R package fro the automatic generation of stimuli used for psychological assessment exists, but it is limited to one shape and to the manipulation of one rule (i.e., rotation). The \CRANpkg{matRiks} package has been developed with the aim of overcoming the above mentioned issues. This package can generate matrices considering different types of rules, starting from the most basic ones (e.g., changes in size, objects orientation) to the most complex ones, based on inferential and inductive reasoning. This unveils the possibility of generating new customizable stimuli and of systematically manipulating the difficulty of the matrices. Being developed within the R environment, the \CRANpkg{matRiks} package is completely open-source, allows for the reproducibility of the stimuli, and it can be easily used  by people with basic knowledge of R language.
+draft: true
+author:  
+  - name: Quietest Quokka
+    affiliation: University of Little Mates
+    address:
+    - Department of Letter Q
+    - Somewhere, Australia
+    url: https://www.britannica.com/animal/quokka
+    orcid: 0000-1721-1511-1101
+    email:  qquo@ulm.edu
+  - name: Bounciest Bilby
+    affiliation:
+    - University of Little Mates
+    - University of Aussie Animals
+    address:
+    - Department of Letter Q, Somewhere, Australia
+    - Department of Marsupials, Somewhere, Australia
+    url: https://www.britannica.com/animal/bilby
+    email: bbil@ulm.edu
+    orcid: 0000-0002-0912-0225
+type: package
+output: 
+  rjtools::rjournal_article:
+    self_contained: yes
+    toc: no
+bibliography: RJreferences.bib
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(plotly)
+library(ggplot2)
+library(palmerpenguins)
+library(kableExtra)
+library(data.table)
+library(matRiks)
+library(knitr)
+library(kableExtra)
+```
+
+# Introduction
+
+Cattell (@cattell1963) defined fluid intelligence (*g*) as the ability of solving novel reasoning problems that has little to do with concepts learned in schools or through acculturational processes. The adjective "fluid" explicitly refers to its ability to "flow" into a variety of tasks and cognitive activities (Horn, 1972). 
+Given this definition of fluid intelligence, it appears natural that the instruments for used for its evaluation tap on the respondent's ability to solve abstract problems that involve acculturation as little as possible, such as figural analogies, figure classifications, matrices, and number and letter series are often used (Horn, 1968). 
+
+The Raven's progressive matrices (RPM, @raven1938) are among the most famous tools for the assessment of *g*. The RPM consists in a series of non-verbal multiple-choice stimuli where respondents are required to complete a series of drawings composed of different figures by identifying the relevant features that rule the relationships between the figures. These drawings are often referred to as matrices.
+To pursue this aim, the respondents must choose the figure that complete the drawing among a list of other figures, the so-called distractors. 
+This task should measure the ability of the respondents to identify and take into account the features (also called "rules") that govern the relationship between the figures to compose the drawing. 
+The RPM and similar tasks (here denoted as Raven-like matrices or Raven-like tasks) are employed in different fields, from clinical evaluation of intelligence to the selection processes in organizational psychology (citation needed). 
+Since Raven's and Raven-like tasks involve the ability to solve new abstract problems, the stimuli composing these tasks should not be spread among the general population. 
+However, new stimuli can be generated according to the rules that govern the relationships between the figures composing the drawing. Indeed, different resources are available for developing Raven-like tasks, such as Sandia (cit), Corvus (cit), and the R package \CRANpkg{Imak} (cit). 
+
+The stimuli generated with Sandia have been analysed in an Item Response Theory framework to validate them as a test for measuring fluid intelligence. 
+The stimuli are available upon request to the authors, however no new stimuli can be generated because the code on which Sandia is based is no longer maintained. 
+Corvus represents another possible resource for generating Raven-like tasks. Corvus is written in Javascript but the Author provided a nice and easy-to-use graphical interface where the user can specify the figures and the rule(s) for the generation of the matrices. However, Corvus provides few degrees of freedom in  terms of both the figures and the number of rules that can be manipulated through the graphical interface. If the user wants to add other figures, to modify the already existing figures, or to implement new rules, they have to modify the source code in Javascript, which might be a quite demanding task for people with little to null experience in programming. 
+Finally, the `ImaK` package is an `R` package that allows for generating visual analogies. The code for generating such stimuli (along with their response options) is quite straightforward and easy to use. However, the stimuli that can be generated with the `ImaK` package are mostly based on the rotation of the same figure to which some objects can be added or removed. As such, the only rule that is manipulated is the spatial rotation of the figures.  
+
+
+Given the limitations of the existing resources for generating Raven-like tasks, there might be the need of an open-source, easy-to-use, and constantly maintained resource for generating such stimuli through the systematic manipulation of rules applied to different figures. 
+The `matRiks` package (@matRiks) has been developed to pursue these aims.
+Beyond generating the matrix by manipulating one or multiple rules at once on one or multiple figures, the `matRiks` package generates the response list associated to the matrix as well. 
+The systematic manipulation of both the rules and the figures for the matrix generation should grant the possibility of grading the granularity of the difficulty of the matrices by manipulating one element at the time. 
+In a similar vein, the package should allow for generating matrices that can be considered equivalent in terms of rules employed for their generation but differ in terms of figures composing the drawing. In what follows, the term stimulus is used to identify the matrix with its associated response list.   
+
+The manuscript is organized as follows. 
+The next section presents the rules that usually employed in the RPM along with the specific types of error responses (i.e., distractors) that compose the response list associated with a matrix. Then, the `matRiks` package is presented through an example of its application for the generation of different stimuli (i.e., the matrix with its associated response list).
+
+
+# Background
+
+### Rule based matrices 
+
+Literature highlights a plethora of rules that can be manipulated for the generation of the raven-like tasks (cit cit cit). 
+Beyond the fact that some of these rules have different names in different sources but refer to the same manipulation (e.g., the rule defined as "and problem" in Harris el a. 2020 is called "intersection" rule in Arendasy et al. 2005), they can be summarized into different macro-categories, namely visuospatial rules (i.e., the manipulation concerns the graphical and spatial features of the figures, Figure \@ref(fig:visuoRule)), and logical rules (i.e., the manipulation concerns the logical relationships between the figures composing the matrix, , Figure \@ref(fig:logiRule)). The rules can be applied (i.e., manipulated) to different figures or concatenation of figures to generate a matrix.
+
+
+
+
+```{r visuoRule, out.width="70%", fig.align="center", fig.cap="Example of visuospatial rule: Changes in size"}
+a = mat_apply(maxi(), hrules = "size")
+
+par(mfrow =c(1, 3) ,
+        mar = c(6,5,5,5))
+
+draw(a$Sq1); draw(a$Sq2); draw(a$Sq3)
+```
+
+```{r logiRule, out.width="70%", fig.align="center", fig.cap="Example of logical rule: Insiemistic Interscetion AND"}
+size.x = 8 
+size.y = 4 
+pos.x = 0 
+shd = NA 
+lty = 1 
+lwd = 3
+
+par(mfrow =c(1, 3) ,
+        mar = c(6,5,5,5))
+
+a = mat_apply(cof(luck(pos.x = pos.x + size.x, pos.y = pos.x, rot = pi, 
+        size.x = size.x, size.y = size.y, shd = shd, lty = lty, 
+        lwd = lwd), luck(pos.x = pos.x - size.x, pos.y = pos.x, 
+        rot = -pi, size.x = size.x, size.y = size.y, shd = shd, 
+        lty = lty, lwd = lwd), luck(pos.x = pos.x, pos.y = pos.x + 
+        size.x, rot = -pi, size.x = size.y, size.y = size.x, 
+        shd = shd, lty = lty, lwd = lwd), luck(pos.x = pos.x, 
+        pos.y = pos.x - size.x, rot = -pi, size.x = size.y, size.y = size.x, 
+        shd = shd, lty = lty, lwd = lwd)), hrules = "AND")
+
+draw(a$Sq1); draw(a$Sq2); draw(a$Sq3)
+```
+
+In Figure \@ref(fig:visuoRule), the manipulation concerns a specif feature of the figure, that is its size, and it can be observed as the the figure decreases its size across the cells. 
+The rightmost cell contains the figure with the smallest size, the middle cell contains a figure with medium-small size while the leftmost object contains the figure with its original size. 
+In Figure \@ref(fig:logiRule), the manipulation concerns the relationships between the objects composing the figures, which are combined together according to a logical rule based on the insiemistic intersection of the objects. Specifically, the figure in the rightmost cell results from the intersection of the objects in the leftmost cell and in the middle cell.
+
+
+Both visuospatial and logical rules can be manipulated according to different directional logic. 
+Specifically, the rules can be applied horizontally (i.e., the manipulation of the rule can be seen across columns but not across rows, H direction), vertically (i.e., the manipulation of the rule can be seen across rows but not across columns, V direction), or diagonally (i.e., the manipulation of the rule can be seen both across columns and across rows). Concerning the diagonal directional logic, it can follow either the main diagonal of the matrix (i.e., the manipulation of the rule can be seen from the top-left corner to the low-right corner, TL-LR direction) or the secondary diagonal of the matrix (i.e., the manipulation of the rule can be seen from the low-left corner to the top-right corner, LL-TR direction).
+
+
+### The response options
+
+A large corpus of literature has investigated the role of the distractors in the response processes involved when solving the Raven matrices, focusing on the specific error response chosen by the respondent (@fort, @kunda, @storme). 
+The underlying logic is that the incorrect response is not chosen at random by the respondent, but it can be the result of an educated guess, or it can be chosen because the respondent is misled for a definite reason. 
+In other words, the incorrect responses might reflect an incorrect solution strategy which results in the choice of a specific distractor type over another one [@kunda]. The distractors can be classified according to the incorrect response strategy they represent. 
+@kunda present a list of criteria for the identification of the distractors in the SPM based on the error types from the CPM and APM manuals [@raven2004]. Specifically, the specific response that is chosen in place of the correct one (i.e. error types) can be collected into four main four conceptual errors, namely Repetition (R), Difference (D), Wrong Principle (WP), and Incomplete Correlate (IC). 
+Repetition errors occur when the chosen response option is a cell adjacent to the blank space. 
+Difference errors occur when the chosen response option is completely different from any entry of the matrix. 
+Wrong principle errors occur when the chosen response option follows rules other than the ones used in the matrix. Incomplete Correlate errors occur when the chosen response option is in fact the correct response with a variation on a single feature. Each of the four main error types can be further described by their subcategories.  
+Table `r knitr::asis_output(ifelse(knitr::is_html_output(), '\\@ref(tab:tab-error-types-interactive)', '\\@ref(tab:tab-error-types-static)'))`  illustrates  the definitions of the error types.
+
+
+```{r tab-error-types-interactive, eval=knitr::is_html_output(), layout = "l-body-outset"}
+error_types = data.table(Distractors = c("Repetition (R)", "", "", 
+                                         "Difference (D)", "", "","",		
+                                         "Wrong Principle (WP)", "", "",	
+                                         "Incomplete Correlate (IC)", "", "", "","", "","" )
+                                             , 
+                         Definition	= c("Entries of the matrix adjacent to the blank cell", "", "",
+                                        "Combination of all the entries of the matrix or the combination of some of their features. It is different from any entry of the matrix and from the other distractors.", "", "", "", 	"Copy or combination of the matrix entries according to another rule", "", "",	
+                                        "Correct response with a variation on only a single feature.", "", "", "", "","", ""),
+                                        "Specific Error" = c("R-Left", 	"R-Top",	
+                                                             "R-Diag", 	"D-Blank", 	"D-Union", 	"D-Plus",
+                                                             "D-Diff", 	"WP-Copy", "WP-Flip", 
+                                                             "WP-Matrix", "IC-Neg",	
+                                                             "IC-Fill",	
+                                                             "IC-Flip",	
+                                                             "IC-Layout", "IC-Scale","IC-Num", "IC-Inc"
+), "Specific definition" = c("Repetition of the cell left to the blank space", 
+                             "Repetition of the cell above to the blank space", 
+                             "Repetition of the cell right to the blank space", 
+                             "Filled completely white or black", 
+                             "Some elements of one entry are emphasized", 
+                             "Some entries of the matrix are combined together", 
+                             "Qualitatively different from any other distractor and any entry of the matrix, resulting in a pop-out effect.", 
+                             "Repetition of a cell non adjacent to the blank space", 
+                             "Rotation or refection of one entry of the matrix.", 
+                             "Transformation or combination of some entries of the matrix or of their elements", 
+                            "Negative of the correct response", 
+                            "Correct response with a different texture or style.", 
+                            "The elements of the correct response are displayed with a different layout", 
+                            "Elements of the correct response with different proportion or different size of the correct response.", "Correct response with a different number of elements (small layout changes are allowed)", 
+                            "Correct response with a missing element.")
+)	 
+
+kbl(error_types, align = "l", caption = "Taxonomy of error types") %>%
+  column_spec(1, bold = T) 
+```
+
+
+```{r tab-error-types-static, eval=knitr::is_latex_output(), layout = "l-body-outset"}
+error_types = data.table(Distractors = c("Repetition (R)", "", "", 
+                                         "Difference (D)", "", "","",		
+                                         "Wrong Principle (WP)", "", "",	
+                                         "Incomplete Correlate (IC)", "", "", "","", "","" )
+                                             , 
+                         Definition	= c("Entries of the matrix adjacent to the blank cell", "", "",
+                                        "Combination of all the entries of the matrix or the combination of some of their features. It is different from any entry of the matrix and from the other distractors.", "", "", "", 	"Copy or combination of the matrix entries according to another rule", "", "",	
+                                        "Correct response with a variation on only a single feature.", "", "", "", "","", ""),
+                                        "Specific Error" = c("R-Left", 	"R-Top",	
+                                                             "R-Diag", 	"D-Blank", 	"D-Union", 	"D-Plus",
+                                                             "D-Diff", 	"WP-Copy", "WP-Flip", 
+                                                             "WP-Matrix", "IC-Neg",	
+                                                             "IC-Fill",	
+                                                             "IC-Flip",	
+                                                             "IC-Layout", "IC-Scale","IC-Num", "IC-Inc"
+), "Specific definition" = c("Repetition of the cell left to the blank space", 
+                             "Repetition of the cell above to the blank space", 
+                             "Repetition of the cell right to the blank space", 
+                             "Filled completely white or black", 
+                             "Some elements of one entry are emphasized", 
+                             "Some entries of the matrix are combined together", 
+                             "Qualitatively different from any other distractor and any entry of the matrix, resulting in a pop-out effect.", 
+                             "Repetition of a cell non adjacent to the blank space", 
+                             "Rotation or refection of one entry of the matrix.", 
+                             "Transformation or combination of some entries of the matrix or of their elements", 
+                            "Negative of the correct response", 
+                            "Correct response with a different texture or style.", 
+                            "The elements of the correct response are displayed with a different layout", 
+                            "Elements of the correct response with different proportion or different size of the correct response.", "Correct response with a different number of elements (small layout changes are allowed)", 
+                            "Correct response with a missing element.")
+)	 
+
+kbl(error_types, align = "l", 
+    caption = "Taxonomy of error types") %>% column_spec(1, bold = T)
+```
+
+
+
+The criteria for the classification of the error types were used for the formal definition and generation of the distractors implemented in the `matRiks` package. 
+These criteria were included in the response options operator with the aim of providing the user with a response list composed of 11 elements (ten distractors  and the correct response) among which they could choose the most appropriate ones.
+
+The response options operator generates a response list composed of the correct response, three reptition distractors, one difference distractor, two wrong principle distractors, and four incomplete correlate distractors. 
+Further details on the formal definition of each of the distractors and on their generation are given in the "Generation of the response list" Section.
+
+# The matRiks package
+
+The `matRiks` [@matRiks] package can generate $2 \times 2$ and $3 \times 3$ Raven-like matrices with their corresponding set of responses (i.e., the correct response and all the distractors described in the Generation of response list section). The Raven-like matrices can be generated according to either visuo-spatial or logic rules, which can be concatenated with three different directional logic, namely vertically, horizontally, and diagonally. 
+Finally, it is possible to print the generated matrices and set of distractors as either single images (i.e., each cell of the matrix and each distractor are printed separately) or as a complete figure with the set of single distractors. 
+
+## Installation
+
+The `matRiks` package is available on CRAN and can be installed as: 
+
+```{r eval = FALSE, echo = TRUE}
+install.packages("matRiks")
+```
+
+The code `vignette(package ="matRiks")` allows for obtaining the list of all the vignettes included in the package. Each vignette can be accessed via `vignette("vignette-name", package="matRiks")`. For instance, the  code `vignette("generate_matriks", package ="matRiks")` opens the vignette that contains the instruction on how to generate an `RMarkdown` file where both the matrix and its associated response options are plotted together.  
+
+## Definition of figures
+
+The `matRiks` package contains a high number of default figures that can be used for the generation of the matrices. 
+All figures are defined as functions, hence their name has to be followed by the parentheses, and they have class `figure`. 
+The arguments that can be modified inside the parentheses might vary from figure to figure, and they allow for changing different features of the figure. 
+Specifically, the arguments that can be modified inside of the parentheses modify the default features of the figures, which are stored in a list of length 15. this list contains other lists with all the features of the figure. 
+The features of the figure are as follows: 
+
+- `shape`: character, the name of the figure
+- `size.x`: numeric, the length of the semi-major axis of the ellipse within which the figure is inscribed (see the documentation of the \pkg{DescTools} for further details)
+- `size.y`: numeric, the length of the semi-minor  axis of the ellipse within which the figure is inscribed (see the documentation of the \pkg{DescTools} for further details)
+- `theta.1`: numeric, radiants of the rotation of the circle
+- `theta.2`: numeric, radiants of the rotation of the circle
+- `rotation`: numeric, radiants of the rotation of the ellipse within which the figure is inscribed 
+- `pos.x`: numeric, the position on the x-axis 
+- `pos.y`: numeric, the position on the y-axis 
+- `lty`: integer, the line type of the margins of the figure
+- `lwd`: integer, the width of the margins of the figure
+- `num`: don't remembed
+- `nv`: integer, the numberof vertixes of the figures (might vary from 2 --lines-- to 100 --circle and ellipse--)
+- `shade`: character, the filling of a figure (can also be NA --empty figure--)
+- `visible`: inetger, the visibility of the figure
+- `tag`: character, properties of the figure used for the definition of the distractors
+
+For instance, a simple square (Figure \@ref{fig:square}) can be printed with the command line: 
+
+```{r square, echo = TRUE, fig.cap = "A simple square"}
+draw(square())
+```
+
+
+
+
+The figures can be summarized in different categories, and for each of these categories there is a vignette that list all the figures included in that specific category. 
+
+The following types of figure are available in the matRiks package. For each type of figures, there is a vignette availbale that lists the entire figures for each type: 
+
+```{r figures-list-interactive}
+tbl_img <- data.table(
+  "Figure Category" = c("Black figures", "Circle sections", "Closed figures"),
+  Example = "", 
+  "Figure Category"  = c("Flower figures", "Eight-shaped figures", "Lines"), 
+  Example = "", 
+  "Figure Category" = c("Other figures", "", ""),
+  Example = ""
+)
+
+tbl_img %>%
+  kbl(booktabs = T) %>%
+  kable_paper(full_width = F) %>%
+  column_spec(2, image = spec_image(
+    c("black-figures.png", "circle-sections.png", "closed-figures.png"), 50, 50, 50)) %>% 
+  column_spec(4, image = spec_image(
+    c("flowers.png", "eight-shapes-figures.png", "lines.png"), 50, 50, 50)) %>% 
+    column_spec(6, 
+                image = spec_image(
+    c("other-figures.png","other-figures.png","other-figures.png" ), 50,50,50))
+```
+
+
+
+::::{style="display: flex;"}
+
+:::{}
+
+```{r out.width="50%", fig.cap="[Black figures](https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html)"}
+draw(biscuit())
+```
+
+
+```{r out.width="50%", fig.cap="[Circle sections](https://cran.r-project.org/web/packages/matRiks/vignettes/circle-sections.html)"}
+draw(pacman())
+```
+
+
+
+```{r out.width="50%", fig.cap="[Other figures](https://cran.r-project.org/web/packages/matRiks/vignettes/other-figures.html)"}
+draw(maxi())
+```
+
+
+
+:::
+
+::: {}
+
+```{r out.width="50%", fig.cap="[Closed figures](https://cran.r-project.org/web/packages/matRiks/vignettes/closed-figures.html)"}
+draw(luck())
+```
+
+
+```{r out.width="50%", fig.cap="[Eight-shaped figures](https://cran.r-project.org/web/packages/matRiks/vignettes/eight-shapes-figures.html)"}
+draw(vertical_eight())
+```
+
+:::
+
+
+::: {}
+
+```{r out.width="50%", fig.cap="[Flowers figures](https://cran.r-project.org/web/packages/matRiks/vignettes/flowers-figures.html)"}
+draw(miley())
+```
+
+
+```{r out.width="50%", fig.cap="[Lines](https://cran.r-project.org/web/packages/matRiks/vignettes/lines.html)"}
+draw(X())
+```
+
+:::
+
+::::
+
+
+## Concatenation of figures 
+
+Other then the pre-existing figures, the `matRiks` package allow for the generation of new figures by concatenating the existing ones. The `cof()` (**c**oncatenation **o**f **f**igures) function is designed for this aim. The arguments of the `cof()` function are the names of the default figures presented in the previous section.
+
+For instance, the figure in Figure \@ref(fig:eye) is obtained by concatenating a `circle()` and a `dot()`. 
+
+```{r eye, fig.cap="Example of concatenation of circle and dot to obtain an eye-like figure.", echo = TRUE}
+eye <- cof(circle(), dot()) # create the new figure eye by concatenating the circle and the dot
+draw(eye)
+```
+
+The resulting figure `eye` is a named list of lists of class `figure`. However, the two original figures are still available and can be considered as separated entities.
+
+```{r echo=TRUE}
+eye$shape
+```
+
+Thus, the object eye is considered a concatenation of two figures.
+
+Function `cof()` has also two optional arguments `single` and `name`. If set to  `TRUE` , 
+the first  argument forces the outcome of the concatenation to be consider as a new single. 
+The second argument defines a new name for such a figure. 
+The following code recreated the figure in Figure \ref{fig:eye} but it forces the new figure to be a single figle named "eye". 
+
+```{r echo=TRUE}
+s_eye <- cof(circle(),dot(),single = TRUE, name = "eye")
+s_eye$shape
+```
+
+This difference will be relevant for the next sections in which there are rules that require a certain number of figures to be applied.
+
+## Available rules and matrix generation
+
+The function `mat_apply(Sq1, hrules="identity", vrules ="idenity", mat.type=9)` is the main function for the generation of matrices based on rules and returns an object of class `matriks`. 
+This function allows for the generation of matrices of different dimension, either 4-cell or 9-cell matrices. 
+The dimension of the matrix can be specified with the argument `mat.type`, such that `mat.type = 4` results in 4-cell matrices (Table `r knitr::asis_output(ifelse(knitr::is_html_output(), '\\@ref(tab:fourCell-interactive)', '\\@ref(tab:fourCell-static)'))`)
+
+
+```{r fourCell-interactive, eval = knitr::is_html_output(), layout = "l-body-outset"}
+four = matrix(paste("Sq", 1:4, sep = ""), nrow = 2)
+
+kable(four, align = "c", caption="Four-cell matrix") %>%
+  kable_paper(full_width = TRUE)
+```
+
+
+```{r fourCell-static, eval = knitr::is_latex_output(), layout = "l-body-outset"}
+four = matrix(paste("Sq", 1:4, sep = ""), nrow = 2)
+
+kable(four, align = "c", caption="Four-cell matrix") 
+```
+
+
+and  `mat.type = 9` results in 9-cell matrices (default, Table Table `r knitr::asis_output(ifelse(knitr::is_html_output(), '\\@ref(tab:nineCell-interactive)', '\\@ref(tab:nineCell-static)'))`).
+
+```{r nineCell-interactive, eval = knitr::is_html_output(), layout = "l-body-outset"}
+nine = matrix(paste("Sq", 1:9, sep = ""), nrow = 3)
+
+kbl(nine, align = "c",  caption="Nine-cell matrix") %>%
+  kable_paper(full_width = TRUE)
+```
+
+
+```{r nineCell-static, eval = knitr::is_latex_output(), layout = "l-body-outset"}
+nine = matrix(paste("Sq", 1:9, sep = ""), nrow = 3)
+kbl(nine, align = "l", 
+    caption = "Nine-cell matrix") 
+```
+
+The `Sq1` argument defines the starting figure (i.e., the figure to be plotted in the first cell `Sq1`), which can also be a concatenation of figures. The arguments `hrules` and `vrules` allow for the definition of the directional logic with the rule(s) is applied, such that the rules specified in `hrules` are manipulated horizontally and those specified in `vrules` are applied vertically. 
+
+The application of the `mat_apply()` function results in an object of class `matriks`, which is a named list. The length of the list vary as the dimension of the matrix varies, such that it has length 7 when `mat.type =4` and of length 12 otherwise. Regardless of the length of the list, it contains the characteristics of the matrix. the following example is based on a 9-cell matrix where the identity rule was applied both horizontally and vertically:
+
+```{r warning=FALSE}
+names( mat_apply(lily()))
+```
+
+In particular, `Sq1` to `Sq9` are lists containing the figures for each of the nine cells composing the matrix, while `hrule`, `vrule`, `mat.type` are vectors containing the rules applied the rules applied horizontally, vertically, and the dimension of the matrix, respectively. Since this is a 9-cell matrix, the list is of length 12 and it contains the cells from Sq1 to Sq9. If a 4-cell matrix is generated, then the list if of length 7 and it contains the cells from Sq1 to Sq4, along with  `hrule`, `vrule`, `mat.type` .
+
+The rules are methods that transform a feature of the figure to obtain a different figure or a figure with a modified feature.
+The `matRiks` package implements several rules, each of which may be classified differently.
+The table contains all the rules available in the package, their descriptions, and classifications.
+
+[Rule table ]
+
+As already mentioned, the rules can be classified into visuospatial and logical rules. 
+Such macro classification may have an impact on the difficulty of the generated matrix [cita].
+By the way in which the rules have been defined in the \pkg{matRiks} package, they can be either incremental or permutational rules.
+
+The operation underlying the functioning of the incremental rules is the increment of a fixed quantity.
+Incremental rules apply a fixed increase (or decrease) on each cell of the matrix to obtain the feautures of the figure in the following cell, starting from the first cell.
+The order in which the fixed increase (decrease) is applied depends on the directional logic used for the generation of the matrix.
+For instance, Figure \@ref(fig:incremental) illustrates the application of the change in size rule on a square. the change in size rule is an incremental rule, in which the size of the square decreases of a fixed quantity in each subsequent object according to a directional logic.
+
+```{r incremental, fig.cap="Example of size rule transformation along a row."}
+a = mat_apply(square(size.x=10), hrules = "size")
+par(mfrow =c(1, 3) ,
+        mar = c(6,5,5,5))
+draw(a$Sq1); draw(a$Sq2); draw(a$Sq3)
+```
+
+The incremental aspects appear because the squares are smaller compared to the ones on their right but larger than the ones on their left.
+Hence, by changing the position of any figure in the row the results would not necessarily respect the definition of the rule.   
+
+The operation underlying the functioning of the permutational rules is the permutation of the figures (or of their features) across the cells according to a directional logic.
+For instance, the change in shapes rule is a permutational rule where the objects shown in each cell of the matrix are permuted following an order that is consistent with the directional logic.
+For instance, consider a matrix where a set of three figures (`hexagon()`, `pentagon`, `square`) are manipulated according to the shape rule following an horizontal directional logic (Figure \@ref(fig:permutational)).
+
+```{r permutational, fig.cap="Example of shape rule transformation along a row."}
+a = mat_apply(cof(hexagon(),pentagon(),square()), hrules = "shape")
+par(mfrow =c(1, 3) ,
+        mar = c(6,5,5,5))
+draw(a$Sq1); draw(a$Sq2); draw(a$Sq3)
+```
+
+By default, the order of the figures is the order with which the figures are concatenated in the starting set. If the order of the figures in the original set is changed, then the rule will adapt and the result will be consistent with the new starting order. 
+
+All the rules functions are characterized by three arguments, namely `fig`,`n`, and `rules`.
+The `fig` argument defines the initial figure that will be transformed. 
+The `n` argument defines the position of the resulting figure in the cell, in particular the number of rows or columns (depending on the directional logic) in which the outcome will be displayed.
+Finally, the `rules` argument is a vector of characters that defines the type of rule.
+In particular, if the vector `rules` contains the strings `inv` the default order is reversed, and it is denoted that the rule is applied reverse.
+For instance, to reverse the change in size in Figure \ref(fig:incremental), the code `mat_apply(square(size.x=10), hrules = "size.inv")` should be used. Figure \@ref(fig:IncrementalInv) depicts the resultin sequence of squares. 
+
+
+```{r IncrementalInv, out.width="70%", fig.align="center", fig.cap="Example of incremental rule with reverse application: Change in size"}
+
+a = mat_apply(square(size.x=10), hrules = "size.inv")
+
+par(mfrow =c(1, 3) ,
+        mar = c(6,5,5,5))
+
+draw(a$Sq1); draw(a$Sq2); draw(a$Sq3)
+```
+
+
+The reverse application of the rules can be done with permutational rules as well. By starting with the same set of figures as the one used to generate Figure \@ref(fig:permutational), the sepcification of the argument `hrules = "shape.inv"` would result in a reverse ordering of the figures across the cells (Figure \@ref(fig:PermutationalInv)).
+
+```{r PermutationalInv, out.width="70%", fig.align="center", fig.cap="Example of  permutational rule with reverse application: Change of shape"}
+par(mfrow =c(1, 3) ,
+        mar = c(6,5,5,5))
+
+a = mat_apply(cof(triangle(),pentagon(),square()), hrules = "shape.inv")
+
+draw(a$Sq1); draw(a$Sq2); draw(a$Sq3)
+```
+
+
+
+Even though rules are applied to a single figure their purpose is to be cohesive inside a matrix to allow the participant the correct options responses.
+
+Logical rules `AND`, `OR` and `XOR` are a special case of incremental rules. 
+Specifically, these rules cannot be applied in reverse.
+
+
+Figure \@ref(fig:??) shows the flowchart of the generative procedure underlying `mat_apply()`.
+The procedure consists of three serial steps.
+For the sake of simplicity, they will be illustrated for the 9-cell matrices only. A similar line of reasoning can be applied to 4-cell matrices.
+
+The first step is to generate the named list of all the cells from `Sq1` to `Sq9`.
+Each of the cells contains the initial figure defined in `Sq1`. No rule has still been applied.
+For instance, considering the concatenation of figure `cof(square(), circle(),dot())` plotting the outcome of this step will result in the following matrix:
+
+```{r examplestep1, fig.cap="Example of outcome of the first step of the mat_apply procedure."}
+draw(mat_apply(cof(square(), circle(),dot())))
+```
+
+Since the application of the logical rules requires a well-defined relationship between the cells of the matrix, the second step checks whether arguments `hrules` or  `vrules` contain a logical rule. 
+If so, the procedure throws an error. An error is thrown whenever the application of a logical rule is combined with the application of a visuospatial rule, a logical rule is used for the generation of a 4-cell matrix, or if two different logical rules are applied concurrently to the same figures with different directional logic.
+If only one single logical rule is applied and none of the above error-condition has been met, the procedure will generate the whole matrix in a single step.
+
+If the test of the second step turns out to be false, the procedure enters in the third  step. 
+In this step, the rules specified in `hrules` are applied following the horizontal directional logic (i.e., the rules are iterated among the elements horizontally.  
+<!-- corresponds to the iteration among the elements in `hrules`, consisting of the application of the rules with horizontal logic. -->
+
+The fourth step applies the rules specified in vrules following the vertical directional logic (i.e., the rules are iterated among the elements horizontally). 
+
+Since the third  and forth steps are made one after another using the same rule, for instance `size`, both with a horizontal a vertical logic, the two transformation on the cells ends up to cumulate.
+For instance, considering the code `mat_apply(square(),hrules="size", vrules="size")`, at the end of the third step the figure in `Sq5` will be half the size of `Sq1`.
+During the forth the size of `Sq5` will be halve again resulting in a figure that is a quarter of the initial `Sq1`. 
+
+It is worth mentioning that  the combination of the same rule horizontally and vertically ends up in the definition of a diagonal directional logic.
+In particular, if the same rule is applied in reverse in one direction and applied direct in the other, it will result in a TL-LR directional logic.
+On the other hand if the same rule is direct (or reverse) in both horizontal and vertical directional logic they
+will give rise to a LL-TR logic.
+
+## Concatenation of matrices
+
+Matrices can be created either by applying the rule (or set of rules) with the `mat_apply()` function (i.e., single-layer matrix) or by concatenating different matrices  (i.e., multi-layer matrix). Matrices can be concatenated together with the `com()` function (i.e., `c`oncatenation `o`f `m`atrices). 
+
+Figure \@ref(fig:single-matrix) and Figure \@ref(fig:multi-matrix) depict a matrix created by the application of two horizontal rules (i.e., `shade` and `shape`) and one vertical rule (i.e., `rotate``). As such, the figures in the changes and their shading change horizontally, while the rotation of the figures change vertically. 
+
+```{r single-matrix, fig.cap="Single-layer matrix with two rules manipulated horizontally (Shape and filling) and one rules manipulated vertically (Orientation)"}
+single_matrix <- mat_apply(cof(hexagon(), pacman(), pentagon()),
+                           mat.type = 9, hrules = c("shade", "shape"), 
+                           vrules = "rotate")
+draw(single_matrix)
+```
+
+
+
+```{r multi-matrix, fig.cap="Multi-layer matrix with two rules manipulated horizontally (shape and filling) and one rule manipulated vertically (orientation)"}
+multi_a <- mat_apply(cof(hexagon(), square(size.x = 17), pentagon()),
+                           mat.type = 9, hrules = c("shape"))
+
+multi_b <- mat_apply(size(pacman(), 1),
+                           mat.type = 9, vrules = c("rotate"))
+
+multi_c <- mat_apply(size(triangle(), 4),
+                           mat.type = 9, hrules = c("shade"))
+
+
+multi_matrix = com(multi_a, multi_b, multi_c)
+
+draw(multi_matrix)
+
+```
+However, in Figure \@ref(fig:single-matrix) the rules are all applied to the same set of figures (i.e., `hexagon(), square(), pentagon()`) to create one single matrix, while in Figure \@ref(fig:multi-matrix) the rules are separately applied to different figures to create the layers that are then combined to create the multi-layer matrix.
+
+
+Each matrix concatenated to create the multi-matrix is a layer. The layering of the matrices moves from the background (considered as external) to the foreground (considered as internal). The most external layer is the background layer while the most internal layer is the foreground layer. 
+Layers are counted inwards $m = 1, \ldots, M$ (where $M$ is the total number of matrices to concatenate), such that the most external matrix (i.e., background matrix) is layer 1 and the most internal matrix  (i.e., foreground matrix) is layer $M$.  
+The following illustrates the three matrices ($M = 3$) that have been concatenated to create the matrix in Figure \@ref(fig:multi-matrix).
+
+The matrix in Figure \@ref(fig:multi-a) is the first layer (i.e., background layer) and it is created via the horizontal application of the changing shapes rule `shape`.
+
+```{r multi-a, fig.cap="Layer 1 (Background matrix)"}
+draw(multi_a)
+```
+
+Figure \@ref(fig:multi-b) is the second layer and it is created via the vertical application of the changing rotation rule `rotate`.
+
+```{r multi-b, fig.cap="Layer 2"}
+draw(multi_b)
+```
+
+Finally, the matrix in Figure \@ref(fig:multi-c) is the first layer (i.e., background layer) and it is created via the horizontal application of the changing filling rule `shade`.
+
+
+
+```{r multi-c, fig.cap="Layer 3 (Foreground matrix)"}
+draw(multi_c)
+```
+
+To create the multi-layer matrix in Figure \ref(fig:multi-matrix), the matrices in Figures \@ref(fig:multi-a), \@ref(fig:multi-b), and \@ref(fig:multi-c) can be concatenated with the `com()` function, as follows: 
+
+```{r eval = F, echo =T}
+com(multi_a, multi_b, multi_c)
+```
+
+The matrices have to be concatenated hierarchically by following the inward order of the layers. 
+
+The hierarchy between the layers is of the uttermost importance for definition of the distractors, specifically for the generation of the incomplete correlate ones. In such cases, the manipulation of the correct response is on the most internal layer (i.e., $M$). Further details on the definition and on the generation of the incomplete correlate distractors of multi-layer matrices are given in section Response list.
+
+### Generation of the response list
+
+The generation of the distractors composing the response list is constrained by the type of matrix (i.e., single-layer matrix vs. multi-layer matrix), the rule(s) manipulated for the matrix generation, and the directional logic with which the rules are manipulated.  
+Given that, to the best of our knowledge, there is not a formal definition of the specific features of each distractor and on their applicability given the above-mentioned constrained, we started by giving a formal definition to each distractor and by considering all the possible exceptions given the constrained imposed by the matrix generated via the matrix operator.
+
+The definitions of the distractors implemented in the \pkg{matRiks} package is reported in Table `r knitr::asis_output(ifelse(knitr::is_html_output(), '\\@ref(tab:dist-types-tab-interactive)', '\\@ref(tab:dist-types-tab-static)'))` .
+
+```{r dist-types-tab-interactive, eval = knitr::is_html_output(), layout = "l-body-outset"}
+dist_types = data.table(Distractors = c("R-Left", "R-Top", "R-diag", "Wp-Copy",
+                                       "WP-Matrix",
+                                      "Difference",
+                                      "IC-Inc", "", "", "",
+                                       "IC-Neg", "", "",
+                                       "IC-Flip", "","",
+                                      "IC-Scale", "", ""),
+                       "$3 \\times 3$ matrices" = c("SQ8", "SQ6", "SQ5",
+                                      "SQ1 or SQ3",
+                                      "SQ1 or SQ3 with the superimposition of another cell.",
+                                      "SQ1 or SQ3, SQ4, SQ7 with the superimposition of a figure which is not manipulated in the matrix." ,
+                                      "It is the correct response with a missing element", "Single-Layer: Not possible",
+                                      "Multi-layer: The most internal figure is removed from the correct response.", "Logic matrices: The element that is removed is randomly selected.",
+                                      "Color inversion of the correct response (single-layer matrix) or of one of its figures (multi-layer matrix)", "Single-layer matrix: 	Color inversion of the figure in the correct response", "Multi-layer matrix: Color inversion of the most internal figure of the correct response",
+                                      "Rotation or reflection of the correct response (single-layer matrix) or of one of its figures (multi-layer matrix)", "Single-layer matrix: Reflection/Rotation of the figure in the correct response", "Multi-layer matrix: Reflection/Rotation of the most internal figure of the correct response",
+                                      "Resize of the correct response (single-layer matrix) or of one of its figures (multi-layer matrix)", "Single-layer: Resize of the figure in the correct response", "Multi-layer matrix: Only the most internal figure in the correct response is resized"), 
+                       "$2 \\times 2$ matrices" = c("SQ3", "SQ2", "SQ1", 
+                                                    "SQ1", 
+                                                    "SQ3 or SQ2 with the superimposition of the rotation of WP-Copy", 
+                                                    "SQ3 or SQ1 with the superimposition of a figure that is not manipulated in the matrix", 
+                                                    rep("Same as $3\\times 3$ matrices", 13)))
+
+
+kbl(dist_types, align = "l", caption = "Definition of the distractors implemented in the \\pkg{matRiks} package for $3 \\times 3$ and $2 \\times 2$ matrices") %>%
+  kable_paper(full_width = T)
+```
+
+
+```{r dist-types-tab-static, eval = knitr::is_latex_output(), layout = "l-body-outset"}
+dist_types = data.table(Distractors = c("R-Left", "R-Top", "R-diag", "Wp-Copy",
+                                       "WP-Matrix",
+                                      "Difference",
+                                      "IC-Inc", "", "", "",
+                                       "IC-Neg", "", "",
+                                       "IC-Flip", "","",
+                                      "IC-Scale", "", ""),
+                       "$3 \\times 3$ matrices" = c("SQ8", "SQ6", "SQ5",
+                                      "SQ1 or SQ3",
+                                      "SQ1 or SQ3 with the superimposition of another cell.",
+                                      "SQ1 or SQ3, SQ4, SQ7 with the superimposition of a figure which is not manipulated in the matrix." ,
+                                      "It is the correct response with a missing element", "Single-Layer: Not possible",
+                                      "Multi-layer: The most internal figure is removed from the correct response.", "Logic matrices: The element that is removed is randomly selected.",
+                                      "Color inversion of the correct response (single-layer matrix) or of one of its figures (multi-layer matrix)", "Single-layer matrix: 	Color inversion of the figure in the correct response", "Multi-layer matrix: Color inversion of the most internal figure of the correct response",
+                                      "Rotation or reflection of the correct response (single-layer matrix) or of one of its figures (multi-layer matrix)", "Single-layer matrix: Reflection/Rotation of the figure in the correct response", "Multi-layer matrix: Reflection/Rotation of the most internal figure of the correct response",
+                                      "Resize of the correct response (single-layer matrix) or of one of its figures (multi-layer matrix)", "Single-layer: Resize of the figure in the correct response", "Multi-layer matrix: Only the most internal figure in the correct response is resized"), 
+                       "$2 \\times 2$ matrices" = c("SQ3", "SQ2", "SQ1", 
+                                                    "SQ1", 
+                                                    "SQ3 or SQ2 with the superimposition of the rotation of WP-Copy", 
+                                                    "SQ3 or SQ1 with the superimposition of a figure that is not manipulated in the matrix", 
+                                                    rep("Same as $3\\times 3$ matrices", 13)))
+
+
+kbl(dist_types, align = "l", caption = "Definition of the distractors implemented in the \\pkg{matRiks} package for $3 \\times 3$ and $2 \\times 2$ matrices")
+```
+
+
+The choice between cell SQ1 or cell SQ3 (WP-Copy, WP-Matrix, Difference distractors in $3 \times 3$ matrices) depends on the number of rules and on the directional logic with which they are manipulated. 
+Specifically, cell SQ1  is selected when the matrix is generated via the manipulation of a single rule with V, H, or TL-LR directional logic. 
+If the manipulation of the single rule follows a LL-TR directional logic, then the SQ3 cell is chosen. Cell Sq3 is chosen instead of cell Sq1 when  2 rules are manipulated with all possible directional logic (i.e., VV, HH, LL-TR, and TL-LR). This is done to avoid that the WP-Copy distractors could be interpreted as IC distractors.
+In other instances, the R distractors in $3 \times 3$ matrices cannot be generated because they are equal to the correct response. For instance, if a matrix is generated with the vertical manipulation of a single rule, the R-Left distractor (SQ8) is equal to the correct response.In such instances, the distractor that is equal to the correct response is generated by the response options operator but it is covered with a thick black cross.
+
+A similar procedures is applied for choosing which cell to use between SQ3 and SQ2 or between SQ3 and SQ1 for the generation of WP-Matrix and Difference distractors in $2 \times 2$ matrices. In both cases, the choice depends on whether at least one rule is applied both horizontally and vertically. If the same rule is applied both horizontally and vertically, then SQ3 is chosen, otherwise SQ2 and SQ1. 
+
+
+The function for generating the response list (i.e., the correct response and all the distractor presented in the Table) is `response_list()`, which results in a list of figures that correspond to each of the distractors. 
+For instance, the distractors of the matrix in Figure \@ref(fig:single-matrix) can be obtained with: 
+
+```{r echo = TRUE, eval = FALSE}
+response_list(single_matrix)
+```
+
+The function `response_list()` results in a named list of length 11 containing all the response options including the correct response:  
+
+```{r warning=FALSE}
+names(response_list(single_matrix))
+```
+
+and it can be plotted as:
+
+```{r, warning=TRUE}
+draw(response_list(single_matrix), 
+     main = TRUE) # plot the distractor labels
+```
+As it can be noted, a warning has appeared and it refers to the IC-Inc distractor. As per Table `r knitr::asis_output(ifelse(knitr::is_html_output(), '\\@ref(tab:dist-types-tab-interactive)', '\\@ref(tab:dist-types-tab-static)'))` ., the distractor IC-Inc is defined as the correct response with a missing element. However, having a single-layer matrix does not allow for the removal of any element, hence the warning "IC-Inc cannot be obtained with a single figure" is thrown and the IC-Inc distractor is replaced by the correct response over which a black thick cross is imposed. 
+
+Given that the matrix in Figure \@ref(fig:multi-matrix) is composed of three layers, it is possible to obtain also the IC-Inc distractor: 
+
+
+
+```{r}
+draw(response_list(multi_matrix), 
+     main = TRUE)
+```
+
+However, the difference distractor is not well defined. The user can change the random seed for the generation of this distractor with the argument `seed()`, such that another random figure is chosen among the available ones: 
+
+```{r echo = TRUE}
+draw(response_list(multi_matrix, seed = 7), 
+     main = TRUE)
+```
+## A complete example 
+
+This section presents a complete example on how to generate a multi-layer $3 \times 3$ matrix with logical rules and its related response options. 
+
+The first layer is generated by manipulating the AND logical rule according to an H directional logic on a square composed of 4 lines: 
+
+```{r}
+logic1 <- mat_apply(square4(), hrules = "AND")
+draw(logic1)
+```
+
+The second layer is generated by manipulating the OR logical rule according to a V directional logic on a flower composed of 4 petals: 
+
+```{r}
+logic2 <- mat_apply(miley(), vrules = "OR")
+draw(logic2)
+```
+
+The multi-layer matrix can be composed with the `com()` function by concatenating the two single-layer matrices: 
+
+```{r}
+logic <- com(logic1, logic2)
+draw(logic)
+```
+
+The response options associated with the multi-layer matrix can be generated with the `response_list()` function: 
+
+```{r}
+responses <- response_list(logic)
+draw(responses, main = TRUE)
+```
+
+Since the filling color the `miley` cannot be changed, the IC-Neg distractor cannot be generated and the function throws a warning and the `ic_neg` distractor is replaced by the correct response with the superimposition of a thick black cross. 
+The `difference` distractor does not look good. The figure that is superimposed to the cell taken from the matrix can be changed by changing the seed in the `response_list()` function:
+
+```{r}
+responses <- response_list(logic, seed = 12)
+draw(responses, main = TRUE)
+```
+
+Assuming that a response list of length 8 (the correct response along with seven distractors) is associated with the multi-layer matrix, a character vector with the labels of the chosen distractors can be specified directly in the draw function:
+
+```{r}
+draw(responses, distractors = c("correct", 
+                                "r_diag", "r_left", 
+                                "wp_copy", "wp_matrix", "difference", "ic_flip", "ic_inc"))
+```
+
+
+# Summary
+
+This article briefly illustrates the functioning of the \pkg{matRiks} package for the automatic generation of Raven-like stimuli.
+This package has been developed with the intention of providing the users with a flexible, open-source, and easy-to-use tool for generating Raven-like matrices according to different rules, encompassing both visuo-spatial and logical rules, along with their associated response list.
+
+The rules for generating the matrices and for generating the distractors associated to each matrix that are implemented in the \pkg{matRiks} package derive from vast literature concerning Raven's matrices and the error patterns observed on the CPM and the APM. 
+As such, this package potentially provide the possibility for generating stimuli that are equivalent in terms of rules and response options to the standard Raven's stimuli. This allows for a comparison between the responses observed with the standard stimuli and those generated with the package.
+
+This package has been developed within a broader project founded by the Italian Ministry of University and Research, which is aimed at the development of  an intelligent system for the adaptive assessment of executive functions and fluid intelligence among general and clinical populations. The test used for assessment of fluid intelligence (named MatriKS) was developed following the principles of Raven’s Matrices. Specifically, the stimuli composing the test have been developed with the \pkg{matRiks} package (@mdpi). 
+
+This package allows for high degrees of freedom in the generation of matrices with different difficulty. For instance, it allows for the generation of stimuli that combine multiple rules by exploiting the possibility of layering multiple matrices together. Moreover, the high degree of control provided to the users allow them to thoroughly manipulate the difficulty of the matrix, for instance by adding or removing objects and combining together different rules. 
+
+The package is regularly maintained and new functions will be available in the future. As such, the users should refer to the official documentation of the package that is constantly updated. 
+
+Although the functions implemented in \pkg{matRiks} are quite straightforward and easy to use, they need a basic knowledge of the R language. To overcome this issue and allow for a wider use of the package even among people that are not familiar with R, a web application built with the \pkg{shiny} package (@shiny) will be developed in the future. 
+
+# Customizing tooltip design with \pkg{ToOoOlTiPs}
+
+\pkg{ToOoOlTiPs} is a packages for customizing tooltips in interactive graphics, it features these possibilities.
+
+# A gallery of tooltips examples
+
+The \CRANpkg{palmerpenguins} data [@palmerpenguins]  features three penguin species which has a lovely illustration by Alison Horst in Figure \@ref(fig:penguins-alison). 
+
+```{r penguins-alison, out.width = "100%", out.height = "30%", fig.cap = "Artwork by \\@allison\\_horst", fig.alt="A picture of three different penguins with their species: Chinstrap, Gentoo, and Adelie. "}
+knitr::include_graphics("figures/penguins.png")
+```
+
+Table `r knitr::asis_output(ifelse(knitr::is_html_output(), '\\@ref(tab:penguins-tab-interactive)', '\\@ref(tab:penguins-tab-static)'))` prints at the first few rows of the `penguins` data:
+
+```{r penguins-tab-interactive, eval = knitr::is_html_output(), layout = "l-body-outset"}
+knitr::kable(head(penguins), format = "html", caption = "A basic table")
+```
+
+```{r penguins-tab-static, eval = knitr::is_latex_output()}
+knitr::kable(head(penguins), format = "latex", caption = "A basic table") %>% 
+  kableExtra::kable_styling(font_size = 7)
+```   
+
+Figure `r knitr::asis_output(ifelse(knitr::is_html_output(), '\\@ref(fig:penguins-plotly)', '\\@ref(fig:penguins-ggplot)'))` shows an `r ifelse(knitr::is_html_output(), 'interactive', '')` plot of the penguins data, made using the `r knitr::asis_output(ifelse(knitr::is_html_output(), '\\CRANpkg{plotly}', '\\CRANpkg{ggplot2}'))` package. 
+
+```{r penguins-plotly, echo = TRUE, fig.height = 5, fig.cap="A basic interactive plot made with the plotly package on palmer penguin data. Three species of penguins are plotted with bill depth on the x-axis and bill length on the y-axis. When hovering on a point, a tooltip will show the exact value of the bill depth and length for that point, along with the species name.", include=knitr::is_html_output(), eval=knitr::is_html_output(), fig.alt = "A scatterplot of bill length against bill depth, both measured in millimetre. The three species are shown in different colours and loosely forms three clusters. Adelie has small bill length and large bill depth, Gentoo has small bill depth but large bill length, and Chinstrap has relatively large bill depth and bill length."}
+p <- penguins %>% 
+  ggplot(aes(x = bill_depth_mm, y = bill_length_mm, 
+             color = species)) + 
+  geom_point()
+ggplotly(p)
+```
+
+```{r penguins-ggplot, echo = TRUE, fig.height = 5, fig.cap="A basic non-interactive plot made with the ggplot2 package on palmer penguin data. Three species of penguins are plotted with bill depth on the x-axis and bill length on the y-axis. Visit the online article to access the interactive version made with the plotly package.", include=knitr::is_latex_output(), eval=knitr::is_latex_output()}
+penguins %>% 
+  ggplot(aes(x = bill_depth_mm, y = bill_length_mm, 
+             color = species)) + 
+  geom_point()
+```
+
+# Summary
+
+We have displayed various tooltips that are available in the package \pkg{ToOoOlTiPs}. 

@@ -10,8 +10,7 @@
 Few resources are available for the automatic generation of Raven-like matrices. Some of them are no longer working, while others are hardly customizable without strong programming skills. An R package fro the automatic generation of stimuli used for psychological assessment exists, but it is limited to one shape and to the manipulation of one rule (i.e., rotation). The \CRANpkg{matRiks} package has been developed with the aim of overcoming the above mentioned issues. This package can generate matrices considering different types of rules, starting from the most basic ones (e.g., changes in size, objects orientation) to the most complex ones, based on inferential and inductive reasoning. This unveils the possibility of generating new customizable stimuli and of systematically manipulating the difficulty of the matrices. Being developed within the R environment, the \CRANpkg{matRiks} package is completely open-source, allows for the reproducibility of the stimuli, and it can be easily used by people with basic knowledge of R language.
 }
 
-\hypertarget{introduction}{%
-\section{Introduction}\label{introduction}}
+\section{Introduction}\label{introduction}
 
 Cattell (Cattell (1963)) defined fluid intelligence (\emph{g}) as the ability of solving novel reasoning problems that has little to do with concepts learned in schools or through acculturational processes. The adjective ``fluid'' explicitly refers to its ability to ``flow'' into a variety of tasks and cognitive activities (Horn, 1972).
 Given this definition of fluid intelligence, it appears natural that the instruments for used for its evaluation tap on the respondent's ability to solve abstract problems that involve acculturation as little as possible, such as figural analogies, figure classifications, matrices, and number and letter series are often used (Horn, 1968).
@@ -37,11 +36,9 @@ In a similar vein, the package should allow for generating matrices that can be 
 The manuscript is organized as follows.
 The next section presents the rules that usually employed in the RPM along with the specific types of error responses (i.e., distractors) that compose the response list associated with a matrix. Then, the \texttt{matRiks} package is presented through an example of its application for the generation of different stimuli (i.e., the matrix with its associated response list).
 
-\hypertarget{background}{%
-\section{Background}\label{background}}
+\section{Background}\label{background}
 
-\hypertarget{rule-based-matrices}{%
-\subsubsection{Rule based matrices}\label{rule-based-matrices}}
+\subsubsection{Rule based matrices}\label{rule-based-matrices}
 
 Literature highlights a plethora of rules that can be manipulated for the generation of the raven-like tasks (cit cit cit).
 Beyond the fact that some of these rules have different names in different sources but refer to the same manipulation (e.g., the rule defined as ``and problem'' in Harris el a. 2020 is called ``intersection'' rule in Arendasy et al.~2005), they can be summarized into different macro-categories, namely visuospatial rules (i.e., the manipulation concerns the graphical and spatial features of the figures, Figure \ref{fig:visuoRule}), and logical rules (i.e., the manipulation concerns the logical relationships between the figures composing the matrix, , Figure \ref{fig:logiRule}). The rules can be applied (i.e., manipulated) to different figures or concatenation of figures to generate a matrix.
@@ -71,8 +68,7 @@ In Figure \ref{fig:logiRule}, the manipulation concerns the relationships betwee
 Both visuospatial and logical rules can be manipulated according to different directional logic.
 Specifically, the rules can be applied horizontally (i.e., the manipulation of the rule can be seen across columns but not across rows, H direction), vertically (i.e., the manipulation of the rule can be seen across rows but not across columns, V direction), or diagonally (i.e., the manipulation of the rule can be seen both across columns and across rows). Concerning the diagonal directional logic, it can follow either the main diagonal of the matrix (i.e., the manipulation of the rule can be seen from the top-left corner to the low-right corner, TL-LR direction) or the secondary diagonal of the matrix (i.e., the manipulation of the rule can be seen from the low-left corner to the top-right corner, LL-TR direction).
 
-\hypertarget{the-response-options}{%
-\subsubsection{The response options}\label{the-response-options}}
+\subsubsection{The response options}\label{the-response-options}
 
 A large corpus of literature has investigated the role of the distractors in the response processes involved when solving the Raven matrices, focusing on the specific error response chosen by the respondent (Forthmann et al. (2020), Kunda et al. (2016), Storme et al. (2019)).
 The underlying logic is that the incorrect response is not chosen at random by the respondent, but it can be the result of an educated guess, or it can be chosen because the respondent is misled for a definite reason.
@@ -134,14 +130,12 @@ These criteria were included in the response options operator with the aim of pr
 The response options operator generates a response list composed of the correct response, three reptition distractors, one difference distractor, two wrong principle distractors, and four incomplete correlate distractors.
 Further details on the formal definition of each of the distractors and on their generation are given in the ``Generation of the response list'' Section.
 
-\hypertarget{the-matriks-package}{%
-\section{The matRiks package}\label{the-matriks-package}}
+\section{The matRiks package}\label{the-matriks-package}
 
 The \texttt{matRiks} (Brancaccio, Epifania, and de Chiusole 2023) package can generate \(2 \times 2\) and \(3 \times 3\) Raven-like matrices with their corresponding set of responses (i.e., the correct response and all the distractors described in the Generation of response list section). The Raven-like matrices can be generated according to either visuo-spatial or logic rules, which can be concatenated with three different directional logic, namely vertically, horizontally, and diagonally.
 Finally, it is possible to print the generated matrices and set of distractors as either single images (i.e., each cell of the matrix and each distractor are printed separately) or as a complete figure with the set of single distractors.
 
-\hypertarget{installation}{%
-\subsection{Installation}\label{installation}}
+\subsection{Installation}\label{installation}
 
 The \texttt{matRiks} package is available on CRAN and can be installed as:
 
@@ -151,8 +145,7 @@ install.packages("matRiks")
 
 The code \texttt{vignette(package\ ="matRiks")} allows for obtaining the list of all the vignettes included in the package. Each vignette can be accessed via \texttt{vignette("vignette-name",\ package="matRiks")}. For instance, the code \texttt{vignette("generate\_matriks",\ package\ ="matRiks")} opens the vignette that contains the instruction on how to generate an \texttt{RMarkdown} file where both the matrix and its associated response options are plotted together.
 
-\hypertarget{definition-of-figures}{%
-\subsection{Definition of figures}\label{definition-of-figures}}
+\subsection{Definition of figures}\label{definition-of-figures}
 
 The \texttt{matRiks} package contains a high number of default figures that can be used for the generation of the matrices.
 All figures are defined as functions, hence their name has to be followed by the parentheses, and they have class \texttt{figure}.
@@ -251,8 +244,7 @@ Closed figures & \includegraphics[width=1in, height=1in]{closed-figures.png} & L
 \includegraphics[width=0.5\linewidth]{matRiks-paper_files/figure-latex/unnamed-chunk-8-1} \caption{[Lines](https://cran.r-project.org/web/packages/matRiks/vignettes/lines.html)}\label{fig:unnamed-chunk-8}
 \end{figure}
 
-\hypertarget{concatenation-of-figures}{%
-\subsection{Concatenation of figures}\label{concatenation-of-figures}}
+\subsection{Concatenation of figures}\label{concatenation-of-figures}
 
 Other then the pre-existing figures, the \texttt{matRiks} package allow for the generation of new figures by concatenating the existing ones. The \texttt{cof()} (\textbf{c}oncatenation \textbf{o}f \textbf{f}igures) function is designed for this aim. The arguments of the \texttt{cof()} function are the names of the default figures presented in the previous section.
 
@@ -297,8 +289,7 @@ s_eye$shape
 
 This difference will be relevant for the next sections in which there are rules that require a certain number of figures to be applied.
 
-\hypertarget{available-rules-and-matrix-generation}{%
-\subsection{Available rules and matrix generation}\label{available-rules-and-matrix-generation}}
+\subsection{Available rules and matrix generation}\label{available-rules-and-matrix-generation}
 
 The function \texttt{mat\_apply(Sq1,\ hrules="identity",\ vrules\ ="idenity",\ mat.type=9)} is the main function for the generation of matrices based on rules and returns an object of class \texttt{matriks}.
 This function allows for the generation of matrices of different dimension, either 4-cell or 9-cell matrices.
@@ -445,8 +436,7 @@ In particular, if the same rule is applied in reverse in one direction and appli
 On the other hand if the same rule is direct (or reverse) in both horizontal and vertical directional logic they
 will give rise to a LL-TR logic.
 
-\hypertarget{concatenation-of-matrices}{%
-\subsection{Concatenation of matrices}\label{concatenation-of-matrices}}
+\subsection{Concatenation of matrices}\label{concatenation-of-matrices}
 
 Matrices can be created either by applying the rule (or set of rules) with the \texttt{mat\_apply()} function (i.e., single-layer matrix) or by concatenating different matrices (i.e., multi-layer matrix). Matrices can be concatenated together with the \texttt{com()} function (i.e., \texttt{c}oncatenation \texttt{o}f \texttt{m}atrices).
 
@@ -499,8 +489,7 @@ The matrices have to be concatenated hierarchically by following the inward orde
 
 The hierarchy between the layers is of the uttermost importance for definition of the distractors, specifically for the generation of the incomplete correlate ones. In such cases, the manipulation of the correct response is on the most internal layer (i.e., \(M\)). Further details on the definition and on the generation of the incomplete correlate distractors of multi-layer matrices are given in section Response list.
 
-\hypertarget{generation-of-the-response-list}{%
-\subsubsection{Generation of the response list}\label{generation-of-the-response-list}}
+\subsubsection{Generation of the response list}\label{generation-of-the-response-list}
 
 The generation of the distractors composing the response list is constrained by the type of matrix (i.e., single-layer matrix vs.~multi-layer matrix), the rule(s) manipulated for the matrix generation, and the directional logic with which the rules are manipulated.\\
 Given that, to the best of our knowledge, there is not a formal definition of the specific features of each distractor and on their applicability given the above-mentioned constrained, we started by giving a formal definition to each distractor and by considering all the possible exceptions given the constrained imposed by the matrix generated via the matrix operator.
@@ -628,8 +617,7 @@ Assuming that a response list of length 8 (the correct response along with seven
 
 \includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-23-1.pdf}
 
-\hypertarget{summary}{%
-\section{Summary}\label{summary}}
+\section{Summary}\label{summary}
 
 This article briefly illustrates the functioning of the \pkg{matRiks} package for the automatic generation of Raven-like stimuli.
 This package has been developed with the intention of providing the users with a flexible, open-source, and easy-to-use tool for generating Raven-like matrices according to different rules, encompassing both visuo-spatial and logical rules, along with their associated response list.
@@ -645,13 +633,11 @@ The package is regularly maintained and new functions will be available in the f
 
 Although the functions implemented in \pkg{matRiks} are quite straightforward and easy to use, they need a basic knowledge of the R language. To overcome this issue and allow for a wider use of the package even among people that are not familiar with R, a web application built with the \pkg{shiny} package ((\textbf{shiny?})) will be developed in the future.
 
-\hypertarget{customizing-tooltip-design-with}{%
-\section{\texorpdfstring{Customizing tooltip design with \pkg{ToOoOlTiPs}}{Customizing tooltip design with }}\label{customizing-tooltip-design-with}}
+\section{\texorpdfstring{Customizing tooltip design with \pkg{ToOoOlTiPs}}{Customizing tooltip design with }}\label{customizing-tooltip-design-with}
 
 \pkg{ToOoOlTiPs} is a packages for customizing tooltips in interactive graphics, it features these possibilities.
 
-\hypertarget{a-gallery-of-tooltips-examples}{%
-\section{A gallery of tooltips examples}\label{a-gallery-of-tooltips-examples}}
+\section{A gallery of tooltips examples}\label{a-gallery-of-tooltips-examples}
 
 The \CRANpkg{palmerpenguins} data (Horst, Hill, and Gorman 2020) features three penguin species which has a lovely illustration by Alison Horst in Figure \ref{fig:penguins-alison}.
 
@@ -662,7 +648,7 @@ The \CRANpkg{palmerpenguins} data (Horst, Hill, and Gorman 2020) features three 
 Table \ref{tab:penguins-tab-static} prints at the first few rows of the \texttt{penguins} data:
 
 \begin{table}
-
+\centering
 \caption{\label{tab:penguins-tab-static}A basic table}
 \centering
 \fontsize{7}{9}\selectfont
@@ -700,44 +686,41 @@ penguins %>%
 \caption{\label{fig:penguins-ggplot}A basic non-interactive plot made with the ggplot2 package on palmer penguin data. Three species of penguins are plotted with bill depth on the x-axis and bill length on the y-axis. Visit the online article to access the interactive version made with the plotly package.}
 \end{figure}
 
-\hypertarget{summary-1}{%
-\section{Summary}\label{summary-1}}
+\section{Summary}\label{summary-1}
 
 We have displayed various tooltips that are available in the package \pkg{ToOoOlTiPs}.
 
-\hypertarget{references}{%
-\section*{References}\label{references}}
+\section*{References}\label{references}
 \addcontentsline{toc}{section}{References}
 
-\hypertarget{refs}{}
+\phantomsection\label{refs}
 \begin{CSLReferences}{1}{0}
-\leavevmode\vadjust pre{\hypertarget{ref-matRiks}{}}%
+\bibitem[\citeproctext]{ref-matRiks}
 Brancaccio, Andrea, Ottavia M. Epifania, and Debora de Chiusole. 2023. \emph{matRiks: Generates Raven-Like Matrices According to Rules}. \url{https://CRAN.R-project.org/package=matRiks}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-cattell1963}{}}%
+\bibitem[\citeproctext]{ref-cattell1963}
 Cattell, Raymond B. 1963. {``Theory of Fluid and Crystallized Intelligence: A Critical Experiment.''} \emph{Journal of Educational Psychology} 54 (1): 1. https://doi.org/\url{https://doi.org/10.1037/h0046743}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-fort}{}}%
+\bibitem[\citeproctext]{ref-fort}
 Forthmann, Boris, Natalie Förster, Birgit Schütze, Karin Hebbecker, Janis Flessner, Martin T. Peters, and Elmar Souvignier. 2020. {``How {Much} g {Is} in the {Distractor}? {Re}-{Thinking} {Item}-{Analysis} of {Multiple}-{Choice} {Items}.''} \emph{Journal of Intelligence} 8 (1): 11. \url{https://doi.org/10.3390/jintelligence8010011}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-palmerpenguins}{}}%
+\bibitem[\citeproctext]{ref-palmerpenguins}
 Horst, Allison Marie, Alison Presmanes Hill, and Kristen B Gorman. 2020. \emph{{palmerpenguins}: Palmer Archipelago (Antarctica) Penguin Data}. \url{https://allisonhorst.github.io/palmerpenguins/}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-kunda}{}}%
+\bibitem[\citeproctext]{ref-kunda}
 Kunda, Maithilee, Isabelle Soulières, Agata Rozga, and Ashok K. Goel. 2016. {``Error Patterns on the {Raven}'s {Standard} {Progressive} {Matrices} {Test}.''} \emph{Intelligence} 59 (November): 181--98. \url{https://doi.org/10.1016/j.intell.2016.09.004}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-raven1938}{}}%
+\bibitem[\citeproctext]{ref-raven1938}
 Raven, JC ea. 1938. {``Raven's Progressive Matrices.''} \emph{Western Psychological Services} 2: 5.
 
-\leavevmode\vadjust pre{\hypertarget{ref-raven2004}{}}%
+\bibitem[\citeproctext]{ref-raven2004}
 Raven, John, and H. Raven. 2004. {``Manual for {Raven}'s {Progressive} {Matrices} and {Vocabulary} {Scales}, {Section} 3: {The} {Standard} {Progressive} {Matrices}, {Including} the {Parallel} and {Plus} {Versions}. 2000 {Edition}, Updated 2004.''} In, Section 3.
 
-\leavevmode\vadjust pre{\hypertarget{ref-storme}{}}%
+\bibitem[\citeproctext]{ref-storme}
 Storme, Martin, Nils Myszkowski, Simon Baron, and David Bernard. 2019. {``Same {Test}, {Better} {Scores}: {Boosting} the {Reliability} of {Short} {Online} {Intelligence} {Recruitment} {Tests} with {Nested} {Logit} {Item} {Response} {Theory} {Models}.''} \emph{Journal of Intelligence} 7 (3): 17. \url{https://doi.org/10.3390/jintelligence7030017}.
 
 \end{CSLReferences}
 
-\bibliography{RJreferences.bib}
 
 \address{%
 Quietest Quokka\\
