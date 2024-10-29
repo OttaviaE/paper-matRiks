@@ -25,9 +25,9 @@ author:
     orcid: 0000-0002-0912-0225
 type: package
 output: 
-  rjtools::rjournal_article:
-    self_contained: yes
-    toc: no
+  rjtools::rjournal_article #:
+  #  self_contained: yes
+  #  toc: no
 bibliography: RJreferences.bib
 editor_options: 
   chunk_output_type: console
@@ -43,6 +43,7 @@ library(data.table)
 library(matRiks)
 library(knitr)
 library(kableExtra)
+library(tidyverse)
 ```
 
 # Introduction
@@ -376,7 +377,7 @@ MI SONO FERMATA QUI CON LE MODIFICHE 24/10/2024
 
 ## Available rules and matrix generation
 
-The function `mat_apply(Sq1, hrules="identity", vrules ="idenity", mat.type=9)` is the main function for the generation of matrices based on rules and returns an object of class `matriks`. 
+The function `mat_apply(Sq1, hrules="identity", vrules ="idenity", mat.type=9)` is the main function for the generation of matrices based on rules. 
 This function allows for the generation of matrices of different dimension, either 4-cell or 9-cell matrices. 
 The dimension of the matrix can be specified with the argument `mat.type`, such that `mat.type = 4` results in 4-cell matrices (Table `r knitr::asis_output(ifelse(knitr::is_html_output(), '\\@ref(tab:fourCell-interactive)', '\\@ref(tab:fourCell-static)'))`)
 
@@ -396,7 +397,7 @@ kable(four, align = "c", caption="Four-cell matrix")
 ```
 
 
-and  `mat.type = 9` results in 9-cell matrices (default, Table Table `r knitr::asis_output(ifelse(knitr::is_html_output(), '\\@ref(tab:nineCell-interactive)', '\\@ref(tab:nineCell-static)'))`).
+and  `mat.type = 9` results in 9-cell matrices (default, Table `r knitr::asis_output(ifelse(knitr::is_html_output(), '\\@ref(tab:nineCell-interactive)', '\\@ref(tab:nineCell-static)'))`).
 
 ```{r nineCell-interactive, eval = knitr::is_html_output(), layout = "l-body-outset"}
 nine = matrix(paste("Sq", 1:9, sep = ""), nrow = 3)
@@ -412,30 +413,54 @@ kbl(nine, align = "l",
     caption = "Nine-cell matrix") 
 ```
 
-The `Sq1` argument defines the starting figure (i.e., the figure to be plotted in the first cell `Sq1`), which can also be a concatenation of figures. The arguments `hrules` and `vrules` allow for the definition of the directional logic with the rule(s) is applied, such that the rules specified in `hrules` are manipulated horizontally and those specified in `vrules` are applied vertically. 
+The `Sq1` argument defines the starting figure (i.e., the figure to be plotted in the first cell `Sq1`), which can also be a concatenation of figures. The arguments `hrules` and `vrules` allow for the definition of the directional logic with which the rule(s) is applied, such that the rules specified in `hrules` are manipulated horizontally and those specified in `vrules` are applied vertically. 
 
-The application of the `mat_apply()` function results in an object of class `matriks`, which is a named list. The length of the list vary as the dimension of the matrix varies, such that it has length 7 when `mat.type =4` and of length 12 otherwise. Regardless of the length of the list, it contains the characteristics of the matrix. the following example is based on a 9-cell matrix where the identity rule was applied both horizontally and vertically:
+The application of the `mat_apply()` function results in a named list of class`matriks` that contains the characteristic of the matrix, such as the figures that are visible in each cell, the rule(s) applied horizontally and/or vertically and the type of matrix, either 4-cell or 9-cell. The following example is based on a 9-cell matrix where the identity rule was applied both horizontally and vertically:
 
 ```{r warning=FALSE}
 names( mat_apply(lily()))
 ```
-
-In particular, `Sq1` to `Sq9` are lists containing the figures for each of the nine cells composing the matrix, while `hrule`, `vrule`, `mat.type` are vectors containing the rules applied the rules applied horizontally, vertically, and the dimension of the matrix, respectively. Since this is a 9-cell matrix, the list is of length 12 and it contains the cells from Sq1 to Sq9. If a 4-cell matrix is generated, then the list if of length 7 and it contains the cells from Sq1 to Sq4, along with  `hrule`, `vrule`, `mat.type` .
+In a matriks each cell of the matrix is an elements of the named list.Specifically, the elements which contains a cells are called `Sq` follows by the number of the cell. In the above example, nine elements (from `Sq1` to `Sq9`) are listed corresponding  to the nine cells as depicted in Table 3. In the case of a 4-cells matrix  four elements will be present named from `Sq1` to `Sq4`.  In addition to the `Sq` elements, the class `matriks` contains `hrule`, `vrule` and `mat.type`. The first two are vectors containing the rule(s) applied horizontally and vertically, respectively. The last one is the dimension of the matrix.
 
 The rules are methods that transform a feature of the figure to obtain a different figure or a figure with a modified feature.
 The `matRiks` package implements several rules, each of which may be classified differently.
 The table contains all the rules available in the package, their descriptions, and classifications.
 
-[Rule table ]
+```{r rule-types, eval = knitr::is_html_output(), layout = "l-body-outset"}
 
-As already mentioned, the rules can be classified into visuospatial and logical rules. 
-Such macro classification may have an impact on the difficulty of the generated matrix [cita].
-By the way in which the rules have been defined in the \pkg{matRiks} package, they can be either incremental or permutational rules.
+rule_types = data.table(Rule	 =c("	Identity	","	AND	","	OR	","	XOR	","	line width	","	line type	","	rotate	","	size	","	shape	","	shade	","	multi shade	"),
+                         
+Classification	 =c("		","	logical	","	logical	","	logical	","	permutational	","	permutational	","	incremental	","	incremental	","	permutational	","	permutational	","	permutational	"),
 
-The operation underlying the functioning of the incremental rules is the increment of a fixed quantity.
-Incremental rules apply a fixed increase (or decrease) on each cell of the matrix to obtain the feautures of the figure in the following cell, starting from the first cell.
+Function	 =c("	`identity`	","	`logical`	","	`logical`	","	`logical` 	","	`margin`	","	`margin`	","	`rotate`	","	`size`	","	`shape`	","	`shade`	","	`shade`	"),
+
+Definition	 =c("	Return the orginal figure without any transformation	",
+               "	Consider the input `SQ1`, a concatenation of at least three figures partitioned into three sets: A, B, and C. The rules  transforms the figures, ensuring that each row or column in the resulting matrix follows a specific series pattern. In these patterns, the first elements display figures {A, C}, the second display {A, B}, and the third exclusively display figure A. The partitioning of the figures into sets A, B, and C is randomly determined based on the rows/columns `n` of the matrix.	",
+               "	Consider the input `SQ1`, a concatenation of at least three figures partitioned into three sets: A, B, and C. The rules transform the figures, ensuring that each row or column in the resulting matrix follows a specific series pattern. In these patterns, the first elements display figures {A, C}, the second display {A, B}, and the third combines all of them in {A,B,C}. The partitioning of the figures into sets A, B, and C is randomly determined based on the rows/columns `n` of the matrix.	",
+               "	Consider the input SQ1, a concatenation of at least three figures partitioned into three sets: A, B, and C. The rules transform the figures, ensuring that each row or column in the resulting matrix follows a specific series pattern. In these patterns, the first elements display figures {A, C}, the second display {A, B}, and the third display {B,C}. The partitioning of the figures into sets A, B, and C is randomly determined based on the rows/columns `n` of the matrix.	",
+               "	Consider a figure or concatenation of figures and the `lwd` rule increases the width of the lines in the figure by a constant value  `n` corresponding to the row or column `n` in the resulting matrix. Therefore, the width can have values 1, 2, or 3 of the default width argument of the R plot. Conversely, the reverse rule `lwd.inv` decreases the line width by the same quantity.	",
+               "	Consider a figure or concatenation of figures and the `lty` rule changes the line type manipulating the line type argument of the R plot. The default order with `n`  from 1 to 3 the line is  `dashed`, `dotted`, and   `solid`, respectively. The reverse rule `lty.inv` has the order `dashed`, `solid`, and `dotted`.   	",
+               "	Consider a figure or concatenation of figures and an angle $\\theta$, the rule rotates the figure around its center clockwise of an angle $n \\theta$. The value of $\\theta$ is equal to $\\pi$ divided by any number from 1 to 9 included in the `rule` argument, for instance, `rule=rotation` have a  $\\theta = \\pi / 5$.  By default $\\theta = \\pi / 4$ . The reverse rule `rotation.inv` rotates the figure anticlockwise. 	",
+               "	Consider a figure or concatenation of figures and a constant $k$, the rule size decreases the figure size proportionally to $n k$. Specifically the `size.x` and `size.y` of the figure are divided by $nk$. The value of $k=.9$. The reverse rule `size.inv` increases the figure `size.x` and `size.y` $nk$  times with $k=.6$.	",
+               "	Consider a concatenation of three single figures denoted A, B, and C, the `shape` rule permutates which figure is visible in function of `n`. The default order with `n`  from 1 to 3 is showing in the row or in columns A, B, and C, respectively. The reverse rule `shape.inv` has the order C, B, and A.   	",
+               "	Consider a figure or concatenation of figures the `shade` rule changes the color of the filling of the figure. For all the figures that did not have a default color (i.e., `shd=NA`) the order with `n`  from 1 to 3  is  `white`, `grey`, and   `black`, respectively. If a figure had already a filling,  it is transformed into the n-th one in the default order. For instance, when $n=1$ and a figure has `shd=black`the application of the rule transforms it into `white`. It does not exist a reverse rule is available at the moment.   	",
+               "	Consider a concatenation of figures the `multi.shade` rule changes the color of the filling of each figure separately. The rules work exactly as the normal `shade` but a random color is assigned to each figure before the transformation.  The random color is assigned with the function `sample` with `seed(n)`.")
+
+)	 
+
+kbl(rule_types, align = "l", caption = "Taxonomy of error types", label = "tab-error-types") %>%
+  kable_paper(full_width = FALSE) %>%
+  column_spec(1, bold = TRUE) %>%
+  collapse_rows( valign = "top")
+
+```
+
+The rule classification, originally introduced in the literature as visuospatial and logical, has been modified in the \pkg{matRiks} package to focus on constructing matrices rather than solving them. Consequently, the rules are reclassified into incremental and permutational categories.
+
+Figure \@ref(fig:incremental) illustrates the application of the change in size rule on a square. the change in size rule is an incremental rule, in which the size of the square decreases of a fixed quantity in each subsequent object according to a directional logic.
+Incremental rules apply a fixed increase (or decrease) on each cell of the matrix to obtain the features of the figure in the following cell, starting from the first cell.
 The order in which the fixed increase (decrease) is applied depends on the directional logic used for the generation of the matrix.
-For instance, Figure \@ref(fig:incremental) illustrates the application of the change in size rule on a square. the change in size rule is an incremental rule, in which the size of the square decreases of a fixed quantity in each subsequent object according to a directional logic.
+
 
 ```{r incremental, fig.cap="Example of size rule transformation along a row."}
 a = mat_apply(square(size.x=10), hrules = "size")
@@ -444,12 +469,10 @@ par(mfrow =c(1, 3) ,
 draw(a$Sq1); draw(a$Sq2); draw(a$Sq3)
 ```
 
-The incremental aspects appear because the squares are smaller compared to the ones on their right but larger than the ones on their left.
-Hence, by changing the position of any figure in the row the results would not necessarily respect the definition of the rule.   
+This rule is incremental in the sense that the order of the squares in the cells is determined by the fixed variation in their size, from the larger to the smaller one. If the positions of the squares across the cells is changed, then the definition of the rule is no longer satisfied, unless the squares are ordered from the smaller to the larger. In this case, the rule is still incremental but with a reverse application. 
 
 The operation underlying the functioning of the permutational rules is the permutation of the figures (or of their features) across the cells according to a directional logic.
-For instance, the change in shapes rule is a permutational rule where the objects shown in each cell of the matrix are permuted following an order that is consistent with the directional logic.
-For instance, consider a matrix where a set of three figures (`hexagon()`, `pentagon`, `square`) are manipulated according to the shape rule following an horizontal directional logic (Figure \@ref(fig:permutational)).
+For instance, consider a matrix where a set of three figures (`hexagon()`, `pentagon()`, `square()`) are manipulated according to the shape rule following an horizontal directional logic (Figure \@ref(fig:permutational)).
 
 ```{r permutational, fig.cap="Example of shape rule transformation along a row."}
 a = mat_apply(cof(hexagon(),pentagon(),square()), hrules = "shape")
@@ -458,15 +481,14 @@ par(mfrow =c(1, 3) ,
 draw(a$Sq1); draw(a$Sq2); draw(a$Sq3)
 ```
 
-By default, the order of the figures is the order with which the figures are concatenated in the starting set. If the order of the figures in the original set is changed, then the rule will adapt and the result will be consistent with the new starting order. 
+By default, the starting order of the figures is the order with which the figures are concatenated in the set defined by the user. When the user change the starting order, the rule will adapt consequentially. 
 
 All the rules functions are characterized by three arguments, namely `fig`,`n`, and `rules`.
-The `fig` argument defines the initial figure that will be transformed. 
-The `n` argument defines the position of the resulting figure in the cell, in particular the number of rows or columns (depending on the directional logic) in which the outcome will be displayed.
-Finally, the `rules` argument is a vector of characters that defines the type of rule.
-In particular, if the vector `rules` contains the strings `inv` the default order is reversed, and it is denoted that the rule is applied reverse.
-For instance, to reverse the change in size in Figure \ref(fig:incremental), the code `mat_apply(square(size.x=10), hrules = "size.inv")` should be used. Figure \@ref(fig:IncrementalInv) depicts the resultin sequence of squares. 
+The `fig` argument specifies the initial figure to which the rule is applied. Some rules, such as size, can be applied to any type of figure, while others have specific constraints; for example, the `shape` rule requires concatenation of three figures. Detailed definitions for each rule are provided in Table \@ref{tab:rule-types},under the 'Definitions' column.
 
+The `n` argument specifies either the elements of the permutation or the increment value, depending on whether the rule is permutational or incremental. In `mat_apply()`, there is also a link between the cell number and the constant `n`, which ensures that the rule's directional logic is maintained.
+
+Finally, a single function can apply different rules (see the 'function' column in Table XXX). The rules argument allows us to specify which specific rule to apply. For example, the `margin` function manipulates line attributes of figures, with options to adjust line width `margin(..., rules = "lwd")` or line type `margin(..., rules = "lty")`. Another use of the rules argument is to reverse the default direction of rule application. For instance, `size(..., rules = "size")` typically decreases in size from right to left (see Figure \@ref(fig:incremental). By adding `inv` to the `rules` vector, the rule is applied in reverse order. Figure \@ref(fig:IncrementalInv) shows the output of `mat_apply(square(size.x=10), hrules = "size.inv")` applied to a sequence of squares.
 
 ```{r IncrementalInv, out.width="70%", fig.align="center", fig.cap="Example of incremental rule with reverse application: Change in size"}
 
@@ -479,7 +501,7 @@ draw(a$Sq1); draw(a$Sq2); draw(a$Sq3)
 ```
 
 
-The reverse application of the rules can be done with permutational rules as well. By starting with the same set of figures as the one used to generate Figure \@ref(fig:permutational), the sepcification of the argument `hrules = "shape.inv"` would result in a reverse ordering of the figures across the cells (Figure \@ref(fig:PermutationalInv)).
+The reverse application of the rules can be done with permutational rules as well. By starting with the same set of figures as the one used to generate Figure \@ref(fig:permutational), the specification of the argument `hrules = "shape.inv"` would result in a reverse ordering of the figures across the cells (Figure \@ref(fig:PermutationalInv)).
 
 ```{r PermutationalInv, out.width="70%", fig.align="center", fig.cap="Example of  permutational rule with reverse application: Change of shape"}
 par(mfrow =c(1, 3) ,
@@ -490,43 +512,31 @@ a = mat_apply(cof(triangle(),pentagon(),square()), hrules = "shape.inv")
 draw(a$Sq1); draw(a$Sq2); draw(a$Sq3)
 ```
 
+Logical rules `AND`, `OR` and `XOR` are a special case of incremental rules that cannot be applied in reverse.
 
+It may appear trivial at this point that the transformation obtained from a rule becomes evident only in the comparison between figures. For instance, in Figure \ref{fig:incremental}, the change in size is noticeable only when two cells are considered together. The figure in the first cell is smaller than the one in the second cell, that is smaller than the one in the third and so on. This straightforward concept underlies the creation of a matrix starting from a figure using `mat_apply()`. 
 
-Even though rules are applied to a single figure their purpose is to be cohesive inside a matrix to allow the participant the correct options responses.
+#Figure \@ref(fig:??) shows the flowchart of the generative procedure underlying `mat_apply()`.
+The procedure underlying `mat_apply()` consists of three serial steps.
+For the sake of simplicity, they will be illustrated for the 9-cell matrices only. The same reasoning applies to 4-cell matrices.
 
-Logical rules `AND`, `OR` and `XOR` are a special case of incremental rules. 
-Specifically, these rules cannot be applied in reverse.
-
-
-Figure \@ref(fig:??) shows the flowchart of the generative procedure underlying `mat_apply()`.
-The procedure consists of three serial steps.
-For the sake of simplicity, they will be illustrated for the 9-cell matrices only. A similar line of reasoning can be applied to 4-cell matrices.
-
-The first step is to generate the named list of all the cells from `Sq1` to `Sq9`.
-Each of the cells contains the initial figure defined in `Sq1`. No rule has still been applied.
-For instance, considering the concatenation of figure `cof(square(), circle(),dot())` plotting the outcome of this step will result in the following matrix:
+The first step is to generate a named list of all the cells from `Sq1` to `Sq9`. Each cell contains the initial figure defined in Sq1, with no rules applied yet. For example, considering the concatenation of figures `cof(square(), circle(), dot())`, the resulting matrix will be displayed in Figure \@ref{fig:examplestep1}.
 
 ```{r examplestep1, fig.cap="Example of outcome of the first step of the mat_apply procedure."}
 draw(mat_apply(cof(square(), circle(),dot())))
 ```
 
-Since the application of the logical rules requires a well-defined relationship between the cells of the matrix, the second step checks whether arguments `hrules` or  `vrules` contain a logical rule. 
-If so, the procedure throws an error. An error is thrown whenever the application of a logical rule is combined with the application of a visuospatial rule, a logical rule is used for the generation of a 4-cell matrix, or if two different logical rules are applied concurrently to the same figures with different directional logic.
-If only one single logical rule is applied and none of the above error-condition has been met, the procedure will generate the whole matrix in a single step.
 
-If the test of the second step turns out to be false, the procedure enters in the third  step. 
-In this step, the rules specified in `hrules` are applied following the horizontal directional logic (i.e., the rules are iterated among the elements horizontally.  
-<!-- corresponds to the iteration among the elements in `hrules`, consisting of the application of the rules with horizontal logic. -->
+The second step checks whether the arguments `hrules` or `vrules` contain a logical rule. If they do, an error occurs in the following cases: if the logical rule is combined with a visuospatial rule, if a logical rule is used to generate a 4-cell matrix, or if two different logical rules are concurrently applied to the same figures with differing directional logic. Since applying logical rules requires a well-defined relationship between the cells of the matrix, only one logical rule can be applied at a time. If there is a logical rule and none of these error conditions are met, the procedure will generate the entire matrix in a single step.
 
-The fourth step applies the rules specified in vrules following the vertical directional logic (i.e., the rules are iterated among the elements horizontally). 
+If there are no logical rules, the procedure enters the third step. The rules in `hrules` are applied following a horizontal directional logic, meaning they are iterated among the elements across columns. Subsequently, the rules specified in `vrules` are applied following a vertical directional logic, meaning they are iterated among the elements across rows.
 
-Since the third  and forth steps are made one after another using the same rule, for instance `size`, both with a horizontal a vertical logic, the two transformation on the cells ends up to cumulate.
-For instance, considering the code `mat_apply(square(),hrules="size", vrules="size")`, at the end of the third step the figure in `Sq5` will be half the size of `Sq1`.
-During the forth the size of `Sq5` will be halve again resulting in a figure that is a quarter of the initial `Sq1`. 
+The third steps can apply the same rule sequentially with both horizontal and vertical logic, the horizontal and vertical transformations on the cells cumulate between each other.
+According to this the code `mat_apply(square(),hrules="size", vrules="size")`, the size rule is applied both horizontally and vertically to generate the matrix. Since the rules are applied sequentially, after the application of the horizontal rule the figure in `Sq5` will be half the size of the Figure in `Sq1`. At the end of the third step, the size of `Sq5` is halved again, such that it will be a quarter of the size of the starting figure in `Sq1`.
 
 It is worth mentioning that  the combination of the same rule horizontally and vertically ends up in the definition of a diagonal directional logic.
-In particular, if the same rule is applied in reverse in one direction and applied direct in the other, it will result in a TL-LR directional logic.
-On the other hand if the same rule is direct (or reverse) in both horizontal and vertical directional logic they
+In particular, if a rule and it reversed are in the two different direction, it will result in a TL-LR directional logic.
+On the other hand if the same rule is as default (or in reverse) in both horizontal and vertical directional logic it.
 will give rise to a LL-TR logic.
 
 RIPRENDO DA QUI 24/10/2024
@@ -568,7 +578,7 @@ draw(multi_matrix)
 The matrix depicted in Figure \@ref(fig:single-matrix) results from the manipulation of the set of rules to obtain a single-layer matrix, such that all rules are concurrently applied to the same set of figures (i.e., `hexagon(), square(), pentagon()`). 
 The same set of rules is manipulated to obtain the matrix in Figure \@ref(fig:multi-matrix). However, the three rules are manipulated to obtain three different single-layer matrices, one for each rule (Figures \@ref(fig:multi-a), \@ref(fig:multi-b), and \@ref(fig:multi-c)), which are then concatenated together. 
 Each of these single-layer matrices can be considered as a layer of the multi-layer matrix. The layering of the matrices moves from the background (considered as external) to the foreground (considered as internal). 
-Layers are counted inwards $m = 1, \ldots, M$ (where $M$ is the total number of matrices to concatenate), such that the background matrix is layer 1 and the foreground matrix is layer $M$. The matrix in Figure \ref@(fig:multi-layer) is composed of $M = 3$ layers: (1) background layer obtained with horizontal manipulation of the `shape` rule (Figure \@ref(fig:multi-a)), (2) middle layer obtained with vertical manipulation of the `rotate` rule (Figure \@ref(fig:multi-b), and (3) foreground layer obtained with horizontal manipulation of the `shade` rule(Figure \@ref(multi-c)). 
+Layers are counted inwards $m = 1, \ldots, M$ (where $M$ is the total number of matrices to concatenate), such that the background matrix is layer 1 and the foreground matrix is layer $M$. The matrix in Figure \ref@(fig:multi-layer) is composed of $M = 3$ layers: (1) background layer obtained with horizontal manipulation of the `shape` rule (Figure \@ref(fig:multi-a)), (2) middle layer obtained with vertical manipulation of the `rotate` rule (Figure \@ref(fig:multi-b), and (3) foreground layer obtained with horizontal manipulation of the `shade` rule(Figure \@ref(fig:multi-c)). 
 
 ```{r multi-a, fig.cap="Layer 1 (Background matrix)", out.width="80%"}
 draw(multi_a)
@@ -778,46 +788,3 @@ The package is regularly maintained and new functions will be available in the f
 
 Although the functions implemented in \pkg{matRiks} are quite straightforward and easy to use, they need a basic knowledge of the R language. To overcome this issue and allow for a wider use of the package even among people that are not familiar with R, a web application built with the \pkg{shiny} package (@shiny) will be developed in the future. 
 
-# Customizing tooltip design with \pkg{ToOoOlTiPs}
-
-\pkg{ToOoOlTiPs} is a packages for customizing tooltips in interactive graphics, it features these possibilities.
-
-# A gallery of tooltips examples
-
-The \CRANpkg{palmerpenguins} data [@palmerpenguins]  features three penguin species which has a lovely illustration by Alison Horst in Figure \@ref(fig:penguins-alison). 
-
-```{r penguins-alison, out.width = "100%", out.height = "30%", fig.cap = "Artwork by \\@allison\\_horst", fig.alt="A picture of three different penguins with their species: Chinstrap, Gentoo, and Adelie. "}
-knitr::include_graphics("figures/penguins.png")
-```
-
-Table `r knitr::asis_output(ifelse(knitr::is_html_output(), '\\@ref(tab:penguins-tab-interactive)', '\\@ref(tab:penguins-tab-static)'))` prints at the first few rows of the `penguins` data:
-
-```{r penguins-tab-interactive, eval = knitr::is_html_output(), layout = "l-body-outset"}
-knitr::kable(head(penguins), format = "html", caption = "A basic table")
-```
-
-```{r penguins-tab-static, eval = knitr::is_latex_output()}
-knitr::kable(head(penguins), format = "latex", caption = "A basic table") %>% 
-  kableExtra::kable_styling(font_size = 7)
-```   
-
-Figure `r knitr::asis_output(ifelse(knitr::is_html_output(), '\\@ref(fig:penguins-plotly)', '\\@ref(fig:penguins-ggplot)'))` shows an `r ifelse(knitr::is_html_output(), 'interactive', '')` plot of the penguins data, made using the `r knitr::asis_output(ifelse(knitr::is_html_output(), '\\CRANpkg{plotly}', '\\CRANpkg{ggplot2}'))` package. 
-
-```{r penguins-plotly, echo = TRUE, fig.height = 5, fig.cap="A basic interactive plot made with the plotly package on palmer penguin data. Three species of penguins are plotted with bill depth on the x-axis and bill length on the y-axis. When hovering on a point, a tooltip will show the exact value of the bill depth and length for that point, along with the species name.", include=knitr::is_html_output(), eval=knitr::is_html_output(), fig.alt = "A scatterplot of bill length against bill depth, both measured in millimetre. The three species are shown in different colours and loosely forms three clusters. Adelie has small bill length and large bill depth, Gentoo has small bill depth but large bill length, and Chinstrap has relatively large bill depth and bill length."}
-p <- penguins %>% 
-  ggplot(aes(x = bill_depth_mm, y = bill_length_mm, 
-             color = species)) + 
-  geom_point()
-ggplotly(p)
-```
-
-```{r penguins-ggplot, echo = TRUE, fig.height = 5, fig.cap="A basic non-interactive plot made with the ggplot2 package on palmer penguin data. Three species of penguins are plotted with bill depth on the x-axis and bill length on the y-axis. Visit the online article to access the interactive version made with the plotly package.", include=knitr::is_latex_output(), eval=knitr::is_latex_output()}
-penguins %>% 
-  ggplot(aes(x = bill_depth_mm, y = bill_length_mm, 
-             color = species)) + 
-  geom_point()
-```
-
-# Summary
-
-We have displayed various tooltips that are available in the package \pkg{ToOoOlTiPs}. 

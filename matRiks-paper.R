@@ -11,6 +11,7 @@ library(data.table)
 library(matRiks)
 library(knitr)
 library(kableExtra)
+library(tidyverse)
 
 
 ## ----visuoRule, out.width="70%", fig.align="center", fig.cap="Example of visuospatial rule: Changes in size"----
@@ -124,7 +125,7 @@ kbl(error_types, align = "l",
 #> install.packages("matRiks")
 
 
-## ----square, echo = TRUE, fig.cap = "A simple square"-------------------------
+## ----square, echo = TRUE, fig.cap = "A simple square", out.width="70%", fig.align='center'----
 draw(square())
 
 
@@ -222,6 +223,35 @@ kbl(nine, align = "l",
 names( mat_apply(lily()))
 
 
+## ----rule-types, eval = knitr::is_html_output(), layout = "l-body-outset"-----
+#> 
+#> rule_types = data.table(Rule	 =c("	Identity	","	AND	","	OR	","	XOR	","	line width	","	line type	","	rotate	","	size	","	shape	","	shade	","	multi shade	"),
+#> 
+#> Classification	 =c("		","	logical	","	logical	","	logical	","	permutational	","	permutational	","	incremental	","	incremental	","	permutational	","	permutational	","	permutational	"),
+#> 
+#> Function	 =c("	`identity`	","	`logical`	","	`logical`	","	`logical` 	","	`margin`	","	`margin`	","	`rotate`	","	`size`	","	`shape`	","	`shade`	","	`shade`	"),
+#> 
+#> Definition	 =c("	Return the orginal figure without any transformation	",
+#>                "	Consider the input `SQ1`, a concatenation of at least three figures partitioned into three sets: A, B, and C. The rules  transforms the figures, ensuring that each row or column in the resulting matrix follows a specific series pattern. In these patterns, the first elements display figures {A, C}, the second display {A, B}, and the third exclusively display figure A. The partitioning of the figures into sets A, B, and C is randomly determined based on the rows/columns `n` of the matrix.	",
+#>                "	Consider the input `SQ1`, a concatenation of at least three figures partitioned into three sets: A, B, and C. The rules transform the figures, ensuring that each row or column in the resulting matrix follows a specific series pattern. In these patterns, the first elements display figures {A, C}, the second display {A, B}, and the third combines all of them in {A,B,C}. The partitioning of the figures into sets A, B, and C is randomly determined based on the rows/columns `n` of the matrix.	",
+#>                "	Consider the input SQ1, a concatenation of at least three figures partitioned into three sets: A, B, and C. The rules transform the figures, ensuring that each row or column in the resulting matrix follows a specific series pattern. In these patterns, the first elements display figures {A, C}, the second display {A, B}, and the third display {B,C}. The partitioning of the figures into sets A, B, and C is randomly determined based on the rows/columns `n` of the matrix.	",
+#>                "	Consider a figure or concatenation of figures and the `lwd` rule increases the width of the lines in the figure by a constant value  `n` corresponding to the row or column `n` in the resulting matrix. Therefore, the width can have values 1, 2, or 3 of the default width argument of the R plot. Conversely, the reverse rule `lwd.inv` decreases the line width by the same quantity.	",
+#>                "	Consider a figure or concatenation of figures and the `lty` rule changes the line type manipulating the line type argument of the R plot. The default order with `n`  from 1 to 3 the line is  `dashed`, `dotted`, and   `solid`, respectively. The reverse rule `lty.inv` has the order `dashed`, `solid`, and `dotted`.   	",
+#>                "	Consider a figure or concatenation of figures and an angle $\\theta$, the rule rotates the figure around its center clockwise of an angle $n \\theta$. The value of $\\theta$ is equal to $\\pi$ divided by any number from 1 to 9 included in the `rule` argument, for instance, `rule=rotation` have a  $\\theta = \\pi / 5$.  By default $\\theta = \\pi / 4$ . The reverse rule `rotation.inv` rotates the figure anticlockwise. 	",
+#>                "	Consider a figure or concatenation of figures and a constant $k$, the rule size decreases the figure size proportionally to $n k$. Specifically the `size.x` and `size.y` of the figure are divided by $nk$. The value of $k=.9$. The reverse rule `size.inv` increases the figure `size.x` and `size.y` $nk$  times with $k=.6$.	",
+#>                "	Consider a concatenation of three single figures denoted A, B, and C, the `shape` rule permutates which figure is visible in function of `n`. The default order with `n`  from 1 to 3 is showing in the row or in columns A, B, and C, respectively. The reverse rule `shape.inv` has the order C, B, and A.   	",
+#>                "	Consider a figure or concatenation of figures the `shade` rule changes the color of the filling of the figure. For all the figures that did not have a default color (i.e., `shd=NA`) the order with `n`  from 1 to 3  is  `white`, `grey`, and   `black`, respectively. If a figure had already a filling,  it is transformed into the n-th one in the default order. For instance, when $n=1$ and a figure has `shd=black`the application of the rule transforms it into `white`. It does not exist a reverse rule is available at the moment.   	",
+#>                "	Consider a concatenation of figures the `multi.shade` rule changes the color of the filling of each figure separately. The rules work exactly as the normal `shade` but a random color is assigned to each figure before the transformation.  The random color is assigned with the function `sample` with `seed(n)`.")
+#> 
+#> )	
+#> 
+#> kbl(rule_types, align = "l", caption = "Taxonomy of error types", label = "tab-error-types") %>%
+#>   kable_paper(full_width = FALSE) %>%
+#>   column_spec(1, bold = TRUE) %>%
+#>   collapse_rows( valign = "top")
+#> 
+
+
 ## ----incremental, fig.cap="Example of size rule transformation along a row."----
 a = mat_apply(square(size.x=10), hrules = "size")
 par(mfrow =c(1, 3) ,
@@ -283,15 +313,15 @@ draw(multi_matrix)
 
 
 
-## ----multi-a, fig.cap="Layer 1 (Background matrix)"---------------------------
+## ----multi-a, fig.cap="Layer 1 (Background matrix)", out.width="80%"----------
 draw(multi_a)
 
 
-## ----multi-b, fig.cap="Layer 2"-----------------------------------------------
+## ----multi-b, fig.cap="Layer 2", out.width="80%"------------------------------
 draw(multi_b)
 
 
-## ----multi-c, fig.cap="Layer 3 (Foreground matrix)"---------------------------
+## ----multi-c, fig.cap="Layer 3 (Foreground matrix)", out.width="80%"----------
 draw(multi_c)
 
 
@@ -406,32 +436,4 @@ draw(responses, main = TRUE)
 draw(responses, distractors = c("correct", 
                                 "r_diag", "r_left", 
                                 "wp_copy", "wp_matrix", "difference", "ic_flip", "ic_inc"))
-
-
-## ----penguins-alison, out.width = "100%", out.height = "30%", fig.cap = "Artwork by \\@allison\\_horst", fig.alt="A picture of three different penguins with their species: Chinstrap, Gentoo, and Adelie. "----
-knitr::include_graphics("figures/penguins.png")
-
-
-## ----penguins-tab-interactive, eval = knitr::is_html_output(), layout = "l-body-outset"----
-#> knitr::kable(head(penguins), format = "html", caption = "A basic table")
-
-
-## ----penguins-tab-static, eval = knitr::is_latex_output()---------------------
-knitr::kable(head(penguins), format = "latex", caption = "A basic table") %>% 
-  kableExtra::kable_styling(font_size = 7)
-
-
-## ----penguins-plotly, echo = TRUE, fig.height = 5, fig.cap="A basic interactive plot made with the plotly package on palmer penguin data. Three species of penguins are plotted with bill depth on the x-axis and bill length on the y-axis. When hovering on a point, a tooltip will show the exact value of the bill depth and length for that point, along with the species name.", include=knitr::is_html_output(), eval=knitr::is_html_output(), fig.alt = "A scatterplot of bill length against bill depth, both measured in millimetre. The three species are shown in different colours and loosely forms three clusters. Adelie has small bill length and large bill depth, Gentoo has small bill depth but large bill length, and Chinstrap has relatively large bill depth and bill length."----
-#> p <- penguins %>%
-#>   ggplot(aes(x = bill_depth_mm, y = bill_length_mm,
-#>              color = species)) +
-#>   geom_point()
-#> ggplotly(p)
-
-
-## ----penguins-ggplot, echo = TRUE, fig.height = 5, fig.cap="A basic non-interactive plot made with the ggplot2 package on palmer penguin data. Three species of penguins are plotted with bill depth on the x-axis and bill length on the y-axis. Visit the online article to access the interactive version made with the plotly package.", include=knitr::is_latex_output(), eval=knitr::is_latex_output()----
-penguins %>% 
-  ggplot(aes(x = bill_depth_mm, y = bill_length_mm, 
-             color = species)) + 
-  geom_point()
 
