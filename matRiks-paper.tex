@@ -17,7 +17,11 @@ Given this definition of fluid intelligence, it appears natural that the instrum
 
 The Raven's progressive matrices (RPM, JC ea Raven (1938)) are among the most famous tools for the assessment of \emph{g}. The RPM consists in a series of non-verbal multiple-choice stimuli where respondents are required to complete a series of drawings composed of different figures by identifying the relevant features that rule the relationships between the figures. These drawings are often referred to as matrices.
 To pursue this aim, the respondents must choose the figure that complete the drawing among a list of other figures, the so-called distractors.
+<<<<<<< HEAD
 This task should measure the ability of the respondents to identify and take into account the features (also called ``rules'') that govern the relationship between the figures to compose the drawing. Different versions of the RPM exist, according to the target population (i.e., children with less then 12 years of age or adults) to which they are administered. The Colored Progressive Matrices (CPM, cit) are composed of sets of \(2\times2\) matrices (i.e., 4-cell matrices), some of which (CONTROLLARE) includes colored figures. The advanced progressive matrices (ADM, cit) are composed of sets of \(3\times3\) matrices meant for assessment in gifted population (DIRE MEGLIO). Finally, the RPM are meant for the assessment among the general population and are composed of both \(2\times2\) and \(3\times3\) matrices. The colored figures are presnt only in the CPM.
+=======
+This task should measure the ability of the respondents to identify and take into account the features (also called ``rules'') that govern the relationship between the figures to compose the drawing. Different versions of the RPM exist, according to the target population (i.e., children with less then 12 years of age or adults) to which they are administered. The Colored Progressive Matrices (CPM, cit) are composed of sets of \(2\times2\) matrices (i.e., 4-cell matrices), some of which (CONTROLLARE) includes colored figures. The advanced progressive matrices (ADM, cit) are composed of sets of \(3\times3\) matrices meant for assessment in gifted population (DIRE MEGLIO). Finally, the RPM are meant for the assessment among the general population and are composed of both \(2\times2\) and \(3\times3\) matrices. The colored figures are present only in the CPM.
+>>>>>>> b1c290143c70d69a8c88e557cf66bf2669e18c09
 
 The RPM and similar tasks (here denoted as Raven-like matrices or Raven-like tasks) are employed in different fields, from clinical evaluation of intelligence to the selection processes in organizational psychology (citation needed).
 Since Raven's and Raven-like tasks involve the ability to solve new abstract problems, the stimuli composing these tasks should not be spread among the general population to preserve the novelty of the tasks.
@@ -77,7 +81,11 @@ Kunda et al. (2016) present a list of criteria for the identification of the dis
 
 Difference errors occur when the chosen response option is completely different from any entry of the matrix.
 Wrong principle errors occur when the chosen response option follows rules other than the ones used in the matrix. Incomplete Correlate errors occur when the chosen response option is in fact the correct response with a variation on a single feature.
+<<<<<<< HEAD
 Each of the four main error types can be further described by their subcategories.\\
+=======
+Each of the four main error types can be further described by their subcategories.
+>>>>>>> b1c290143c70d69a8c88e557cf66bf2669e18c09
 Table \ref{tab:tab-error-types-static} summarizes the definitions of the error types.
 
 \begin{table}
@@ -409,7 +417,12 @@ The first step is to generate a named list of all the cells from \texttt{Sq1} to
 
 The second step checks whether the arguments \texttt{hrules} or \texttt{vrules} contain a logical rule. If they do, an error occurs in the following cases: if the logical rule is combined with a visuospatial rule, if a logical rule is used to generate a 4-cell matrix, or if two different logical rules are concurrently applied to the same figures with differing directional logic. Since applying logical rules requires a well-defined relationship between the cells of the matrix, only one logical rule can be applied at a time. If there is a logical rule and none of these error conditions are met, the procedure will generate the entire matrix in a single step.
 
+<<<<<<< HEAD
 If there are no logical rules, the procedure enters the third step. The rules in \texttt{hrules} are applied following a horizontal directional logic, meaning they are iterated among the elements across columns. Subsequently, the rules specified in \texttt{vrules} are applied following a vertical directional logic, meaning they are iterated among the elements across rows.
+=======
+If the test of the second step turns out to be false, the procedure enters in the third step.
+In this step, the rules specified in \texttt{hrules} are applied following the horizontal directional logic (i.e., the rules are iterated among the elements horizontally.
+>>>>>>> b1c290143c70d69a8c88e557cf66bf2669e18c09
 
 The third steps can apply the same rule sequentially with both horizontal and vertical logic, the horizontal and vertical transformations on the cells cumulate between each other.
 According to this the code \texttt{mat\_apply(square(),hrules="size",\ vrules="size")}, the size rule is applied both horizontally and vertically to generate the matrix. Since the rules are applied sequentially, after the application of the horizontal rule the figure in \texttt{Sq5} will be half the size of the Figure in \texttt{Sq1}. At the end of the third step, the size of \texttt{Sq5} is halved again, such that it will be a quarter of the size of the starting figure in \texttt{Sq1}.
@@ -442,7 +455,11 @@ Figure \ref{fig:single-matrix} and Figure \ref{fig:multi-matrix} depict a matrix
 The matrix depicted in Figure \ref{fig:single-matrix} results from the manipulation of the set of rules to obtain a single-layer matrix, such that all rules are concurrently applied to the same set of figures (i.e., \texttt{hexagon(),\ square(),\ pentagon()}).
 The same set of rules is manipulated to obtain the matrix in Figure \ref{fig:multi-matrix}. However, the three rules are manipulated to obtain three different single-layer matrices, one for each rule (Figures \ref{fig:multi-a}, \ref{fig:multi-b}, and \ref{fig:multi-c}), which are then concatenated together.
 Each of these single-layer matrices can be considered as a layer of the multi-layer matrix. The layering of the matrices moves from the background (considered as external) to the foreground (considered as internal).
+<<<<<<< HEAD
 Layers are counted inwards \(m = 1, \ldots, M\) (where \(M\) is the total number of matrices to concatenate), such that the background matrix is layer 1 and the foreground matrix is layer \(M\). The matrix in Figure \ref@(fig:multi-layer) is composed of \(M = 3\) layers: (1) background layer obtained with horizontal manipulation of the \texttt{shape} rule (Figure \ref{fig:multi-a}), (2) middle layer obtained with vertical manipulation of the \texttt{rotate} rule (Figure \ref{fig:multi-b}, and (3) foreground layer obtained with horizontal manipulation of the \texttt{shade} rule(Figure \ref{fig:multi-c}).
+=======
+Layers are counted inwards \(m = 1, \ldots, M\) (where \(M\) is the total number of matrices to concatenate), such that the background matrix is layer 1 and the foreground matrix is layer \(M\). The matrix in Figure \ref@(fig:multi-layer) is composed of \(M = 3\) layers: (1) background layer obtained with horizontal manipulation of the \texttt{shape} rule (Figure \ref{fig:multi-a}), (2) middle layer obtained with vertical manipulation of the \texttt{rotate} rule (Figure \ref{fig:multi-b}, and (3) foreground layer obtained with horizontal manipulation of the \texttt{shade} rule(Figure \ref{multi-c}).
+>>>>>>> b1c290143c70d69a8c88e557cf66bf2669e18c09
 
 \begin{figure}
 \includegraphics[width=0.8\linewidth]{matRiks-paper_files/figure-latex/multi-a-1} \caption{Layer 1 (Background matrix)}\label{fig:multi-a}
@@ -468,7 +485,11 @@ The hierarchy between the layers is of the uttermost importance for definition o
 \subsubsection{Generation of the response list}\label{generation-of-the-response-list}
 
 The generation of the distractors composing the response list is constrained to: (i) the type of matrix (i.e., single-layer matrix vs.~multi-layer matrix), (ii) the rule(s) manipulated for the matrix generation, and (iii) the directional logic of the rule manipulation.
+<<<<<<< HEAD
 To the best of our knowledge, there is not a formal definition of the specific features of each distractor and on their applicability given the above-mentioned constrained.\\
+=======
+To the best of our knowledge, there is not a formal definition of the specific features of each distractor and on their applicability given the above-mentioned constrained.
+>>>>>>> b1c290143c70d69a8c88e557cf66bf2669e18c09
 As such, the development of the response option operator required the formal definition of the distractors and of all the possible exceptions given the constraints imposed by the matrices generated via the matrix operator.
 The definitions of the distractors implemented in the \pkg{matRiks} package is reported in Table \ref{tab:dist-types-tab-static} .
 
@@ -560,6 +581,7 @@ and it can be plotted as:
 \end{verbatim}
 
 \includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-15-1.pdf}
+
 As it can be noted, a warning has appeared and it refers to the IC-Inc distractor. As per Table \ref{tab:dist-types-tab-static} ., the distractor IC-Inc is defined as the correct response with a missing element. However, having a single-layer matrix does not allow for the removal of any element, hence the warning ``IC-Inc cannot be obtained with a single figure'' is thrown and the IC-Inc distractor is replaced by the correct response over which a black thick cross is imposed.
 
 Given that the matrix in Figure \ref{fig:multi-matrix} is composed of three layers, it is possible to obtain also the IC-Inc distractor:
@@ -569,7 +591,7 @@ Given that the matrix in Figure \ref{fig:multi-matrix} is composed of three laye
 However, the difference distractor is not well defined. The user can change the random seed for the generation of this distractor with the argument \texttt{seed()}, such that another random figure is chosen among the available ones:
 
 \begin{verbatim}
-draw(response_list(multi_matrix, seed = 7), 
+draw(response_list(multi_matrix, seed = 7),
      main = TRUE)
 \end{verbatim}
 
