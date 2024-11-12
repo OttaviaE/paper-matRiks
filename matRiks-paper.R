@@ -24,24 +24,24 @@ draw(a$Sq1); draw(a$Sq2); draw(a$Sq3)
 
 
 ## ----logiRule, out.width="70%", fig.align="center", fig.cap="Example of logical rule: Insiemistic Interscetion AND"----
-size.x = 8
-size.y = 4
-pos.x = 0
-shd = NA
-lty = 1
+size.x = 8 
+size.y = 4 
+pos.x = 0 
+shd = NA 
+lty = 1 
 lwd = 3
 
 par(mfrow =c(1, 3) ,
         mar = c(6,5,5,5))
 
-a = mat_apply(cof(luck(pos.x = pos.x + size.x, pos.y = pos.x, rot = pi,
-        size.x = size.x, size.y = size.y, shd = shd, lty = lty,
-        lwd = lwd), luck(pos.x = pos.x - size.x, pos.y = pos.x,
-        rot = -pi, size.x = size.x, size.y = size.y, shd = shd,
-        lty = lty, lwd = lwd), luck(pos.x = pos.x, pos.y = pos.x +
-        size.x, rot = -pi, size.x = size.y, size.y = size.x,
-        shd = shd, lty = lty, lwd = lwd), luck(pos.x = pos.x,
-        pos.y = pos.x - size.x, rot = -pi, size.x = size.y, size.y = size.x,
+a = mat_apply(cof(luck(pos.x = pos.x + size.x, pos.y = pos.x, rot = pi, 
+        size.x = size.x, size.y = size.y, shd = shd, lty = lty, 
+        lwd = lwd), luck(pos.x = pos.x - size.x, pos.y = pos.x, 
+        rot = -pi, size.x = size.x, size.y = size.y, shd = shd, 
+        lty = lty, lwd = lwd), luck(pos.x = pos.x, pos.y = pos.x + 
+        size.x, rot = -pi, size.x = size.y, size.y = size.x, 
+        shd = shd, lty = lty, lwd = lwd), luck(pos.x = pos.x, 
+        pos.y = pos.x - size.x, rot = -pi, size.x = size.y, size.y = size.x, 
         shd = shd, lty = lty, lwd = lwd)), hrules = "AND")
 
 draw(a$Sq1); draw(a$Sq2); draw(a$Sq3)
@@ -49,19 +49,19 @@ draw(a$Sq1); draw(a$Sq2); draw(a$Sq3)
 
 ## ----tab-error-types-interactive, eval=knitr::is_html_output(), layout = "l-body-outset"----
 #> error_types = data.table(Distractors = c("Repetition (R)", "", "",
-#>                                          "Difference (D)", "", "","",
-#>                                          "Wrong Principle (WP)", "", "",
+#>                                          "Difference (D)", "", "","",		
+#>                                          "Wrong Principle (WP)", "", "",	
 #>                                          "Incomplete Correlate (IC)", "", "", "","", "","" )
 #>                                              ,
 #>                          Definition	= c("Entries of the matrix adjacent to the blank cell", "", "",
-#>                                         "Combination of all the entries of the matrix or the combination of some of their features. It is different from any entry of the matrix and from the other distractors.", "", "", "", 	"Copy or combination of the matrix entries according to another rule", "", "",
+#>                                         "Combination of all the entries of the matrix or the combination of some of their features. It is different from any entry of the matrix and from the other distractors.", "", "", "", 	"Copy or combination of the matrix entries according to another rule", "", "",	
 #>                                         "Correct response with a variation on only a single feature.", "", "", "", "","", ""),
-#>                                         "Specific Error" = c("R-Left", 	"R-Top",
+#>                                         "Specific Error" = c("R-Left", 	"R-Top",	
 #>                                                              "R-Diag", 	"D-Blank", 	"D-Union", 	"D-Plus",
 #>                                                              "D-Diff", 	"WP-Copy", "WP-Flip",
-#>                                                              "WP-Matrix", "IC-Neg",
-#>                                                              "IC-Fill",
-#>                                                              "IC-Flip",
+#>                                                              "WP-Matrix", "IC-Neg",	
+#>                                                              "IC-Fill",	
+#>                                                              "IC-Flip",	
 #>                                                              "IC-Layout", "IC-Scale","IC-Num", "IC-Inc"
 #> ), "Specific definition" = c("Repetition of the cell left to the blank space",
 #>                              "Repetition of the cell above to the blank space",
@@ -78,46 +78,46 @@ draw(a$Sq1); draw(a$Sq2); draw(a$Sq3)
 #>                             "The elements of the correct response are displayed with a different layout",
 #>                             "Elements of the correct response with different proportion or different size of the correct response.", "Correct response with a different number of elements (small layout changes are allowed)",
 #>                             "Correct response with a missing element.")
-#> )
+#> )	
 #> 
 #> kbl(error_types, align = "l", caption = "Taxonomy of error types") %>%
 #>   column_spec(1, bold = T)
 
 
 ## ----tab-error-types-static, eval=knitr::is_latex_output(), layout = "l-body-outset"----
-error_types = data.table(Distractors = c("Repetition (R)", "", "",
-                                         "Difference (D)", "", "","",
-                                         "Wrong Principle (WP)", "", "",
+error_types = data.table(Distractors = c("Repetition (R)", "", "", 
+                                         "Difference (D)", "", "","",		
+                                         "Wrong Principle (WP)", "", "",	
                                          "Incomplete Correlate (IC)", "", "", "","", "","" )
-                                             ,
+                                             , 
                          Definition	= c("Entries of the matrix adjacent to the blank cell", "", "",
-                                        "Combination of all the entries of the matrix or the combination of some of their features. It is different from any entry of the matrix and from the other distractors.", "", "", "", 	"Copy or combination of the matrix entries according to another rule", "", "",
+                                        "Combination of all the entries of the matrix or the combination of some of their features. It is different from any entry of the matrix and from the other distractors.", "", "", "", 	"Copy or combination of the matrix entries according to another rule", "", "",	
                                         "Correct response with a variation on only a single feature.", "", "", "", "","", ""),
-                                        "Specific Error" = c("R-Left", 	"R-Top",
+                                        "Specific Error" = c("R-Left", 	"R-Top",	
                                                              "R-Diag", 	"D-Blank", 	"D-Union", 	"D-Plus",
-                                                             "D-Diff", 	"WP-Copy", "WP-Flip",
-                                                             "WP-Matrix", "IC-Neg",
-                                                             "IC-Fill",
-                                                             "IC-Flip",
+                                                             "D-Diff", 	"WP-Copy", "WP-Flip", 
+                                                             "WP-Matrix", "IC-Neg",	
+                                                             "IC-Fill",	
+                                                             "IC-Flip",	
                                                              "IC-Layout", "IC-Scale","IC-Num", "IC-Inc"
-), "Specific definition" = c("Repetition of the cell left to the blank space",
-                             "Repetition of the cell above to the blank space",
-                             "Repetition of the cell right to the blank space",
-                             "Filled completely white or black",
-                             "Some elements of one entry are emphasized",
-                             "Some entries of the matrix are combined together",
-                             "Qualitatively different from any other distractor and any entry of the matrix, resulting in a pop-out effect.",
-                             "Repetition of a cell non adjacent to the blank space",
-                             "Rotation or refection of one entry of the matrix.",
-                             "Transformation or combination of some entries of the matrix or of their elements",
-                            "Negative of the correct response",
-                            "Correct response with a different texture or style.",
-                            "The elements of the correct response are displayed with a different layout",
-                            "Elements of the correct response with different proportion or different size of the correct response.", "Correct response with a different number of elements (small layout changes are allowed)",
+), "Specific definition" = c("Repetition of the cell left to the blank space", 
+                             "Repetition of the cell above to the blank space", 
+                             "Repetition of the cell right to the blank space", 
+                             "Filled completely white or black", 
+                             "Some elements of one entry are emphasized", 
+                             "Some entries of the matrix are combined together", 
+                             "Qualitatively different from any other distractor and any entry of the matrix, resulting in a pop-out effect.", 
+                             "Repetition of a cell non adjacent to the blank space", 
+                             "Rotation or refection of one entry of the matrix.", 
+                             "Transformation or combination of some entries of the matrix or of their elements", 
+                            "Negative of the correct response", 
+                            "Correct response with a different texture or style.", 
+                            "The elements of the correct response are displayed with a different layout", 
+                            "Elements of the correct response with different proportion or different size of the correct response.", "Correct response with a different number of elements (small layout changes are allowed)", 
                             "Correct response with a missing element.")
-)
+)	 
 
-kbl(error_types, align = "l",
+kbl(error_types, align = "l", 
     caption = "Taxonomy of error types") %>% column_spec(1, bold = T)
 
 
@@ -131,22 +131,22 @@ draw(square())
 
 ## ----figures-list-interactive-------------------------------------------------
 tbl_img <- data.table(
-  "Figure Category" = c("Black figures", "Circle sections", "Closed figures"),
-  Example = "",
-  "Figure Category"  = c("Flower figures", "Eight-shaped figures", "Lines"),
-  Example = "",
-  "Figure Category" = c("Other figures", "", ""),
+  "Figure Category" = c("[Black figures](https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html)", "[Circle sections](https://cran.r-project.org/web/packages/matRiks/vignettes/circle-sections.html)", "Closed figures"),
+  Example = "", 
+  "Figure Category"  = c("Flower figures", "Eight-shaped figures", "Lines"), 
+  Example = "", 
+  "Figure Category" = c("[Other figures](https://cran.r-project.org/web/packages/matRiks/vignettes/other-figures.html)", "", ""),
   Example = ""
 )
 
 tbl_img %>%
-  kbl(booktabs = T) %>%
-  kable_paper(full_width = F) %>%
+  kbl(booktabs = TRUE) %>%
+  kable_paper(full_width = FALSE) %>%
   column_spec(2, image = spec_image(
-    c("black-figures.png", "circle-sections.png", "closed-figures.png"), 50, 50, 50)) %>%
+    c("black-figures.png", "circle-sections.png", "closed-figures.png"), 50, 50, 50)) %>% 
   column_spec(4, image = spec_image(
-    c("flowers.png", "eight-shapes-figures.png", "lines.png"), 50, 50, 50)) %>%
-    column_spec(6,
+    c("flowers.png", "eight-shapes-figures.png", "lines.png"), 50, 50, 50)) %>% 
+    column_spec(6, 
                 image = spec_image(
     c("other-figures.png","other-figures.png","other-figures.png" ), 50,50,50))
 
@@ -203,7 +203,7 @@ s_eye$shape
 ## ----fourCell-static, eval = knitr::is_latex_output(), layout = "l-body-outset"----
 four = matrix(paste("Sq", 1:4, sep = ""), nrow = 2)
 
-kable(four, align = "c", caption="Four-cell matrix")
+kable(four, align = "c", caption="Four-cell matrix") 
 
 
 ## ----nineCell-interactive, eval = knitr::is_html_output(), layout = "l-body-outset"----
@@ -215,12 +215,31 @@ kable(four, align = "c", caption="Four-cell matrix")
 
 ## ----nineCell-static, eval = knitr::is_latex_output(), layout = "l-body-outset"----
 nine = matrix(paste("Sq", 1:9, sep = ""), nrow = 3)
-kbl(nine, align = "l",
-    caption = "Nine-cell matrix")
+kbl(nine, align = "l", 
+    caption = "Nine-cell matrix") 
 
 
 ## ----warning=FALSE------------------------------------------------------------
 names( mat_apply(lily()))
+
+
+## ----IncrementalInv, out.width="70%", fig.align="center", fig.cap="Example of incremental rule with reverse application: Change in size"----
+
+a = mat_apply(square(size.x=10), hrules = "size.inv")
+
+par(mfrow =c(1, 3) ,
+        mar = c(6,5,5,5))
+
+draw(a$Sq1); draw(a$Sq2); draw(a$Sq3)
+
+
+## ----PermutationalInv, out.width="70%", fig.align="center", fig.cap="Example of  permutational rule with reverse application: Change of shape"----
+par(mfrow =c(1, 3) ,
+        mar = c(6,5,5,5))
+
+a = mat_apply(cof(triangle(),pentagon(),square()), hrules = "shape.inv")
+
+draw(a$Sq1); draw(a$Sq2); draw(a$Sq3)
 
 
 ## ----rule-types, eval = knitr::is_html_output(), layout = "l-body-outset"-----
@@ -232,16 +251,16 @@ names( mat_apply(lily()))
 #> Function	 =c("	`identity`	","	`logical`	","	`logical`	","	`logical` 	","	`margin`	","	`margin`	","	`rotate`	","	`size`	","	`shape`	","	`shade`	","	`shade`	"),
 #> 
 #> Definition	 =c("	Return the orginal figure without any transformation	",
-#>                "	Consider the input `SQ1`, a concatenation of at least three figures partitioned into three sets: A, B, and C. The rules  transforms the figures, ensuring that each row or column in the resulting matrix follows a specific series pattern. In these patterns, the first elements display figures {A, C}, the second display {A, B}, and the third exclusively display figure A. The partitioning of the figures into sets A, B, and C is randomly determined based on the rows/columns `n` of the matrix.	",
-#>                "	Consider the input `SQ1`, a concatenation of at least three figures partitioned into three sets: A, B, and C. The rules transform the figures, ensuring that each row or column in the resulting matrix follows a specific series pattern. In these patterns, the first elements display figures {A, C}, the second display {A, B}, and the third combines all of them in {A,B,C}. The partitioning of the figures into sets A, B, and C is randomly determined based on the rows/columns `n` of the matrix.	",
-#>                "	Consider the input SQ1, a concatenation of at least three figures partitioned into three sets: A, B, and C. The rules transform the figures, ensuring that each row or column in the resulting matrix follows a specific series pattern. In these patterns, the first elements display figures {A, C}, the second display {A, B}, and the third display {B,C}. The partitioning of the figures into sets A, B, and C is randomly determined based on the rows/columns `n` of the matrix.	",
-#>                "	Consider a figure or concatenation of figures and the `lwd` rule increases the width of the lines in the figure by a constant value  `n` corresponding to the row or column `n` in the resulting matrix. Therefore, the width can have values 1, 2, or 3 of the default width argument of the R plot. Conversely, the reverse rule `lwd.inv` decreases the line width by the same quantity.	",
-#>                "	Consider a figure or concatenation of figures and the `lty` rule changes the line type manipulating the line type argument of the R plot. The default order with `n`  from 1 to 3 the line is  `dashed`, `dotted`, and   `solid`, respectively. The reverse rule `lty.inv` has the order `dashed`, `solid`, and `dotted`.   	",
-#>                "	Consider a figure or concatenation of figures and an angle $\\theta$, the rule rotates the figure around its center clockwise of an angle $n \\theta$. The value of $\\theta$ is equal to $\\pi$ divided by any number from 1 to 9 included in the `rule` argument, for instance, `rule=rotation` have a  $\\theta = \\pi / 5$.  By default $\\theta = \\pi / 4$ . The reverse rule `rotation.inv` rotates the figure anticlockwise. 	",
-#>                "	Consider a figure or concatenation of figures and a constant $k$, the rule size decreases the figure size proportionally to $n k$. Specifically the `size.x` and `size.y` of the figure are divided by $nk$. The value of $k=.9$. The reverse rule `size.inv` increases the figure `size.x` and `size.y` $nk$  times with $k=.6$.	",
-#>                "	Consider a concatenation of three single figures denoted A, B, and C, the `shape` rule permutates which figure is visible in function of `n`. The default order with `n`  from 1 to 3 is showing in the row or in columns A, B, and C, respectively. The reverse rule `shape.inv` has the order C, B, and A.   	",
-#>                "	Consider a figure or concatenation of figures the `shade` rule changes the color of the filling of the figure. For all the figures that did not have a default color (i.e., `shd=NA`) the order with `n`  from 1 to 3  is  `white`, `grey`, and   `black`, respectively. If a figure had already a filling,  it is transformed into the n-th one in the default order. For instance, when $n=1$ and a figure has `shd=black`the application of the rule transforms it into `white`. It does not exist a reverse rule is available at the moment.   	",
-#>                "	Consider a concatenation of figures the `multi.shade` rule changes the color of the filling of each figure separately. The rules work exactly as the normal `shade` but a random color is assigned to each figure before the transformation.  The random color is assigned with the function `sample` with `seed(n)`.")
+#>                "	Considering the input cell `fig`, a concatenation of at least three figures is partitioned into three sets: A, B, and C. The rule transforms the figures such that each row or column in the matrix follows a specific sequence of patterns. In these patterns, the first cell displays figures {A, C}, the second cell displays {A, B}, and the third one exclusively displays figure A. The partitioning of the figures into sets A, B, and C is randomly determined with a random seed based on the  `n` rows/columns of the matrix.	",
+#>                "	Considering the input cell `fig`, a concatenation of at least three figures is partitioned into three sets: A, B, and C. The rule transform the figures, such that each row or column in the matrix follows a specific sequence of patterns. In these patterns, the first cell displays figures {A, C}, the second cell displays {A, B}, and the third one combines all of them in {A,B,C}. The partitioning of the figures into sets A, B, and C is randomly determined with a random seed based on the  `n` rows/columns of the matrix.	",
+#>                "Considering the input cell `fig`, a concatenation of at least three figures is partitioned into three sets: A, B, and C. The rule transform the figures, such that each row or column in the matrix follows a specific sequence pattern. In these patterns, the first elements display figures {A, C}, the second display {A, B}, and the third display {B,C}. The partitioning of the figures into sets A, B, and C is randomly determined with a random seed based on the  `n` rows/columns of the matrix.	",
+#>                "	Considering a figure or concatenation of figures, the `lwd` rule increases the width of the lines in the figure by a constant value `n` corresponding to the number of row or column in the matrix. Therefore, the width can have values 1, 2, or 3 of the default width argument of the R plot. Conversely, the reverse rule `lwd.inv` decreases the line width by the same quantity.	",
+#>                "	Considering a figure or concatenation of figures, the `lty` rule changes the lines type manipulating the lines type argument of the R plot. In the default order with the values of `n` from 1 to 3, the lines are  `dashed`, `dotted`, and   `solid`, respectively. Using the reverse rule, with the values of `n` from 1 to 3, `lty.inv` has the order `dashed`, `solid`, and `dotted`.   	",
+#>                "	Considering a figure or concatenation of figures and an angle $\\theta$, the rule rotates the figure around its center clockwise of an angle $n \\theta$, where $n$ is the argument `n` of the function. The value of $\\theta$ is equal to $\\pi$ divided by any number from 1 to 9 included in the `rule` argument of the function, for instance, `rule=rotation.5` have a  $\\theta = \\pi / 5$.  By default $\\theta = \\pi / 4$ . The reverse rule `rotation.inv` rotates the figure anticlockwise. 	",
+#>                "	Considering a figure or concatenation of figures and a constant $k$, the rule size decreases the figure size proportionally to $nk$ , where $n$ is the argument `n` of the function. Specifically, the `size.x` and `size.y` arguments of the figure are divided by $nk$. The default value of $k=.9$. The reverse rule `size.inv` increases the figure arguments `size.x` and `size.y` of  $nk$ times with a default value of $k=.6$.	",
+#>                "	Considering a concatenation of three single figures denoted A, B, and C, the `shape` rule permutates which figure is visible in each cells of the matrix. The default order is figures A, B, and C from left to right in the row or from up to bottom in the column. The reverse rule `shape.inv` has the order C, B, and A.   	",
+#>                "	Considering a figure or concatenation of figures, the `shade` rule changes the color of the filling. The argument `n` of the function goes from 1 to 3 and it is mapped into `white`, `grey`, and   `black, respectively. The rule ignore any previous color presented in the figure.For instance, when $n=1$ and a figure has `shd=black`the application of the rule transforms it into `white`. It does not exist a reverse rule available at the moment.   	",
+#>                "	Considering a concatenation of figures the `multi.shade` rule changes the color of the filling of each figure separately. The rules work exactly as the normal `shade` but a random color is assigned to each figure before the transformation.  The random color is assigned with the function `sample` with `seed(n)`.")
 #> 
 #> )	
 #> 
@@ -266,32 +285,13 @@ par(mfrow =c(1, 3) ,
 draw(a$Sq1); draw(a$Sq2); draw(a$Sq3)
 
 
-## ----IncrementalInv, out.width="70%", fig.align="center", fig.cap="Example of incremental rule with reverse application: Change in size"----
-
-a = mat_apply(square(size.x=10), hrules = "size.inv")
-
-par(mfrow =c(1, 3) ,
-        mar = c(6,5,5,5))
-
-draw(a$Sq1); draw(a$Sq2); draw(a$Sq3)
-
-
-## ----PermutationalInv, out.width="70%", fig.align="center", fig.cap="Example of  permutational rule with reverse application: Change of shape"----
-par(mfrow =c(1, 3) ,
-        mar = c(6,5,5,5))
-
-a = mat_apply(cof(triangle(),pentagon(),square()), hrules = "shape.inv")
-
-draw(a$Sq1); draw(a$Sq2); draw(a$Sq3)
-
-
 ## ----examplestep1, fig.cap="Example of outcome of the first step of the mat_apply procedure."----
 draw(mat_apply(cof(square(), circle(),dot())))
 
 
 ## ----single-matrix, fig.cap="Single-layer matrix with two rules manipulated horizontally (Shape and filling) and one rules manipulated vertically (Orientation)"----
 single_matrix <- mat_apply(cof(hexagon(), pacman(), pentagon()),
-                           mat.type = 9, hrules = c("shade", "shape"),
+                           mat.type = 9, hrules = c("shade", "shape"), 
                            vrules = "rotate")
 draw(single_matrix)
 
@@ -373,11 +373,11 @@ dist_types = data.table(Distractors = c("R-Left", "R-Top", "R-diag", "Wp-Copy",
                                       "Multi-layer: The most internal figure is removed from the correct response.", "Logic matrices: The element that is removed is randomly selected.",
                                       "Color inversion of the correct response (single-layer matrix) or of one of its figures (multi-layer matrix)", "Single-layer matrix: 	Color inversion of the figure in the correct response", "Multi-layer matrix: Color inversion of the most internal figure of the correct response",
                                       "Rotation or reflection of the correct response (single-layer matrix) or of one of its figures (multi-layer matrix)", "Single-layer matrix: Reflection/Rotation of the figure in the correct response", "Multi-layer matrix: Reflection/Rotation of the most internal figure of the correct response",
-                                      "Resize of the correct response (single-layer matrix) or of one of its figures (multi-layer matrix)", "Single-layer: Resize of the figure in the correct response", "Multi-layer matrix: Only the most internal figure in the correct response is resized"),
-                       "$2 \\times 2$ matrices" = c("SQ3", "SQ2", "SQ1",
-                                                    "SQ1",
-                                                    "SQ3 or SQ2 with the superimposition of the rotation of WP-Copy",
-                                                    "SQ3 or SQ1 with the superimposition of a figure that is not manipulated in the matrix",
+                                      "Resize of the correct response (single-layer matrix) or of one of its figures (multi-layer matrix)", "Single-layer: Resize of the figure in the correct response", "Multi-layer matrix: Only the most internal figure in the correct response is resized"), 
+                       "$2 \\times 2$ matrices" = c("SQ3", "SQ2", "SQ1", 
+                                                    "SQ1", 
+                                                    "SQ3 or SQ2 with the superimposition of the rotation of WP-Copy", 
+                                                    "SQ3 or SQ1 with the superimposition of a figure that is not manipulated in the matrix", 
                                                     rep("Same as $3\\times 3$ matrices", 13)))
 
 
@@ -393,17 +393,17 @@ names(response_list(single_matrix))
 
 
 ## ----warning=TRUE-------------------------------------------------------------
-draw(response_list(single_matrix),
+draw(response_list(single_matrix), 
      main = TRUE) # plot the distractor labels
 
 
 ## -----------------------------------------------------------------------------
-draw(response_list(multi_matrix),
+draw(response_list(multi_matrix), 
      main = TRUE)
 
 
 ## ----echo = TRUE--------------------------------------------------------------
-draw(response_list(multi_matrix, seed = 7),
+draw(response_list(multi_matrix, seed = 7), 
      main = TRUE)
 
 
@@ -433,7 +433,7 @@ draw(responses, main = TRUE)
 
 
 ## -----------------------------------------------------------------------------
-draw(responses, distractors = c("correct",
-                                "r_diag", "r_left",
+draw(responses, distractors = c("correct", 
+                                "r_diag", "r_left", 
                                 "wp_copy", "wp_matrix", "difference", "ic_flip", "ic_inc"))
 
