@@ -28,7 +28,7 @@ output:
   rjtools::rjournal_article:
     self_contained: yes
     toc: no
-#bibliography: RJreferences.bib
+# bibliography: RJreferences.bib
 editor_options: 
   chunk_output_type: console
   markdown: 
@@ -50,11 +50,11 @@ library(tidyverse)
 
 # Introduction
 
-@cattell1963 defined fluid intelligence (*g*) as the ability of solving novel reasoning problems that has little to do with concepts learned in schools or through acculturational processes.
+cattell1963 defined fluid intelligence (*g*) as the ability of solving novel reasoning problems that has little to do with concepts learned in schools or through acculturational processes.
 The adjective "fluid" explicitly refers to its ability to "flow" into a variety of tasks and cognitive activities (Horn, 1972).
 Given this definition of fluid intelligence, it appears natural that the instruments used for its evaluation tap on the respondent's ability to solve abstract problems that involve acculturation as little as possible, such as figural analogies, figure classifications, matrices, and number and letter series (Horn, 1968).
 
-The Raven's progressive matrices (RPM, @raven1938) are among the most famous tools for the assessment of *g*.
+The Raven's progressive matrices (RPM, raven1938) are among the most famous tools for the assessment of *g*.
 The RPM consists in a series of non-verbal multiple-choice stimuli where respondents are required to complete a series of drawings composed of different figures by identifying the relevant features that rule the relationships between the figures.
 These drawings are often referred to as matrices.
 To pursue this aim, the respondents must choose the figure that complete the drawing among a list of other figures, the so-called distractors.
@@ -81,7 +81,7 @@ However, the stimuli that can be generated with the `ImaK` package are mostly ba
 As such, the only rule that is manipulated is the spatial rotation of the figures.
 
 Given the limitations of the existing resources for generating Raven-like tasks, there is the need of an open-source, easy-to-use, and constantly maintained resource for generating such stimuli through the systematic manipulation of rules applied to different figures.
-The `matRiks` package (@matRiks) has been developed to pursue these aims.
+The `matRiks` package (matRiks) has been developed to pursue these aims.
 The package enables the generation of matrices by manipulating one or multiple rules on one or multiple figures.
 Additionally, it automatically generates the response list associated with the matrix.
 Beyond the default settings, the matRiks package allows for the generation of new figures and customization of matrices and response lists.
@@ -145,13 +145,23 @@ Concerning the diagonal directional logic, it can follow either the main diagona
 
 ### The response options
 
-A large corpus of literature has investigated the role of the distractors in the response processes involved when solving the Raven matrices, focusing on the specific error responses chosen by the respondent (@fort, @kunda, @storme).
+A large corpus of literature has investigated the role of the distractors in the response processes involved when solving the Raven matrices, focusing on the specific error responses chosen by the respondent (fort, kunda, storme).
 The underlying logic is that the incorrect response is not chosen at random by the respondent, but it can be the result of an educated guess, or it can be chosen because the respondent is misled by a specific feature.
 In other words, the incorrect responses might reflect an incorrect solution strategy resulting in the choice of a specific type of distractor over another one [@kunda].
 The distractors can be classified according to the incorrect response strategy they represent.
 @kunda present a list of criteria for the identification of the distractors in the SPM based on classification of the error types from the CPM and APM manuals [@raven2004].
-The distractor that is chosen in place of the correct response option can be collected into four main four conceptual errors: (i) Repetition (R) errors occur when the chosen response option is a cell adjacent to the blank space, (ii) Difference (D) errors occur when the chosen response option is completely different from any entry of the matrix, (iii) Wrong Principle (WP) errors occur when the chosen response option follows rules other than the ones used in the matrix, and (iv) Incomplete Correlate (IC) errors occur when the chosen response option is in fact the correct response with a variation on a single feature. AGGIUNGERE DETTAGLI SULLE TIPO DI ERRORI SPECIFICI E VALUTIAMO DI RIMUOVERE LA TABELLA
+The distractor that is chosen in place of the correct response option can be collected into four main four conceptual errors: (i) Repetition (R) errors occur when the chosen response option is a cell adjacent to the blank space, (ii) Difference (D) errors occur when the chosen response option is completely different from any entry of the matrix, (iii) Wrong Principle (WP) errors occur when the chosen response option follows rules other than the ones used in the matrix, and (iv) Incomplete Correlate (IC) errors occur when the chosen response option is in fact the correct response with a variation on a single feature. 
 
+<span style="color:red">
+All the macro categories of error types can be further sub categorized accoriding to the characteristics of the speicific erro response. For instance, the repertion category can be divided according to the position of the repeated cell with respect to the blank cell. As such, three error types of the repetition category can be identified, namely R-Left, R-Top, and R-Diagonal according to whether they represnt the cell to the left, on topo, or in diagonal with repsect to the blank cell. 
+Concerning the wrong principle macro category, some of the speicfic error types might refer to the reption of a cell not adjacent to the blank space (i.e., WP-Copy) ot to the combination of different elements of different cells, not according to the rule(s) used for creating the matrix. 
+Some of the specific errors of the incomplete correlate macro categpry includes the cchange of the orientation of the coprrect response (i.e., IC-flip), the change in color of the correct response (i.e., IC-Neg), the change in the size of the correct response (IC-Size) or the lack of an element of the correct response (IC-Inc).
+Finally, concering the differnce macro category, the specific error might be a cell completely white or black (D-Blank) or the merge of differnt cells of the matrix (D-Union). 
+</span>
+
+<span style="color:blue">
+NON RIESCO A COMMENTARE DIO PORCO 
+</span>
 Difference errors occur when the chosen response option is completely different from any entry of the matrix.
 Wrong principle errors occur when the chosen response option follows rules other than the ones used in the matrix.
 Incomplete Correlate errors occur when the chosen response option is in fact the correct response with a variation on a single feature.
@@ -295,9 +305,9 @@ The following types of figure are available in the matRiks package:
 
 ```{r figures-list-interactive}
 tbl_img <- data.table(
-  "Figure Category" = c("[Black figures](https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html)", "[Circle sections](https://cran.r-project.org/web/packages/matRiks/vignettes/circle-sections.html)", "Closed figures"),
+  "Figure Category" = c("[Black figures](https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html)", "[Circle sections](https://cran.r-project.org/web/packages/matRiks/vignettes/circle-sections.html)", "[Closed figures](https://cran.r-project.org/web/packages/matRiks/vignettes/closed-figures.html)"),
   Example = "", 
-  "Figure Category"  = c("Flower figures", "Eight-shaped figures", "Lines"), 
+  "Figure Category"  = c("[Flowers figures](https://cran.r-project.org/web/packages/matRiks/vignettes/flowers-figures.html)", "[Eight-shaped figures](https://cran.r-project.org/web/packages/matRiks/vignettes/eight-shapes-figures.html)", "[Lines](https://cran.r-project.org/web/packages/matRiks/vignettes/lines.html)"), 
   Example = "", 
   "Figure Category" = c("[Other figures](https://cran.r-project.org/web/packages/matRiks/vignettes/other-figures.html)", "", ""),
   Example = ""
@@ -312,8 +322,11 @@ tbl_img %>%
     c("flowers.png", "eight-shapes-figures.png", "lines.png"), 50, 50, 50)) %>% 
     column_spec(6, 
                 image = spec_image(
-    c("other-figures.png","other-figures.png","other-figures.png" ), 50,50,50))
+    c("other-figures.png","","" ), 50,50,50))
 ```
+
+
+NON RIESCO A COMMENTARE
 
 :::::: {style="display: flex;"}
 <div>
@@ -834,7 +847,7 @@ This allows for a comparison between the responses observed with the standard st
 
 This package has been developed within a broader project founded by the Italian Ministry of University and Research, which is aimed at the development of an intelligent system for the adaptive assessment of executive functions and fluid intelligence among general and clinical populations.
 The test used for assessment of fluid intelligence (named MatriKS) was developed following the principles of Raven’s Matrices.
-Specifically, the stimuli composing the test have been developed with the \pkg{matRiks} package (@mdpi).
+Specifically, the stimuli composing the test have been developed with the \pkg{matRiks} package (mdpi).
 
 This package allows for high degrees of freedom in the generation of matrices with different difficulty.
 For instance, it allows for the generation of stimuli that combine multiple rules by exploiting the possibility of layering multiple matrices together.
@@ -844,4 +857,4 @@ The package is regularly maintained and new functions will be available in the f
 As such, the users should refer to the official documentation of the package that is constantly updated.
 
 Although the functions implemented in \pkg{matRiks} are quite straightforward and easy to use, they need a basic knowledge of the R language.
-To overcome this issue and allow for a wider use of the package even among people that are not familiar with R, a web application built with the \pkg{shiny} package (@shiny) will be developed in the future.
+To overcome this issue and allow for a wider use of the package even among people that are not familiar with R, a web application built with the \pkg{shiny} package (shiny) will be developed in the future.

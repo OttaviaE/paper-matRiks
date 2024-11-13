@@ -131,9 +131,9 @@ draw(square())
 
 ## ----figures-list-interactive-------------------------------------------------
 tbl_img <- data.table(
-  "Figure Category" = c("[Black figures](https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html)", "[Circle sections](https://cran.r-project.org/web/packages/matRiks/vignettes/circle-sections.html)", "Closed figures"),
+  "Figure Category" = c("[Black figures](https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html)", "[Circle sections](https://cran.r-project.org/web/packages/matRiks/vignettes/circle-sections.html)", "[Closed figures](https://cran.r-project.org/web/packages/matRiks/vignettes/closed-figures.html)"),
   Example = "", 
-  "Figure Category"  = c("Flower figures", "Eight-shaped figures", "Lines"), 
+  "Figure Category"  = c("[Flowers figures](https://cran.r-project.org/web/packages/matRiks/vignettes/flowers-figures.html)", "[Eight-shaped figures](https://cran.r-project.org/web/packages/matRiks/vignettes/eight-shapes-figures.html)", "[Lines](https://cran.r-project.org/web/packages/matRiks/vignettes/lines.html)"), 
   Example = "", 
   "Figure Category" = c("[Other figures](https://cran.r-project.org/web/packages/matRiks/vignettes/other-figures.html)", "", ""),
   Example = ""
@@ -148,7 +148,7 @@ tbl_img %>%
     c("flowers.png", "eight-shapes-figures.png", "lines.png"), 50, 50, 50)) %>% 
     column_spec(6, 
                 image = spec_image(
-    c("other-figures.png","other-figures.png","other-figures.png" ), 50,50,50))
+    c("other-figures.png","","" ), 50,50,50))
 
 
 ## ----out.width="50%", fig.cap="[Black figures](https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html)"----
