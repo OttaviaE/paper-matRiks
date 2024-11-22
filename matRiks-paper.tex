@@ -6,9 +6,6 @@
 
 \maketitle
 
-\abstract{%
-Few resources are available for the automatic generation of Raven-like matrices. Some of them are no longer working, while others are hardly customizable without adavnced programming skills. Although an R package exists for generating stimuli for psychological assessments, it is currently confined to create rotation of the same shape. The \CRANpkg{matRiks} package has been developed with the aim of overcoming the above mentioned issues. This package generates matrices according to dufferent types of rules, from the most basic ones based on the visuo spatial features of the figures to the most complex ones, based on inferential and inductive reasoning. This unveils the possibility of generating new customizable stimuli and of systematically manipulating the complexity of the stimuli. Being developed within the R environment, the \CRANpkg{matRiks} package is completely open-source, allows for the reproducibility of the stimuli, and it can be easily used by people with basic knowledge of the R language.
-}
 
 \section{Introduction}\label{introduction}
 
@@ -63,23 +60,6 @@ Literature highlights a plethora of rules that can be manipulated for the genera
 Beyond the fact that some of these rules have different names in different sources but refer to the same manipulation (e.g., the rule defined as ``and problem'' in Harris el a. 2020 is called ``intersection'' rule in Arendasy et al.~2005), they can be summarized into different macro-categories, namely visuospatial rules (i.e., the manipulation concerns the graphical and spatial features of the figures, Figure \ref{fig:visuoRule}), and logical rules (i.e., the manipulation concerns the logical relationships between the figures composing the matrix, Figure \ref{fig:logiRule}).
 The rules can be used to manipulate to different figures to generate a matrix.
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.7\linewidth]{matRiks-paper_files/figure-latex/visuoRule-1} 
-
-}
-
-\caption{Example of visuospatial rule: Changes in size}\label{fig:visuoRule}
-\end{figure}
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.7\linewidth]{matRiks-paper_files/figure-latex/logiRule-1} 
-
-}
-
-\caption{Example of logical rule: Insiemistic Interscetion AND}\label{fig:logiRule}
-\end{figure}
 
 In Figure \ref{fig:visuoRule}, the manipulation concerns a specif feature of the figure, that is its size, and it can be observed as the the figure decreases its size across the cells.
 The leftmost cell contains the figure with its original size, the middle cell contains a smaller figure, while the rightmost cells contains the smallest one.
@@ -236,60 +216,52 @@ INTRODUZIONE DI TAG SENZA PARLARE D.INT E D.EXT
 draw(square())
 \end{verbatim}
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.7\linewidth]{matRiks-paper_files/figure-latex/square-1} 
-
-}
-
-\caption{A simple square}\label{fig:square}
-\end{figure}
 
 The figures in matRiks are summarized in different categories (e.g., closed figures, black figures, lines), for each of which a vignette lists all the figures.
 The following types of figure are available in the matRiks package:
 
-\begin{table}
-\centering
-\begin{tabular}[t]{l>{}ll>{}ll>{}l}
-\toprule
-Figure Category & Example & Figure Category & Example & Figure Category & Example\\
-\midrule
-{}[Black figures](https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html) & \includegraphics[width=1in, height=1in]{black-figures.png} & {}[Flowers figures](https://cran.r-project.org/web/packages/matRiks/vignettes/flowers-figures.html) & \includegraphics[width=1in, height=1in]{flowers.png} & {}[Other figures](https://cran.r-project.org/web/packages/matRiks/vignettes/other-figures.html) & \includegraphics[width=1in, height=1in]{other-figures.png}\\
-{}[Circle sections](https://cran.r-project.org/web/packages/matRiks/vignettes/circle-sections.html) & \includegraphics[width=1in, height=1in]{circle-sections.png} & {}[Eight-shaped figures](https://cran.r-project.org/web/packages/matRiks/vignettes/eight-shapes-figures.html) & \includegraphics[width=1in, height=1in]{eight-shapes-figures.png} &  & \includegraphics[width=1in, height=1in]{}\\
-{}[Closed figures](https://cran.r-project.org/web/packages/matRiks/vignettes/closed-figures.html) & \includegraphics[width=1in, height=1in]{closed-figures.png} & {}[Lines](https://cran.r-project.org/web/packages/matRiks/vignettes/lines.html) & \includegraphics[width=1in, height=1in]{lines.png} &  & \includegraphics[width=1in, height=1in]{}\\
-\bottomrule
-\end{tabular}
-\end{table}
+%\begin{table}
+%\centering
+%\begin{tabular}[t]{l>{}ll>{}ll>{}l}
+%\toprule
+%Figure Category & Example & Figure Category & Example & Figure Category & Example\\
+%\midrule
+%{}[Black figures](https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html) & \includegraphics[width=1in, height=1in]{black-figures.png} & {}[Flowers figures](https://cran.r-project.org/web/packages/matRiks/vignettes/flowers-figures.html) & \includegraphics[width=1in, height=1in]{flowers.png} & {}[Other figures](https://cran.r-project.org/web/packages/matRiks/vignettes/other-figures.html) & \includegraphics[width=1in, height=1in]{other-figures.png}\\
+%{}[Circle sections](https://cran.r-project.org/web/packages/matRiks/vignettes/circle-sections.html) & \includegraphics[width=1in, height=1in]{circle-sections.png} & {}[Eight-shaped figures](https://cran.r-project.org/web/packages/matRiks/vignettes/eight-shapes-figures.html) & \includegraphics[width=1in, height=1in]{eight-shapes-figures.png} &  & \includegraphics[width=1in, height=1in]{}\\
+%{}[Closed figures](https://cran.r-project.org/web/packages/matRiks/vignettes/closed-figures.html) & \includegraphics[width=1in, height=1in]{closed-figures.png} & {}[Lines](https://cran.r-project.org/web/packages/matRiks/vignettes/lines.html) & \includegraphics[width=1in, height=1in]{lines.png} &  & \includegraphics[width=1in, height=1in]{}\\
+%\bottomrule
+%\end{tabular}
+%\end{table}
 
 NON RIESCO A COMMENTARE
 
-\begin{figure}
-\includegraphics[width=0.5\linewidth]{matRiks-paper_files/figure-latex/unnamed-chunk-2-1} \caption{[Black figures](https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html)}\label{fig:unnamed-chunk-2}
-\end{figure}
-
-\begin{figure}
-\includegraphics[width=0.5\linewidth]{matRiks-paper_files/figure-latex/unnamed-chunk-3-1} \caption{[Circle sections](https://cran.r-project.org/web/packages/matRiks/vignettes/circle-sections.html)}\label{fig:unnamed-chunk-3}
-\end{figure}
-
-\begin{figure}
-\includegraphics[width=0.5\linewidth]{matRiks-paper_files/figure-latex/unnamed-chunk-4-1} \caption{[Other figures](https://cran.r-project.org/web/packages/matRiks/vignettes/other-figures.html)}\label{fig:unnamed-chunk-4}
-\end{figure}
-
-\begin{figure}
-\includegraphics[width=0.5\linewidth]{matRiks-paper_files/figure-latex/unnamed-chunk-5-1} \caption{[Closed figures](https://cran.r-project.org/web/packages/matRiks/vignettes/closed-figures.html)}\label{fig:unnamed-chunk-5}
-\end{figure}
-
-\begin{figure}
-\includegraphics[width=0.5\linewidth]{matRiks-paper_files/figure-latex/unnamed-chunk-6-1} \caption{[Eight-shaped figures](https://cran.r-project.org/web/packages/matRiks/vignettes/eight-shapes-figures.html)}\label{fig:unnamed-chunk-6}
-\end{figure}
-
-\begin{figure}
-\includegraphics[width=0.5\linewidth]{matRiks-paper_files/figure-latex/unnamed-chunk-7-1} \caption{[Flowers figures](https://cran.r-project.org/web/packages/matRiks/vignettes/flowers-figures.html)}\label{fig:unnamed-chunk-7}
-\end{figure}
-
-\begin{figure}
-\includegraphics[width=0.5\linewidth]{matRiks-paper_files/figure-latex/unnamed-chunk-8-1} \caption{[Lines](https://cran.r-project.org/web/packages/matRiks/vignettes/lines.html)}\label{fig:unnamed-chunk-8}
-\end{figure}
+%\begin{figure}
+%\includegraphics[width=0.5\linewidth]{matRiks-paper_files/figure-latex/unnamed-chunk-2-1} \caption{[Black figures](https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html)}\label{fig:unnamed-chunk-2}
+%\end{figure}
+%
+%\begin{figure}
+%\includegraphics[width=0.5\linewidth]{matRiks-paper_files/figure-latex/unnamed-chunk-3-1} \caption{[Circle sections](https://cran.r-project.org/web/packages/matRiks/vignettes/circle-sections.html)}\label{fig:unnamed-chunk-3}
+%\end{figure}
+%
+%\begin{figure}
+%\includegraphics[width=0.5\linewidth]{matRiks-paper_files/figure-latex/unnamed-chunk-4-1} \caption{[Other figures](https://cran.r-project.org/web/packages/matRiks/vignettes/other-figures.html)}\label{fig:unnamed-chunk-4}
+%\end{figure}
+%
+%\begin{figure}
+%\includegraphics[width=0.5\linewidth]{matRiks-paper_files/figure-latex/unnamed-chunk-5-1} \caption{[Closed figures](https://cran.r-project.org/web/packages/matRiks/vignettes/closed-figures.html)}\label{fig:unnamed-chunk-5}
+%\end{figure}
+%
+%\begin{figure}
+%\includegraphics[width=0.5\linewidth]{matRiks-paper_files/figure-latex/unnamed-chunk-6-1} \caption{[Eight-shaped figures](https://cran.r-project.org/web/packages/matRiks/vignettes/eight-shapes-figures.html)}\label{fig:unnamed-chunk-6}
+%\end{figure}
+%
+%\begin{figure}
+%\includegraphics[width=0.5\linewidth]{matRiks-paper_files/figure-latex/unnamed-chunk-7-1} \caption{[Flowers figures](https://cran.r-project.org/web/packages/matRiks/vignettes/flowers-figures.html)}\label{fig:unnamed-chunk-7}
+%\end{figure}
+%
+%\begin{figure}
+%\includegraphics[width=0.5\linewidth]{matRiks-paper_files/figure-latex/unnamed-chunk-8-1} \caption{[Lines](https://cran.r-project.org/web/packages/matRiks/vignettes/lines.html)}\label{fig:unnamed-chunk-8}
+%\end{figure}
 
 \subsection{Concatenation of figures}\label{concatenation-of-figures}
 
@@ -304,11 +276,11 @@ eye <- cof(circle(), dot()) # create the new figure eye by concatenating the cir
 draw(eye)
 \end{verbatim}
 
-\begin{figure}
-\centering
-\includegraphics{matRiks-paper_files/figure-latex/eye-1.pdf}
-\caption{\label{fig:eye}Example of concatenation of circle and dot to obtain an eye-like figure.}
-\end{figure}
+%\begin{figure}
+%\centering
+%\includegraphics{matRiks-paper_files/figure-latex/eye-1.pdf}
+%\caption{\label{fig:eye}Example of concatenation of circle and dot to obtain an eye-like figure.}
+%\end{figure}
 
 The resulting figure \texttt{eye} is a named list of lists of class \texttt{figure}.
 However, the two original figures are still available and can be considered as separate figures, and as such the object eye is considered a concatenation of two figures.
@@ -410,26 +382,26 @@ For instance, \texttt{size(...,\ rules\ =\ "size")} typically decreases in size 
 By adding \texttt{inv} to the \texttt{rules} vector, the rule is applied in reverse order.
 Figure \ref{fig:IncrementalInv} shows the output of \texttt{mat\_apply(square(size.x=10),\ hrules\ =\ "size.inv")} applied to a sequence of squares.
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.7\linewidth]{matRiks-paper_files/figure-latex/IncrementalInv-1} 
-
-}
-
-\caption{Example of incremental rule with reverse application: Change in size}\label{fig:IncrementalInv}
-\end{figure}
+%\begin{figure}
+%
+%{\centering \includegraphics[width=0.7\linewidth]{matRiks-paper_files/figure-latex/IncrementalInv-1} 
+%
+%}
+%
+%\caption{Example of incremental rule with reverse application: Change in size}\label{fig:IncrementalInv}
+%\end{figure}
 
 The reverse application of the rules can be done with permutational rules as well.
 By starting with the same set of figures as the one used to generate Figure \ref{fig:permutational}, the specification of the argument \texttt{hrules\ =\ "shape.inv"} would result in a reverse ordering of the figures across the cells (Figure \ref{fig:PermutationalInv}).
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.7\linewidth]{matRiks-paper_files/figure-latex/PermutationalInv-1} 
-
-}
-
-\caption{Example of  permutational rule with reverse application: Change of shape}\label{fig:PermutationalInv}
-\end{figure}
+%\begin{figure}
+%
+%{\centering \includegraphics[width=0.7\linewidth]{matRiks-paper_files/figure-latex/PermutationalInv-1} 
+%
+%}
+%
+%\caption{Example of  permutational rule with reverse application: Change of shape}\label{fig:PermutationalInv}
+%\end{figure}
 
 Logical rules \texttt{AND}, \texttt{OR} and \texttt{XOR} are a special case rules that cannot be applied in reverse.
 
@@ -440,12 +412,12 @@ Figure \ref{fig:incremental} illustrates the application of the change in size r
 the change in size rule is an incremental rule, in which the size of the square decreases of a fixed quantity in each subsequent object according to a directional logic.
 Incremental rules apply a fixed increase (or decrease) on each cell of the matrix to obtain the features of the figure in the following cell, starting from the first cell.
 The order in which the fixed increase (decrease) is applied depends on the directional logic used for the generation of the matrix.
-
-\begin{figure}
-\centering
-\includegraphics{matRiks-paper_files/figure-latex/incremental-1.pdf}
-\caption{\label{fig:incremental}Example of size rule transformation along a row.}
-\end{figure}
+%
+%\begin{figure}
+%\centering
+%\includegraphics{matRiks-paper_files/figure-latex/incremental-1.pdf}
+%\caption{\label{fig:incremental}Example of size rule transformation along a row.}
+%\end{figure}
 
 This rule is incremental in the sense that the order of the squares in the cells is determined by the fixed variation in their size, from the larger to the smaller one.
 If the positions of the squares across the cells is changed, then the definition of the rule is no longer satisfied, unless the squares are ordered from the smaller to the larger.
@@ -454,11 +426,11 @@ In this case, the rule is still incremental but with a reverse application.
 The operation underlying the functioning of the permutational rules is the permutation of the figures (or of their features) across the cells according to a directional logic.
 For instance, consider a matrix where a set of three figures (\texttt{hexagon()}, \texttt{pentagon()}, \texttt{square()}) are manipulated according to the shape rule following an horizontal directional logic (Figure \ref{fig:permutational}).
 
-\begin{figure}
-\centering
-\includegraphics{matRiks-paper_files/figure-latex/permutational-1.pdf}
-\caption{\label{fig:permutational}Example of shape rule transformation along a row.}
-\end{figure}
+%\begin{figure}
+%\centering
+%\includegraphics{matRiks-paper_files/figure-latex/permutational-1.pdf}
+%\caption{\label{fig:permutational}Example of shape rule transformation along a row.}
+%\end{figure}
 
 By default, the starting order of the figures is the order with which the figures are concatenated in the set defined by the user.
 When the user change the starting order, the rule will adapt consequentially.
@@ -476,11 +448,11 @@ The first step is to generate a named list of all the cells from \texttt{Sq1} to
 Each cell contains the initial figure defined in Sq1, with no rules applied yet.
 For example, considering the concatenation of figures \texttt{cof(square(),\ circle(),\ dot())}, the resulting matrix will be displayed in Figure @ref\{fig:examplestep1\}.
 
-\begin{figure}
-\centering
-\includegraphics{matRiks-paper_files/figure-latex/examplestep1-1.pdf}
-\caption{\label{fig:examplestep1}Example of outcome of the first step of the mat\_apply procedure.}
-\end{figure}
+%\begin{figure}
+%\centering
+%\includegraphics{matRiks-paper_files/figure-latex/examplestep1-1.pdf}
+%\caption{\label{fig:examplestep1}Example of outcome of the first step of the mat\_apply procedure.}
+%\end{figure}
 
 The second step checks whether the arguments \texttt{hrules} or \texttt{vrules} contain a logical rule.
 If they do, an error occurs in the following cases: if the logical rule is combined with a visuospatial rule, if a logical rule is used to generate a 4-cell matrix, or if two different logical rules are concurrently applied to the same figures with differing directional logic.
@@ -509,17 +481,17 @@ Figure \ref{fig:single-matrix} and Figure \ref{fig:multi-matrix} depict a matrix
 Specifically, two rules are manipulated horizontally (i.e., \texttt{shade} and \texttt{shape}) and one rule is manipulated vertically (i.e., `rotate``).
 As such, the figures in the cells and the shading change across columns, while the rotation of the figures change across rows.
 
-\begin{figure}
-\centering
-\includegraphics{matRiks-paper_files/figure-latex/single-matrix-1.pdf}
-\caption{\label{fig:single-matrix}Single-layer matrix with two rules manipulated horizontally (Shape and filling) and one rules manipulated vertically (Orientation)}
-\end{figure}
+%\begin{figure}
+%\centering
+%\includegraphics{matRiks-paper_files/figure-latex/single-matrix-1.pdf}
+%\caption{\label{fig:single-matrix}Single-layer matrix with two rules manipulated horizontally (Shape and filling) and one rules manipulated vertically (Orientation)}
+%\end{figure}
 
-\begin{figure}
-\centering
-\includegraphics{matRiks-paper_files/figure-latex/multi-matrix-1.pdf}
-\caption{\label{fig:multi-matrix}Multi-layer matrix with two rules manipulated horizontally (shape and filling) and one rule manipulated vertically (orientation)}
-\end{figure}
+%\begin{figure}
+%\centering
+%\includegraphics{matRiks-paper_files/figure-latex/multi-matrix-1.pdf}
+%\caption{\label{fig:multi-matrix}Multi-layer matrix with two rules manipulated horizontally (shape and filling) and one rule manipulated vertically (orientation)}
+%\end{figure}
 
 The matrix depicted in Figure \ref{fig:single-matrix} results from the manipulation of the set of rules to obtain a single-layer matrix, such that all rules are concurrently applied to the same set of figures (i.e., \texttt{hexagon(),\ square(),\ pentagon()}).
 The same set of rules is manipulated to obtain the matrix in Figure \ref{fig:multi-matrix}.
@@ -529,17 +501,17 @@ The layering of the matrices moves from the background (considered as external) 
 Layers are counted inwards \(m = 1, \ldots, M\) (where \(M\) is the total number of matrices to concatenate), such that the background matrix is layer 1 and the foreground matrix is layer \(M\).
 The matrix in Figure \ref@(fig:multi-layer) is composed of \(M = 3\) layers: (1) background layer obtained with horizontal manipulation of the \texttt{shape} rule (Figure \ref{fig:multi-a}), (2) middle layer obtained with vertical manipulation of the \texttt{rotate} rule (Figure \ref{fig:multi-b}, and (3) foreground layer obtained with horizontal manipulation of the \texttt{shade} rule(Figure \ref{fig:multi-c}).
 
-\begin{figure}
-\includegraphics[width=0.8\linewidth]{matRiks-paper_files/figure-latex/multi-a-1} \caption{Layer 1 (Background matrix)}\label{fig:multi-a}
-\end{figure}
-
-\begin{figure}
-\includegraphics[width=0.8\linewidth]{matRiks-paper_files/figure-latex/multi-b-1} \caption{Layer 2}\label{fig:multi-b}
-\end{figure}
-
-\begin{figure}
-\includegraphics[width=0.8\linewidth]{matRiks-paper_files/figure-latex/multi-c-1} \caption{Layer 3 (Foreground matrix)}\label{fig:multi-c}
-\end{figure}
+%\begin{figure}
+%\includegraphics[width=0.8\linewidth]{matRiks-paper_files/figure-latex/multi-a-1} \caption{Layer 1 (Background matrix)}\label{fig:multi-a}
+%\end{figure}
+%
+%\begin{figure}
+%\includegraphics[width=0.8\linewidth]{matRiks-paper_files/figure-latex/multi-b-1} \caption{Layer 2}\label{fig:multi-b}
+%\end{figure}
+%
+%\begin{figure}
+%\includegraphics[width=0.8\linewidth]{matRiks-paper_files/figure-latex/multi-c-1} \caption{Layer 3 (Foreground matrix)}\label{fig:multi-c}
+%\end{figure}
 
 The \texttt{com()} function concatenates the single-layer matrices to obtain the multi-layer one:
 
@@ -653,7 +625,7 @@ and it can be plotted as:
 #> Warning in ic_inc.matriks(obj): IC-Inc cannot be obtained with a single figure
 \end{verbatim}
 
-\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-15-1.pdf}
+
 
 As it can be noted, a warning has appeared and it refers to the IC-Inc distractor.
 As per Table \ref{tab:dist-types-tab-static} ., the distractor IC-Inc is defined as the correct response with a missing element.
@@ -661,7 +633,7 @@ However, having a single-layer matrix does not allow for the removal of any elem
 
 Given that the matrix in Figure \ref{fig:multi-matrix} is composed of three layers, it is possible to obtain also the IC-Inc distractor:
 
-\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-16-1.pdf}
+
 
 However, the difference distractor is not well defined.
 The user can change the random seed for the generation of this distractor with the argument \texttt{seed()}, such that another random figure is chosen among the available ones:
@@ -671,7 +643,7 @@ draw(response_list(multi_matrix, seed = 7),
      main = TRUE)
 \end{verbatim}
 
-\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-17-1.pdf}
+
 
 \subsection{A complete example}\label{a-complete-example}
 
@@ -679,29 +651,29 @@ This section presents a complete example on how to generate a multi-layer \(3 \t
 
 The first layer is generated by manipulating the AND logical rule according to an H directional logic on a square composed of 4 lines:
 
-\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-18-1.pdf}
+
 
 The second layer is generated by manipulating the OR logical rule according to a V directional logic on a flower composed of 4 petals:
 
-\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-19-1.pdf}
+
 
 The multi-layer matrix can be composed with the \texttt{com()} function by concatenating the two single-layer matrices:
 
-\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-20-1.pdf}
+
 
 The response options associated with the multi-layer matrix can be generated with the \texttt{response\_list()} function:
 
-\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-21-1.pdf}
+
 
 Since the filling color the \texttt{miley} cannot be changed, the IC-Neg distractor cannot be generated and the function throws a warning and the \texttt{ic\_neg} distractor is replaced by the correct response with the superimposition of a thick black cross.
 The \texttt{difference} distractor does not look good.
 The figure that is superimposed to the cell taken from the matrix can be changed by changing the seed in the \texttt{response\_list()} function:
 
-\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-22-1.pdf}
+
 
 Assuming that a response list of length 8 (the correct response along with seven distractors) is associated with the multi-layer matrix, a character vector with the labels of the chosen distractors can be specified directly in the draw function:
 
-\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-23-1.pdf}
+
 
 \section{Summary}\label{summary}
 

@@ -1,8 +1,8 @@
 ---
 title: "matRiks: An R package for the automatic generation of rule-based matrices"
 date: "2022-11-09"
-abstract: >
- Few resources are available for the automatic generation of Raven-like matrices. Some of them are no longer working, while others are hardly customizable without adavnced programming skills. Although an R package exists for generating stimuli for psychological assessments, it is currently confined to create rotation of the same shape. The \CRANpkg{matRiks} package has been developed with the aim of overcoming the above mentioned issues. This package generates matrices according to dufferent types of rules, from the most basic ones based on the visuo spatial features of the figures to the most complex ones, based on inferential and inductive reasoning. This unveils the possibility of generating new customizable stimuli and of systematically manipulating the complexity of the stimuli. Being developed within the R environment, the \CRANpkg{matRiks} package is completely open-source, allows for the reproducibility of the stimuli, and it can be easily used  by people with basic knowledge of the R language.
+# <!-- abstract: > -->
+# <!--  Few resources are available for the automatic generation of Raven-like matrices. Some of them are no longer working, while others are hardly customizable without adavnced programming skills. Although an R package exists for generating stimuli for psychological assessments, it is currently confined to create rotation of the same shape. The \CRANpkg{matRiks} package has been developed with the aim of overcoming the above mentioned issues. This package generates matrices according to dufferent types of rules, from the most basic ones based on the visuo spatial features of the figures to the most complex ones, based on inferential and inductive reasoning. This unveils the possibility of generating new customizable stimuli and of systematically manipulating the complexity of the stimuli. Being developed within the R environment, the \CRANpkg{matRiks} package is completely open-source, allows for the reproducibility of the stimuli, and it can be easily used  by people with basic knowledge of the R language. -->
 draft: true
 author:  
   - name: Quietest Quokka
@@ -25,10 +25,9 @@ author:
     orcid: 0000-0002-0912-0225
 type: package
 output: 
-  rjtools::rjournal_article:
+  rjtools::rjournal_pdf_article:
     self_contained: yes
     toc: no
-# bibliography: RJreferences.bib
 editor_options: 
   chunk_output_type: console
   markdown: 
