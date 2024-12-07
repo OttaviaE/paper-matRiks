@@ -1,8 +1,8 @@
 ---
 title: "matRiks: An R package for the automatic generation of rule-based matrices"
 date: "2022-11-09"
-# <!-- abstract: > -->
-# <!--  Few resources are available for the automatic generation of Raven-like matrices. Some of them are no longer working, while others are hardly customizable without adavnced programming skills. Although an R package exists for generating stimuli for psychological assessments, it is currently confined to create rotation of the same shape. The \CRANpkg{matRiks} package has been developed with the aim of overcoming the above mentioned issues. This package generates matrices according to dufferent types of rules, from the most basic ones based on the visuo spatial features of the figures to the most complex ones, based on inferential and inductive reasoning. This unveils the possibility of generating new customizable stimuli and of systematically manipulating the complexity of the stimuli. Being developed within the R environment, the \CRANpkg{matRiks} package is completely open-source, allows for the reproducibility of the stimuli, and it can be easily used  by people with basic knowledge of the R language. -->
+abstract: 
+  Few resources are available for the automatic generation of Raven-like matrices. Some of them are no longer working, while others are hardly customizable without adavnced programming skills. Although an R package exists for generating stimuli for psychological assessments, it is currently confined to create rotation of the same shape. The \CRANpkg{matRiks} package has been developed with the aim of overcoming the above mentioned issues. This package generates matrices according to dufferent types of rules, from the most basic ones based on the visuo spatial features of the figures to the most complex ones, based on inferential and inductive reasoning. This unveils the possibility of generating new customizable stimuli and of systematically manipulating the complexity of the stimuli. Being developed within the R environment, the \CRANpkg{matRiks} package is completely open-source, allows for the reproducibility of the stimuli, and it can be easily used  by people with basic knowledge of the R language. 
 draft: true
 author:  
   - name: Quietest Quokka
@@ -28,11 +28,15 @@ output:
   rjtools::rjournal_pdf_article:
     self_contained: yes
     toc: no
+header-includes:
+  - \usepackage{hyperref}
 editor_options: 
   chunk_output_type: console
   markdown: 
     wrap: sentence
+#bibliography: RJreferences.bib
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
@@ -302,72 +306,116 @@ draw(square())
 The figures in matRiks are summarized in different categories (e.g., closed figures, black figures, lines), for each of which a vignette lists all the figures.
 The following types of figure are available in the matRiks package:
 
-```{r figures-list-interactive}
-tbl_img <- data.table(
-  "Figure Category" = c("[Black figures](https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html)", "[Circle sections](https://cran.r-project.org/web/packages/matRiks/vignettes/circle-sections.html)", "[Closed figures](https://cran.r-project.org/web/packages/matRiks/vignettes/closed-figures.html)"),
-  Example = "", 
-  "Figure Category"  = c("[Flowers figures](https://cran.r-project.org/web/packages/matRiks/vignettes/flowers-figures.html)", "[Eight-shaped figures](https://cran.r-project.org/web/packages/matRiks/vignettes/eight-shapes-figures.html)", "[Lines](https://cran.r-project.org/web/packages/matRiks/vignettes/lines.html)"), 
-  Example = "", 
-  "Figure Category" = c("[Other figures](https://cran.r-project.org/web/packages/matRiks/vignettes/other-figures.html)", "", ""),
-  Example = ""
+<!-- ```{r figures-list-interactive, eval = knitr::is_html_output()} -->
+<!-- tbl_img <- data.table( -->
+<!--   "Figure Category" = c("[Black figures](https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html)", "[Circle sections](https://cran.r-project.org/web/packages/matRiks/vignettes/circle-sections.html)", "[Closed figures](https://cran.r-project.org/web/packages/matRiks/vignettes/closed-figures.html)"), -->
+<!--   Example = "", -->
+<!--   "Figure Category"  = c("[Flowers figures](https://cran.r-project.org/web/packages/matRiks/vignettes/flowers-figures.html)", "[Eight-shaped figures](https://cran.r-project.org/web/packages/matRiks/vignettes/eight-shapes-figures.html)", "[Lines](https://cran.r-project.org/web/packages/matRiks/vignettes/lines.html)"), -->
+<!--   Example = "", -->
+<!--   "Figure Category" = c("[Other figures](https://cran.r-project.org/web/packages/matRiks/vignettes/other-figures.html)", "", ""), -->
+<!--   Example = "" -->
+<!-- ) -->
+
+<!-- tbl_img %>% -->
+<!--   kbl(booktabs = TRUE) %>% -->
+<!--   kable_paper(full_width = FALSE) %>% -->
+<!--   column_spec(2, image = spec_image( -->
+<!--     c("black-figures.png", "circle-sections.png", "closed-figures.png"), 50, 50, 50)) %>% -->
+<!--   column_spec(4, image = spec_image( -->
+<!--     c("flowers.png", "eight-shapes-figures.png", "lines.png"), 50, 50, 50)) %>% -->
+<!--     column_spec(6, -->
+<!--                 image = spec_image( -->
+<!--     c("other-figures.png","","" ), 50,50,50)) -->
+<!-- ``` -->
+
+
+```{r eval = knitr::is_latex_output()}
+tbl_img = data.table(
+  `Figure Category 1` = "\\href{https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html}{Black Figures}",
+  other = ""
 )
 
 tbl_img %>%
-  kbl(booktabs = TRUE) %>%
-  kable_paper(full_width = FALSE) %>%
+  kbl(escape = FALSE) %>%  # Non escapare i comandi LaTeX
   column_spec(2, image = spec_image(
-    c("black-figures.png", "circle-sections.png", "closed-figures.png"), 50, 50, 50)) %>% 
-  column_spec(4, image = spec_image(
-    c("flowers.png", "eight-shapes-figures.png", "lines.png"), 50, 50, 50)) %>% 
-    column_spec(6, 
-                image = spec_image(
-    c("other-figures.png","","" ), 50,50,50))
+    c("black-figures.png"), width = "10px", height = "10px")) 
 ```
 
 
-NON RIESCO A COMMENTARE
+<!-- ```{r} -->
+<!-- library(data.table) -->
+<!-- library(kableExtra) -->
 
-:::::: {style="display: flex;"}
-<div>
+<!-- # Definizione della tabella con nomi di colonne unici -->
+<!-- tbl_img <- data.table( -->
+<!--   `Figure Category 1` = c("[Black figures](https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html)",  -->
+<!--                            "[Circle sections](https://cran.r-project.org/web/packages/matRiks/vignettes/circle-sections.html)",  -->
+<!--                            "[Closed figures](https://cran.r-project.org/web/packages/matRiks/vignettes/closed-figures.html)"), -->
+<!--   Example1 = "", -->
+<!--   `Figure Category 2` = c("[Flowers figures](https://cran.r-project.org/web/packages/matRiks/vignettes/flowers-figures.html)",  -->
+<!--                            "[Eight-shaped figures](https://cran.r-project.org/web/packages/matRiks/vignettes/eight-shapes-figures.html)",  -->
+<!--                            "[Lines](https://cran.r-project.org/web/packages/matRiks/vignettes/lines.html)"), -->
+<!--   Example2 = "", -->
+<!--   `Figure Category 3` = c("[Other figures](https://cran.r-project.org/web/packages/matRiks/vignettes/other-figures.html)", "", ""), -->
+<!--   Example3 = "" -->
+<!-- ) -->
 
-```{r out.width="50%", fig.cap="[Black figures](https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html)"}
-draw(biscuit())
-```
+<!-- # Creazione della tabella -->
+<!-- tbl_img %>% -->
+<!--   kbl(booktabs = TRUE) %>% -->
+<!--   kable_paper(full_width = FALSE) %>% -->
+<!--   column_spec(2, image = spec_image( -->
+<!--     c("black-figures.png", "circle-sections.png", "closed-figures.png"), 50, 50, 50)) %>% -->
+<!--   column_spec(4, image = spec_image( -->
+<!--     c("flowers.png", "eight-shapes-figures.png", "lines.png"), 50, 50, 50)) %>% -->
+<!--   column_spec(6, image = spec_image( -->
+<!--     c("other-figures.png", "", ""), 50, 50, 50)) -->
 
-```{r out.width="50%", fig.cap="[Circle sections](https://cran.r-project.org/web/packages/matRiks/vignettes/circle-sections.html)"}
-draw(pacman())
-```
+<!-- ``` -->
 
-```{r out.width="50%", fig.cap="[Other figures](https://cran.r-project.org/web/packages/matRiks/vignettes/other-figures.html)"}
-draw(maxi())
-```
 
-</div>
 
-<div>
+<!-- :::::: {style="display: flex;"} -->
+<!-- <div> -->
 
-```{r out.width="50%", fig.cap="[Closed figures](https://cran.r-project.org/web/packages/matRiks/vignettes/closed-figures.html)"}
-draw(luck())
-```
+<!-- ```{r out.width="50%", fig.cap="[Black figures](https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html)"} -->
+<!-- draw(biscuit()) -->
+<!-- ``` -->
 
-```{r out.width="50%", fig.cap="[Eight-shaped figures](https://cran.r-project.org/web/packages/matRiks/vignettes/eight-shapes-figures.html)"}
-draw(vertical_eight())
-```
+<!-- ```{r out.width="50%", fig.cap="[Circle sections](https://cran.r-project.org/web/packages/matRiks/vignettes/circle-sections.html)"} -->
+<!-- draw(pacman()) -->
+<!-- ``` -->
 
-</div>
+<!-- ```{r out.width="50%", fig.cap="[Other figures](https://cran.r-project.org/web/packages/matRiks/vignettes/other-figures.html)"} -->
+<!-- draw(maxi()) -->
+<!-- ``` -->
 
-<div>
+<!-- </div> -->
 
-```{r out.width="50%", fig.cap="[Flowers figures](https://cran.r-project.org/web/packages/matRiks/vignettes/flowers-figures.html)"}
-draw(miley())
-```
+<!-- <div> -->
 
-```{r out.width="50%", fig.cap="[Lines](https://cran.r-project.org/web/packages/matRiks/vignettes/lines.html)"}
-draw(X())
-```
+<!-- ```{r out.width="50%", fig.cap="[Closed figures](https://cran.r-project.org/web/packages/matRiks/vignettes/closed-figures.html)"} -->
+<!-- draw(luck()) -->
+<!-- ``` -->
 
-</div>
-::::::
+<!-- ```{r out.width="50%", fig.cap="[Eight-shaped figures](https://cran.r-project.org/web/packages/matRiks/vignettes/eight-shapes-figures.html)"} -->
+<!-- draw(vertical_eight()) -->
+<!-- ``` -->
+
+<!-- </div> -->
+
+<!-- <div> -->
+
+<!-- ```{r out.width="50%", fig.cap="[Flowers figures](https://cran.r-project.org/web/packages/matRiks/vignettes/flowers-figures.html)"} -->
+<!-- draw(miley()) -->
+<!-- ``` -->
+
+<!-- ```{r out.width="50%", fig.cap="[Lines](https://cran.r-project.org/web/packages/matRiks/vignettes/lines.html)"} -->
+<!-- draw(X()) -->
+<!-- ``` -->
+
+<!-- </div> -->
+<!-- :::::: -->
 
 ## Concatenation of figures
 
@@ -717,7 +765,10 @@ dist_types = data.table(Distractors = c("R-Left", "R-Top", "R-diag", "Wp-Copy",
                                                     rep("Same as $3\\times 3$ matrices", 13)))
 
 
-kbl(dist_types, align = "l", caption = "Definition of the distractors implemented in the \\pkg{matRiks} package for $3 \\times 3$ and $2 \\times 2$ matrices")
+kbl(dist_types, align = "l", caption = "Definition of the distractors implemented in the \\pkg{matRiks} package for $3 \\times 3$ and $2 \\times 2$ matrices")  %>%
+  column_spec(1, width = "3cm") %>%
+  column_spec(2, width = "5cm") %>%
+  column_spec(3, width = "5cm")
 ```
 
 The response option operator (implemented in the `response_list()` function) runs through different steps.

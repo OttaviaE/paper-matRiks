@@ -129,54 +129,16 @@ kbl(error_types, align = "l",
 draw(square())
 
 
-## ----figures-list-interactive-------------------------------------------------
-tbl_img <- data.table(
-  "Figure Category" = c("[Black figures](https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html)", "[Circle sections](https://cran.r-project.org/web/packages/matRiks/vignettes/circle-sections.html)", "[Closed figures](https://cran.r-project.org/web/packages/matRiks/vignettes/closed-figures.html)"),
-  Example = "", 
-  "Figure Category"  = c("[Flowers figures](https://cran.r-project.org/web/packages/matRiks/vignettes/flowers-figures.html)", "[Eight-shaped figures](https://cran.r-project.org/web/packages/matRiks/vignettes/eight-shapes-figures.html)", "[Lines](https://cran.r-project.org/web/packages/matRiks/vignettes/lines.html)"), 
-  Example = "", 
-  "Figure Category" = c("[Other figures](https://cran.r-project.org/web/packages/matRiks/vignettes/other-figures.html)", "", ""),
-  Example = ""
+## ----eval = knitr::is_latex_output()------------------------------------------
+tbl_img = data.table(
+  `Figure Category 1` = "\\href{https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html}{Black Figures}",
+  other = ""
 )
 
 tbl_img %>%
-  kbl(booktabs = TRUE) %>%
-  kable_paper(full_width = FALSE) %>%
+  kbl(escape = FALSE) %>%  # Non escapare i comandi LaTeX
   column_spec(2, image = spec_image(
-    c("black-figures.png", "circle-sections.png", "closed-figures.png"), 50, 50, 50)) %>% 
-  column_spec(4, image = spec_image(
-    c("flowers.png", "eight-shapes-figures.png", "lines.png"), 50, 50, 50)) %>% 
-    column_spec(6, 
-                image = spec_image(
-    c("other-figures.png","","" ), 50,50,50))
-
-
-## ----out.width="50%", fig.cap="[Black figures](https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html)"----
-draw(biscuit())
-
-
-## ----out.width="50%", fig.cap="[Circle sections](https://cran.r-project.org/web/packages/matRiks/vignettes/circle-sections.html)"----
-draw(pacman())
-
-
-## ----out.width="50%", fig.cap="[Other figures](https://cran.r-project.org/web/packages/matRiks/vignettes/other-figures.html)"----
-draw(maxi())
-
-
-## ----out.width="50%", fig.cap="[Closed figures](https://cran.r-project.org/web/packages/matRiks/vignettes/closed-figures.html)"----
-draw(luck())
-
-
-## ----out.width="50%", fig.cap="[Eight-shaped figures](https://cran.r-project.org/web/packages/matRiks/vignettes/eight-shapes-figures.html)"----
-draw(vertical_eight())
-
-
-## ----out.width="50%", fig.cap="[Flowers figures](https://cran.r-project.org/web/packages/matRiks/vignettes/flowers-figures.html)"----
-draw(miley())
-
-
-## ----out.width="50%", fig.cap="[Lines](https://cran.r-project.org/web/packages/matRiks/vignettes/lines.html)"----
-draw(X())
+    c("black-figures.png"), width = "10px", height = "10px")) 
 
 
 ## ----eye, fig.cap="Example of concatenation of circle and dot to obtain an eye-like figure.", echo = TRUE----
@@ -381,7 +343,10 @@ dist_types = data.table(Distractors = c("R-Left", "R-Top", "R-diag", "Wp-Copy",
                                                     rep("Same as $3\\times 3$ matrices", 13)))
 
 
-kbl(dist_types, align = "l", caption = "Definition of the distractors implemented in the \\pkg{matRiks} package for $3 \\times 3$ and $2 \\times 2$ matrices")
+kbl(dist_types, align = "l", caption = "Definition of the distractors implemented in the \\pkg{matRiks} package for $3 \\times 3$ and $2 \\times 2$ matrices")  %>%
+  column_spec(1, width = "3cm") %>%
+  column_spec(2, width = "5cm") %>%
+  column_spec(3, width = "5cm")
 
 
 ## ----echo = TRUE, eval = FALSE------------------------------------------------
