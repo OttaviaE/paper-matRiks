@@ -47,98 +47,68 @@ a = mat_apply(cof(luck(pos.x = pos.x + size.x, pos.y = pos.x, rot = pi,
 draw(a$Sq1); draw(a$Sq2); draw(a$Sq3)
 
 
-## ----tab-error-types-interactive, eval=knitr::is_html_output(), layout = "l-body-outset"----
-#> error_types = data.table(Distractors = c("Repetition (R)", "", "",
-#>                                          "Difference (D)", "", "","",		
-#>                                          "Wrong Principle (WP)", "", "",	
-#>                                          "Incomplete Correlate (IC)", "", "", "","", "","" )
-#>                                              ,
-#>                          Definition	= c("Entries of the matrix adjacent to the blank cell", "", "",
-#>                                         "Combination of all the entries of the matrix or the combination of some of their features. It is different from any entry of the matrix and from the other distractors.", "", "", "", 	"Copy or combination of the matrix entries according to another rule", "", "",	
-#>                                         "Correct response with a variation on only a single feature.", "", "", "", "","", ""),
-#>                                         "Specific Error" = c("R-Left", 	"R-Top",	
-#>                                                              "R-Diag", 	"D-Blank", 	"D-Union", 	"D-Plus",
-#>                                                              "D-Diff", 	"WP-Copy", "WP-Flip",
-#>                                                              "WP-Matrix", "IC-Neg",	
-#>                                                              "IC-Fill",	
-#>                                                              "IC-Flip",	
-#>                                                              "IC-Layout", "IC-Scale","IC-Num", "IC-Inc"
-#> ), "Specific definition" = c("Repetition of the cell left to the blank space",
-#>                              "Repetition of the cell above to the blank space",
-#>                              "Repetition of the cell right to the blank space",
-#>                              "Filled completely white or black",
-#>                              "Some elements of one entry are emphasized",
-#>                              "Some entries of the matrix are combined together",
-#>                              "Qualitatively different from any other distractor and any entry of the matrix, resulting in a pop-out effect.",
-#>                              "Repetition of a cell non adjacent to the blank space",
-#>                              "Rotation or refection of one entry of the matrix.",
-#>                              "Transformation or combination of some entries of the matrix or of their elements",
-#>                             "Negative of the correct response",
-#>                             "Correct response with a different texture or style.",
-#>                             "The elements of the correct response are displayed with a different layout",
-#>                             "Elements of the correct response with different proportion or different size of the correct response.", "Correct response with a different number of elements (small layout changes are allowed)",
-#>                             "Correct response with a missing element.")
-#> )	
-#> 
-#> kbl(error_types, align = "l", caption = "Taxonomy of error types") %>%
-#>   column_spec(1, bold = T)
-
-
-## ----tab-error-types-static, eval=knitr::is_latex_output(), layout = "l-body-outset"----
-error_types = data.table(Distractors = c("Repetition (R)", "", "", 
-                                         "Difference (D)", "", "","",		
-                                         "Wrong Principle (WP)", "", "",	
-                                         "Incomplete Correlate (IC)", "", "", "","", "","" )
-                                             , 
-                         Definition	= c("Entries of the matrix adjacent to the blank cell", "", "",
-                                        "Combination of all the entries of the matrix or the combination of some of their features. It is different from any entry of the matrix and from the other distractors.", "", "", "", 	"Copy or combination of the matrix entries according to another rule", "", "",	
-                                        "Correct response with a variation on only a single feature.", "", "", "", "","", ""),
-                                        "Specific Error" = c("R-Left", 	"R-Top",	
-                                                             "R-Diag", 	"D-Blank", 	"D-Union", 	"D-Plus",
-                                                             "D-Diff", 	"WP-Copy", "WP-Flip", 
-                                                             "WP-Matrix", "IC-Neg",	
-                                                             "IC-Fill",	
-                                                             "IC-Flip",	
-                                                             "IC-Layout", "IC-Scale","IC-Num", "IC-Inc"
-), "Specific definition" = c("Repetition of the cell left to the blank space", 
-                             "Repetition of the cell above to the blank space", 
-                             "Repetition of the cell right to the blank space", 
-                             "Filled completely white or black", 
-                             "Some elements of one entry are emphasized", 
-                             "Some entries of the matrix are combined together", 
-                             "Qualitatively different from any other distractor and any entry of the matrix, resulting in a pop-out effect.", 
-                             "Repetition of a cell non adjacent to the blank space", 
-                             "Rotation or refection of one entry of the matrix.", 
-                             "Transformation or combination of some entries of the matrix or of their elements", 
-                            "Negative of the correct response", 
-                            "Correct response with a different texture or style.", 
-                            "The elements of the correct response are displayed with a different layout", 
-                            "Elements of the correct response with different proportion or different size of the correct response.", "Correct response with a different number of elements (small layout changes are allowed)", 
-                            "Correct response with a missing element.")
-)	 
-
-kbl(error_types, align = "l", 
-    caption = "Taxonomy of error types") %>% column_spec(1, bold = T)
-
-
 ## ----eval = FALSE, echo = TRUE------------------------------------------------
 #> install.packages("matRiks")
+
+
+## ----echo = TRUE--------------------------------------------------------------
+square()$tag
+
+
+## ----echo=FALSE---------------------------------------------------------------
+malta()$tag
 
 
 ## ----square, echo = TRUE, fig.cap = "A simple square", out.width="70%", fig.align='center'----
 draw(square())
 
 
-## ----eval = knitr::is_latex_output()------------------------------------------
+## ----figures-list-interactive, eval = knitr::is_html_output()-----------------
+#> tbl_img <- data.table(
+#>   "Figure Category" = c("[Black figures](https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html)", "[Circle sections](https://cran.r-project.org/web/packages/matRiks/vignettes/circle-sections.html)", "[Closed figures](https://cran.r-project.org/web/packages/matRiks/vignettes/closed-figures.html)"),
+#>   Example = "",
+#>   "Figure Category"  = c("[Flowers figures](https://cran.r-project.org/web/packages/matRiks/vignettes/flowers-figures.html)", "[Eight-shaped figures](https://cran.r-project.org/web/packages/matRiks/vignettes/eight-shapes-figures.html)", "[Lines](https://cran.r-project.org/web/packages/matRiks/vignettes/lines.html)"),
+#>   Example = "",
+#>   "Figure Category" = c("[Other figures](https://cran.r-project.org/web/packages/matRiks/vignettes/other-figures.html)", "", ""),
+#>   Example = ""
+#> )
+#> 
+#> tbl_img %>%
+#>   kbl(booktabs = TRUE, caption = "List of figures and related vignettes.") %>%
+#>   kable_paper(full_width = FALSE) %>%
+#>   column_spec(2, image = spec_image(
+#>     c("black-figures.png", "circle-sections.png", "closed-figures.png"), 50, 50, 50)) %>%
+#>   column_spec(4, image = spec_image(
+#>     c("flowers.png", "eight-shapes-figures.png", "lines.png"), 50, 50, 50)) %>%
+#>     column_spec(6,
+#>                 image = spec_image(
+#>     c("other-figures.png","empty.png","empty.png"  ), 50,50,50))
+
+
+## ----figures-list-static, eval = knitr::is_latex_output()---------------------
 tbl_img = data.table(
-  `Figure Category 1` = "\\href{https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html}{Black Figures}",
-  other = ""
+  `Figure Category` = c("\\href{https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html}{Black Figures}", 
+                        "\\href{https://cran.r-project.org/web/packages/matRiks/vignettes/circle-sections.html}{Circle sections}", 
+                        "\\href{https://cran.r-project.org/web/packages/matRiks/vignettes/closed-figures.html}{Closed figures}"),
+  Example = "", 
+  `Figure Category` =  c("\\href{https://cran.r-project.org/web/packages/matRiks/vignettes/flowers-figures.html}{Flowers figures}", 
+                         "\\href{https://cran.r-project.org/web/packages/matRiks/vignettes/eight-shapes-figures.html}{Eight-shaped figures}", "\\href{https://cran.r-project.org/web/packages/matRiks/vignettes/lines.html}{Lines}"), 
+  Example = "", 
+  `Figure Category` = c("\\href{https://cran.r-project.org/web/packages/matRiks/vignettes/other-figures.html}{Other figures}", "", ""), 
+  Example = ""
+  
 )
 
 tbl_img %>%
-  kbl(escape = FALSE) %>%  # Non escapare i comandi LaTeX
+  kbl(escape = FALSE, caption = "List of figures and related vignettes.") %>%  # Non escapare i comandi LaTeX
   column_spec(2, image = spec_image(
-    c("black-figures.png"), width = "10px", height = "10px")) 
+    c("black-figures.png", "circle-sections.png", "closed-figures.png"), 50,50,50)) %>%
+  column_spec(4, image = spec_image(
+    c("flowers.png", "eight-shapes-figures.png", "lines.png"), 50, 50, 50)) %>% 
+    column_spec(6,
+                image = spec_image(
+    c("other-figures.png","empty.png","empty.png" ), 50,50,50))%>%  
+  column_spec(1:6, width = "2cm") 
 
 
 ## ----eye, fig.cap="Example of concatenation of circle and dot to obtain an eye-like figure.", echo = TRUE----
@@ -320,30 +290,34 @@ draw(multi_c)
 
 
 ## ----dist-types-tab-static, eval = knitr::is_latex_output(), layout = "l-body-outset"----
-dist_types = data.table(Distractors = c("R-Left", "R-Top", "R-diag", "Wp-Copy",
-                                       "WP-Matrix",
-                                      "Difference",
-                                      "IC-Inc", "", "", "",
-                                       "IC-Neg", "", "",
-                                       "IC-Flip", "","",
-                                      "IC-Scale", "", ""),
-                       "$3 \\times 3$ matrices" = c("SQ8", "SQ6", "SQ5",
-                                      "SQ1 or SQ3",
-                                      "SQ1 or SQ3 with the superimposition of another cell.",
-                                      "SQ1 or SQ3, SQ4, SQ7 with the superimposition of a figure which is not manipulated in the matrix." ,
-                                      "It is the correct response with a missing element", "Single-Layer: Not possible",
-                                      "Multi-layer: The most internal figure is removed from the correct response.", "Logic matrices: The element that is removed is randomly selected.",
-                                      "Color inversion of the correct response (single-layer matrix) or of one of its figures (multi-layer matrix)", "Single-layer matrix: 	Color inversion of the figure in the correct response", "Multi-layer matrix: Color inversion of the most internal figure of the correct response",
-                                      "Rotation or reflection of the correct response (single-layer matrix) or of one of its figures (multi-layer matrix)", "Single-layer matrix: Reflection/Rotation of the figure in the correct response", "Multi-layer matrix: Reflection/Rotation of the most internal figure of the correct response",
-                                      "Resize of the correct response (single-layer matrix) or of one of its figures (multi-layer matrix)", "Single-layer: Resize of the figure in the correct response", "Multi-layer matrix: Only the most internal figure in the correct response is resized"), 
-                       "$2 \\times 2$ matrices" = c("SQ3", "SQ2", "SQ1", 
-                                                    "SQ1", 
-                                                    "SQ3 or SQ2 with the superimposition of the rotation of WP-Copy", 
-                                                    "SQ3 or SQ1 with the superimposition of a figure that is not manipulated in the matrix", 
-                                                    rep("Same as $3\\times 3$ matrices", 13)))
+dist_types = data.table(
+  Distractors = c("R-Left", "R-Top", "R-diag", "Wp-Copy",
+                  "WP-Matrix",
+                  "Difference",
+                  "IC-Inc", "", "", "",
+                  "IC-Neg", "", "",
+                  "IC-Flip", "","",
+                  "IC-Scale", "", ""),
+  `3 x 3 matrices` = c("SQ8", "SQ6", "SQ5",
+                              "SQ1 or SQ3",
+                              "SQ1 or SQ3 with the superimposition of another cell.",
+                              "SQ1 or SQ3, SQ4, SQ7 with the superimposition of a figure which is not manipulated in the matrix." ,
+                              "It is the correct response with a missing element", "Single-Layer: Not possible",
+                              "Multi-layer: The most internal figure is removed from the correct response.", "Logic matrices: The element that is removed is randomly selected.",
+                              "Color inversion of the correct response (single-layer matrix) or of one of its figures (multi-layer matrix)", "Single-layer matrix: 	Color inversion of the figure in the correct response", "Multi-layer matrix: Color inversion of the most internal figure of the correct response",
+                              "Rotation or reflection of the correct response (single-layer matrix) or of one of its figures (multi-layer matrix)", "Single-layer matrix: Reflection/Rotation of the figure in the correct response", "Multi-layer matrix: Reflection/Rotation of the most internal figure of the correct response",
+                              "Resize of the correct response (single-layer matrix) or of one of its figures (multi-layer matrix)", "Single-layer: Resize of the figure in the correct response", "Multi-layer matrix: Only the most internal figure in the correct response is resized"), 
+  `2 x 2 matrices` = c("SQ3", "SQ2", "SQ1", 
+                              "SQ1", 
+                              "SQ3 or SQ2 with the superimposition of the rotation of WP-Copy", 
+                              "SQ3 or SQ1 with the superimposition of a figure that is not manipulated in the matrix", 
+                              rep("Same as $3\\times 3$ matrices", 13))
+)
 
-
-kbl(dist_types, align = "l", caption = "Definition of the distractors implemented in the \\pkg{matRiks} package for $3 \\times 3$ and $2 \\times 2$ matrices")  %>%
+# Rendering the table with LaTeX expressions in cell values
+kbl(dist_types, align = "l", 
+    caption = "Definition of the distractors implemented in the \\pkg{matRiks} package for $3 \\times 3$ and $2 \\times 2$ matrices", 
+    escape = FALSE) %>%  
   column_spec(1, width = "3cm") %>%
   column_spec(2, width = "5cm") %>%
   column_spec(3, width = "5cm")

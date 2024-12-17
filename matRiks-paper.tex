@@ -99,69 +99,15 @@ The distractors can be classified according to the incorrect response strategy t
 @kunda present a list of criteria for the identification of the distractors in the SPM based on classification of the error types from the CPM and APM manuals {[}@raven2004{]}.
 The distractor that is chosen in place of the correct response option can be collected into four main four conceptual errors: (i) Repetition (R) errors occur when the chosen response option is a cell adjacent to the blank space, (ii) Difference (D) errors occur when the chosen response option is completely different from any entry of the matrix, (iii) Wrong Principle (WP) errors occur when the chosen response option follows rules other than the ones used in the matrix, and (iv) Incomplete Correlate (IC) errors occur when the chosen response option is in fact the correct response with a variation on a single feature.
 
-{
-All the macro categories of error types can be further sub categorized accoriding to the characteristics of the speicific erro response. For instance, the repertion category can be divided according to the position of the repeated cell with respect to the blank cell. As such, three error types of the repetition category can be identified, namely R-Left, R-Top, and R-Diagonal according to whether they represnt the cell to the left, on topo, or in diagonal with repsect to the blank cell.
-Concerning the wrong principle macro category, some of the speicfic error types might refer to the reption of a cell not adjacent to the blank space (i.e., WP-Copy) ot to the combination of different elements of different cells, not according to the rule(s) used for creating the matrix.
-Some of the specific errors of the incomplete correlate macro categpry includes the cchange of the orientation of the coprrect response (i.e., IC-flip), the change in color of the correct response (i.e., IC-Neg), the change in the size of the correct response (IC-Size) or the lack of an element of the correct response (IC-Inc).
-Finally, concering the differnce macro category, the specific error might be a cell completely white or black (D-Blank) or the merge of differnt cells of the matrix (D-Union).
-}
+The characteristics of the specific error response can be categorized in various ways. For example, the repetition category can be divided based on the position of the repeated cell relative to the blank cell. Three error types within the R category can be identified: R-Left, R-Top, and R-Diagonal, depending on whether the repeated cell is to the left, above, or diagonally aligned with the blank cell.
 
-{
-NON RIESCO A COMMENTARE DIO PORCO
-}
-Difference errors occur when the chosen response option is completely different from any entry of the matrix.
-Wrong principle errors occur when the chosen response option follows rules other than the ones used in the matrix.
-Incomplete Correlate errors occur when the chosen response option is in fact the correct response with a variation on a single feature.
-Each of the four main error types can be further described by their subcategories.\\
-Table \ref{tab:tab-error-types-static} summarizes the definitions of the error types.
+Regarding the wrong principle macro category, some specific error types might involve the repetition of a cell that is not adjacent to the blank space (e.g., WP-Copy) or the combination of elements from different cells in a way that does not follow the rules used for creating the matrix.
 
-\begin{table}
+Some specific errors in the incomplete correlate macro category include changes to the orientation of the correct response (i.e., IC-flip), changes in the color of the correct response (i.e., IC-Neg), changes in the size of the correct response (i.e., IC-Size), or the omission of an element from the correct response (i.e., IC-Inc).
 
-\caption{\label{tab:tab-error-types-static}Taxonomy of error types}
-\centering
-\begin{tabular}[t]{>{}l|l|l|l}
-\hline
-Distractors & Definition & Specific Error & Specific definition\\
-\hline
-\textbf{Repetition (R)} & Entries of the matrix adjacent to the blank cell & R-Left & Repetition of the cell left to the blank space\\
-\hline
-\textbf{} &  & R-Top & Repetition of the cell above to the blank space\\
-\hline
-\textbf{} &  & R-Diag & Repetition of the cell right to the blank space\\
-\hline
-\textbf{Difference (D)} & Combination of all the entries of the matrix or the combination of some of their features. It is different from any entry of the matrix and from the other distractors. & D-Blank & Filled completely white or black\\
-\hline
-\textbf{} &  & D-Union & Some elements of one entry are emphasized\\
-\hline
-\textbf{} &  & D-Plus & Some entries of the matrix are combined together\\
-\hline
-\textbf{} &  & D-Diff & Qualitatively different from any other distractor and any entry of the matrix, resulting in a pop-out effect.\\
-\hline
-\textbf{Wrong Principle (WP)} & Copy or combination of the matrix entries according to another rule & WP-Copy & Repetition of a cell non adjacent to the blank space\\
-\hline
-\textbf{} &  & WP-Flip & Rotation or refection of one entry of the matrix.\\
-\hline
-\textbf{} &  & WP-Matrix & Transformation or combination of some entries of the matrix or of their elements\\
-\hline
-\textbf{Incomplete Correlate (IC)} & Correct response with a variation on only a single feature. & IC-Neg & Negative of the correct response\\
-\hline
-\textbf{} &  & IC-Fill & Correct response with a different texture or style.\\
-\hline
-\textbf{} &  & IC-Flip & The elements of the correct response are displayed with a different layout\\
-\hline
-\textbf{} &  & IC-Layout & Elements of the correct response with different proportion or different size of the correct response.\\
-\hline
-\textbf{} &  & IC-Scale & Correct response with a different number of elements (small layout changes are allowed)\\
-\hline
-\textbf{} &  & IC-Num & Correct response with a missing element.\\
-\hline
-\textbf{} &  & IC-Inc & Repetition of the cell left to the blank space\\
-\hline
-\end{tabular}
-\end{table}
+Finally, regarding the difference macro category, specific errors might include a cell being completely white or black (D-Blank) or the merging of different cells within the matrix (D-Union).
 
 The criteria for the classification of the error types were used for the formal definition and generation of the distractors implemented in the \texttt{matRiks} package.
-SIAMO SICURI CHE QUESTA ROBA VADA QUI?
 These criteria were included in the response options operator with the aim of providing the user with a response list composed of 11 elements (ten distractors and the correct response) among which they could choose the most appropriate ones.
 Specifically, the response options operator generates a response list composed of the correct response, three reptition distractors, one difference distractor, two wrong principle distractors, and four incomplete correlate distractors.
 Further details on the formal definition of each of the distractors and on their generation are given in the ``Generation of the response list'' Section.
@@ -226,11 +172,30 @@ The features of the figures are defined inside of the list as follows:
   \texttt{tag}: character, properties of the figure used for the definition of the distractors
 \end{itemize}
 
+The \texttt{tag} of each figure describes some generic characteristics of the figure, which are used for the generation of the distractors. For instance, there are tags defining whether the figure is a single figure (\texttt{simple}), is composed of two figures (\texttt{compose2}) or of 4 figures (\texttt{compose4}). Other tags deal with the possibility of changing the shading of the figure (\texttt{fill}) or whether the figure can be rotated (\texttt{rotate}). The \texttt{tag} of a figure can be seen with code \texttt{figure()\$tag}. For instance, the tags associated to a square are:
+
+\begin{verbatim}
+square()$tag
+\end{verbatim}
+
+\begin{verbatim}
+#> [[1]]
+#> [1] "simple" "fill"   "d.ext"  "rotate"
+\end{verbatim}
+
+indicating that the square is a single figure, it can be filled with different shadings, and it can be rotated. The tag \texttt{d.ext} specifically refers to the possibility of the figure to be used for the generation of the Difference distractor. Further details are provided in Section XX.
+The tags associated to malta cross are:
+
+\begin{verbatim}
+#> [[1]]
+#> [1] "compose4" "fill"     "d.int"
+\end{verbatim}
+
+which indicate that the figure is composed of 4 different figuers, it can be filled with different shading but it cannot rotate (it cn be inferred from the fact that the \texttt{rotate} tag is missing).
+
 The draw function is designed to print all the figrues, as well as the matrices and the response list.
 To print a figure, the only argument neede inside of the draw function is the name of the figure.
 For instance, a simple square (Figure @ref\{fig:square\}) can be printed with the command line:
-
-INTRODUZIONE DI TAG SENZA PARLARE D.INT E D.EXT
 
 \begin{verbatim}
 draw(square())
@@ -246,15 +211,25 @@ draw(square())
 \end{figure}
 
 The figures in matRiks are summarized in different categories (e.g., closed figures, black figures, lines), for each of which a vignette lists all the figures.
-The following types of figure are available in the matRiks package:
+The categories
+of the figures available in \texttt{matRiks}, along with their associated vignettes, are illustrated in Table \ref{tab:figures-list-static}.
 
-\begin{tabular}[t]{l|>{}l}
+\begin{table}
+
+\caption{\label{tab:figures-list-static}List of figures and related vignettes.}
+\centering
+\begin{tabular}[t]{>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{2cm}}
 \hline
-Figure Category 1 & other\\
+Figure Category & Example & Figure Category & Example & Figure Category & Example\\
 \hline
-\href{https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html}{Black Figures} & \includegraphics{black-figures.png}\\
+\href{https://cran.r-project.org/web/packages/matRiks/vignettes/black-figures.html}{Black Figures} & \includegraphics[width=1in, height=1in]{black-figures.png} & \href{https://cran.r-project.org/web/packages/matRiks/vignettes/flowers-figures.html}{Flowers figures} & \includegraphics[width=1in, height=1in]{flowers.png} & \href{https://cran.r-project.org/web/packages/matRiks/vignettes/other-figures.html}{Other figures} & \includegraphics[width=1in, height=1in]{other-figures.png}\\
+\hline
+\href{https://cran.r-project.org/web/packages/matRiks/vignettes/circle-sections.html}{Circle sections} & \includegraphics[width=1in, height=1in]{circle-sections.png} & \href{https://cran.r-project.org/web/packages/matRiks/vignettes/eight-shapes-figures.html}{Eight-shaped figures} & \includegraphics[width=1in, height=1in]{eight-shapes-figures.png} &  & \includegraphics[width=1in, height=1in]{empty.png}\\
+\hline
+\href{https://cran.r-project.org/web/packages/matRiks/vignettes/closed-figures.html}{Closed figures} & \includegraphics[width=1in, height=1in]{closed-figures.png} & \href{https://cran.r-project.org/web/packages/matRiks/vignettes/lines.html}{Lines} & \includegraphics[width=1in, height=1in]{lines.png} &  & \includegraphics[width=1in, height=1in]{empty.png}\\
 \hline
 \end{tabular}
+\end{table}
 
 \subsection{Concatenation of figures}\label{concatenation-of-figures}
 
@@ -529,7 +504,7 @@ The definitions of the distractors implemented in the \pkg{matRiks} package is r
 \centering
 \begin{tabular}[t]{>{\raggedright\arraybackslash}p{3cm}|>{\raggedright\arraybackslash}p{5cm}|>{\raggedright\arraybackslash}p{5cm}}
 \hline
-Distractors & \$3 \textbackslash{}times 3\$ matrices & \$2 \textbackslash{}times 2\$ matrices\\
+Distractors & 3 x 3 matrices & 2 x 2 matrices\\
 \hline
 R-Left & SQ8 & SQ3\\
 \hline
@@ -543,38 +518,38 @@ WP-Matrix & SQ1 or SQ3 with the superimposition of another cell. & SQ3 or SQ2 wi
 \hline
 Difference & SQ1 or SQ3, SQ4, SQ7 with the superimposition of a figure which is not manipulated in the matrix. & SQ3 or SQ1 with the superimposition of a figure that is not manipulated in the matrix\\
 \hline
-IC-Inc & It is the correct response with a missing element & Same as \$3\textbackslash{}times 3\$ matrices\\
+IC-Inc & It is the correct response with a missing element & Same as $3\times 3$ matrices\\
 \hline
- & Single-Layer: Not possible & Same as \$3\textbackslash{}times 3\$ matrices\\
+ & Single-Layer: Not possible & Same as $3\times 3$ matrices\\
 \hline
- & Multi-layer: The most internal figure is removed from the correct response. & Same as \$3\textbackslash{}times 3\$ matrices\\
+ & Multi-layer: The most internal figure is removed from the correct response. & Same as $3\times 3$ matrices\\
 \hline
- & Logic matrices: The element that is removed is randomly selected. & Same as \$3\textbackslash{}times 3\$ matrices\\
+ & Logic matrices: The element that is removed is randomly selected. & Same as $3\times 3$ matrices\\
 \hline
-IC-Neg & Color inversion of the correct response (single-layer matrix) or of one of its figures (multi-layer matrix) & Same as \$3\textbackslash{}times 3\$ matrices\\
+IC-Neg & Color inversion of the correct response (single-layer matrix) or of one of its figures (multi-layer matrix) & Same as $3\times 3$ matrices\\
 \hline
- & Single-layer matrix:     Color inversion of the figure in the correct response & Same as \$3\textbackslash{}times 3\$ matrices\\
+ & Single-layer matrix:     Color inversion of the figure in the correct response & Same as $3\times 3$ matrices\\
 \hline
- & Multi-layer matrix: Color inversion of the most internal figure of the correct response & Same as \$3\textbackslash{}times 3\$ matrices\\
+ & Multi-layer matrix: Color inversion of the most internal figure of the correct response & Same as $3\times 3$ matrices\\
 \hline
-IC-Flip & Rotation or reflection of the correct response (single-layer matrix) or of one of its figures (multi-layer matrix) & Same as \$3\textbackslash{}times 3\$ matrices\\
+IC-Flip & Rotation or reflection of the correct response (single-layer matrix) or of one of its figures (multi-layer matrix) & Same as $3\times 3$ matrices\\
 \hline
- & Single-layer matrix: Reflection/Rotation of the figure in the correct response & Same as \$3\textbackslash{}times 3\$ matrices\\
+ & Single-layer matrix: Reflection/Rotation of the figure in the correct response & Same as $3\times 3$ matrices\\
 \hline
- & Multi-layer matrix: Reflection/Rotation of the most internal figure of the correct response & Same as \$3\textbackslash{}times 3\$ matrices\\
+ & Multi-layer matrix: Reflection/Rotation of the most internal figure of the correct response & Same as $3\times 3$ matrices\\
 \hline
-IC-Scale & Resize of the correct response (single-layer matrix) or of one of its figures (multi-layer matrix) & Same as \$3\textbackslash{}times 3\$ matrices\\
+IC-Scale & Resize of the correct response (single-layer matrix) or of one of its figures (multi-layer matrix) & Same as $3\times 3$ matrices\\
 \hline
- & Single-layer: Resize of the figure in the correct response & Same as \$3\textbackslash{}times 3\$ matrices\\
+ & Single-layer: Resize of the figure in the correct response & Same as $3\times 3$ matrices\\
 \hline
- & Multi-layer matrix: Only the most internal figure in the correct response is resized & Same as \$3\textbackslash{}times 3\$ matrices\\
+ & Multi-layer matrix: Only the most internal figure in the correct response is resized & Same as $3\times 3$ matrices\\
 \hline
 \end{tabular}
 \end{table}
 
 The response option operator (implemented in the \texttt{response\_list()} function) runs through different steps.
 First, it checks for the number of rules and the directional logic with which that have been manipulated, as well as whether the matrix is a single matrix or a multi-layer matrix.
-This check is crucial for the generation of the incomplete correlate distractors, but not for the other tyoes of ditsractors (i.e., R, WP, and D) since they are generated by considering the figures in a cell as a single figure.
+This check is crucial for the generation of the incomplete correlate distractors, but not for the other types of ditsractors (i.e., R, WP, and D) since they are generated by considering the figures in a cell as a single figure.
 Conversely, since the IC distractors are a moficiation of a single feature of the correct response, there is the need to determine whether they can be generated in the first place and, if so, on which element of the correct response the change should be applied.
 
 In single-layer matrices, the IC-inc distractor cannot be generated given that it requires the removal of an element of the figure, while all other IC distractors can be generated, unless a figure with specific tags is employed.
@@ -618,7 +593,7 @@ and it can be plotted as:
 #> Warning in ic_inc.matriks(obj): IC-Inc cannot be obtained with a single figure
 \end{verbatim}
 
-\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-9-1.pdf}
+\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-10-1.pdf}
 
 As it can be noted, a warning has appeared and it refers to the IC-Inc distractor.
 As per Table \ref{tab:dist-types-tab-static} ., the distractor IC-Inc is defined as the correct response with a missing element.
@@ -626,7 +601,7 @@ However, having a single-layer matrix does not allow for the removal of any elem
 
 Given that the matrix in Figure \ref{fig:multi-matrix} is composed of three layers, it is possible to obtain also the IC-Inc distractor:
 
-\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-10-1.pdf}
+\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-11-1.pdf}
 
 However, the difference distractor is not well defined.
 The user can change the random seed for the generation of this distractor with the argument \texttt{seed()}, such that another random figure is chosen among the available ones:
@@ -636,7 +611,7 @@ draw(response_list(multi_matrix, seed = 7),
      main = TRUE)
 \end{verbatim}
 
-\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-11-1.pdf}
+\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-12-1.pdf}
 
 \subsection{A complete example}\label{a-complete-example}
 
@@ -644,29 +619,29 @@ This section presents a complete example on how to generate a multi-layer \(3 \t
 
 The first layer is generated by manipulating the AND logical rule according to an H directional logic on a square composed of 4 lines:
 
-\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-12-1.pdf}
+\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-13-1.pdf}
 
 The second layer is generated by manipulating the OR logical rule according to a V directional logic on a flower composed of 4 petals:
 
-\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-13-1.pdf}
+\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-14-1.pdf}
 
 The multi-layer matrix can be composed with the \texttt{com()} function by concatenating the two single-layer matrices:
 
-\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-14-1.pdf}
+\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-15-1.pdf}
 
 The response options associated with the multi-layer matrix can be generated with the \texttt{response\_list()} function:
 
-\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-15-1.pdf}
+\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-16-1.pdf}
 
 Since the filling color the \texttt{miley} cannot be changed, the IC-Neg distractor cannot be generated and the function throws a warning and the \texttt{ic\_neg} distractor is replaced by the correct response with the superimposition of a thick black cross.
 The \texttt{difference} distractor does not look good.
 The figure that is superimposed to the cell taken from the matrix can be changed by changing the seed in the \texttt{response\_list()} function:
 
-\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-16-1.pdf}
+\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-17-1.pdf}
 
 Assuming that a response list of length 8 (the correct response along with seven distractors) is associated with the multi-layer matrix, a character vector with the labels of the chosen distractors can be specified directly in the draw function:
 
-\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-17-1.pdf}
+\includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-18-1.pdf}
 
 \section{Summary}\label{summary}
 
