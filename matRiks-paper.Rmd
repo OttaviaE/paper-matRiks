@@ -28,7 +28,7 @@ output:
   rjtools::rjournal_pdf_article:
     toc: no
   rjtools::rjournal_web_article:
-    self_contained: yes
+  #   self_contained: yes
     toc: no
 header-includes:
   - \usepackage{hyperref}
@@ -36,7 +36,7 @@ editor_options:
   chunk_output_type: console
   markdown: 
     wrap: sentence
-bibliography: biblio-prova.bib
+bibliography: RJreferences.bib
 ---
 
 
