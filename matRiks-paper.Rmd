@@ -5,11 +5,11 @@ abstract:
   Few resources are available for the automatic generation of Raven-like matrices. Some of them are no longer working, while others are hardly customizable without adavnced programming skills. Although an R package exists for generating stimuli for psychological assessments, it is currently confined to create rotation of the same shape. The \CRANpkg{matRiks} package has been developed with the aim of overcoming the above mentioned issues. This package generates matrices according to dufferent types of rules, from the most basic ones based on the visuo spatial features of the figures to the most complex ones, based on inferential and inductive reasoning. This unveils the possibility of generating new customizable stimuli and of systematically manipulating the complexity of the stimuli. Being developed within the R environment, the \CRANpkg{matRiks} package is completely open-source, allows for the reproducibility of the stimuli, and it can be easily used  by people with basic knowledge of the R language. 
 draft: true
 author:  
-  - name: Quietest Quokka
-    affiliation: University of Little Mates
+  - name: Ottavia M. Epifania
+    affiliation: Univerisity of Trento
     address:
-    - Department of Letter Q
-    - Somewhere, Australia
+    - Department of Psyhcology and Social Science
+    - Rovereto, Italy
     url: https://www.britannica.com/animal/quokka
     orcid: 0000-1721-1511-1101
     email:  qquo@ulm.edu
@@ -26,6 +26,8 @@ author:
 type: package
 output: 
   rjtools::rjournal_pdf_article:
+    toc: no
+  rjtools::rjournal_web_article:
     self_contained: yes
     toc: no
 header-includes:
@@ -34,7 +36,7 @@ editor_options:
   chunk_output_type: console
   markdown: 
     wrap: sentence
-#bibliography: RJreferences.bib
+bibliography: biblio-prova.bib
 ---
 
 
@@ -53,7 +55,7 @@ library(tidyverse)
 
 # Introduction
 
-cattell1963 defined fluid intelligence (*g*) as the ability of solving novel reasoning problems that has little to do with concepts learned in schools or through acculturational processes.
+@plotly  cattell1963 defined fluid intelligence (*g*) as the ability of solving novel reasoning problems that has little to do with concepts learned in schools or through acculturational processes.
 The adjective "fluid" explicitly refers to its ability to "flow" into a variety of tasks and cognitive activities (Horn, 1972).
 Given this definition of fluid intelligence, it appears natural that the instruments used for its evaluation tap on the respondent's ability to solve abstract problems that involve acculturation as little as possible, such as figural analogies, figure classifications, matrices, and number and letter series (Horn, 1968).
 
@@ -477,7 +479,6 @@ s_eye$shape
 
 Although this difference is trivial from a graphical standpoint (the single figure and the concatenation of two distinct figures appear exactly the same), it is relevant for the application of some of the rules that require a minimum number of figures for their application (e.g., inferential rules).
 
-MI SONO FERMATA QUI CON LE MODIFICHE 24/10/2024
 
 ## Available rules and matrix generation
 
@@ -595,12 +596,47 @@ Definition	 =c("	Return the orginal figure without any transformation	",
 
 )	 
 
-kbl(rule_types, align = "l", caption = "Taxonomy of error types", label = "tab-error-types") %>%
+kbl(rule_types, align = "l", caption = "Types of Rules") %>%
   kable_paper(full_width = FALSE) %>%
   column_spec(1, bold = TRUE) %>%
   collapse_rows( valign = "top")
 
 ```
+
+
+```{r rule-types-static, eval = knitr::is_latex_output(), layout = "l-body-outset"}
+
+rule_types = data.table(Rule = c("Identity", "AND", "OR", "XOR", "line width", "line type", "rotate", "size", "shape", "shade", "multi shade"),
+                        
+Classification = c("", "logical", "logical", "logical", "permutational", "permutational", "incremental", "incremental", "permutational", "permutational", "permutational"),
+
+Function = c("\\texttt{identity}", "\\texttt{logical}", "\\texttt{logical}", "\\texttt{logical}", "\\texttt{margin}", "\\texttt{margin}", "\\texttt{rotate}", "\\texttt{size}", "\\texttt{shape}", "\\texttt{shade}", "\\texttt{shade}"),
+
+Definition = c("Return the original figure without any transformation",
+               "Considering the input cell \\texttt{fig}, a concatenation of at least three figures is partitioned into three sets: A, B, and C. The rule transforms the figures such that each row or column in the matrix follows a specific sequence of patterns. In these patterns, the first cell displays figures $\\{A, C\\}$, the second cell displays $\\{A, B\\}$, and the third one exclusively displays figure A. The partitioning of the figures into sets A, B, and C is randomly determined with a random seed based on the \\texttt{n} rows/columns of the matrix.",
+               "Considering the input cell \\texttt{fig}, a concatenation of at least three figures is partitioned into three sets: A, B, and C. The rule transforms the figures such that each row or column in the matrix follows a specific sequence of patterns. In these patterns, the first cell displays figures $\\{A, C\\}$, the second cell displays $\\{A, B\\}$, and the third one combines all of them in $\\{A, B, C\\}$. The partitioning of the figures into sets A, B, and C is randomly determined with a random seed based on the \\texttt{n} rows/columns of the matrix.",
+               "Considering the input cell \\texttt{fig}, a concatenation of at least three figures is partitioned into three sets: A, B, and C. The rule transforms the figures such that each row or column in the matrix follows a specific sequence pattern. In these patterns, the first elements display figures $\\{A, C\\}$, the second display $\\{A, B\\}$, and the third display $\\{B, C\\}$. The partitioning of the figures into sets A, B, and C is randomly determined with a random seed based on the \\texttt{n} rows/columns of the matrix.",
+               "Considering a figure or concatenation of figures, the \\texttt{lwd} rule increases the width of the lines in the figure by a constant value \\texttt{n} corresponding to the number of rows or columns in the matrix. Therefore, the width can have values 1, 2, or 3 of the default width argument of the R plot. Conversely, the reverse rule \\texttt{lwd.inv} decreases the line width by the same quantity.",
+               "Considering a figure or concatenation of figures, the \\texttt{lty} rule changes the line type by manipulating the line type argument of the R plot. In the default order with the values of \\texttt{n} from 1 to 3, the lines are \\texttt{dashed}, \\texttt{dotted}, and \\texttt{solid}, respectively. Using the reverse rule, with the values of \\texttt{n} from 1 to 3, \\texttt{lty.inv} has the order \\texttt{dashed}, \\texttt{solid}, and \\texttt{dotted}.",
+               "Considering a figure or concatenation of figures and an angle $\\theta$, the rule rotates the figure around its center clockwise by an angle $n\\theta$, where $n$ is the argument \\texttt{n} of the function. The value of $\\theta$ is equal to $\\pi$ divided by any number from 1 to 9 included in the \\texttt{rule} argument of the function. For instance, \\texttt{rule=rotation.5} sets $\\theta = \\pi / 5$. By default, $\\theta = \\pi / 4$. The reverse rule \\texttt{rotation.inv} rotates the figure anticlockwise.",
+               "Considering a figure or concatenation of figures and a constant $k$, the rule \\texttt{size} decreases the figure size proportionally to $nk$, where $n$ is the argument \\texttt{n} of the function. Specifically, the \\texttt{size.x} and \\texttt{size.y} arguments of the figure are divided by $nk$. The default value of $k=0.9$. The reverse rule \\texttt{size.inv} increases the figure arguments \\texttt{size.x} and \\texttt{size.y} by $nk$ times, with a default value of $k=0.6$.",
+               "Considering a concatenation of three single figures denoted A, B, and C, the \\texttt{shape} rule permutates which figure is visible in each cell of the matrix. The default order is figures A, B, and C from left to right in the row or from top to bottom in the column. The reverse rule \\texttt{shape.inv} has the order C, B, and A.",
+               "Considering a figure or concatenation of figures, the \\texttt{shade} rule changes the color of the filling. The argument \\texttt{n} of the function goes from 1 to 3 and is mapped into \\texttt{white}, \\texttt{grey}, and \\texttt{black}, respectively. The rule ignores any previous color present in the figure. For instance, when \\texttt{n=1} and a figure has \\texttt{shd=black}, the application of the rule transforms it into \\texttt{white}. There is no reverse rule available at the moment.",
+               "Considering a concatenation of figures, the \\texttt{multi.shade} rule changes the color of the filling of each figure separately. The rule works exactly as the normal \\texttt{shade}, but a random color is assigned to each figure before the transformation. The random color is assigned with the function \\texttt{sample} using \\texttt{seed(n)}."
+              ))
+
+kbl(rule_types, align = "l", caption = "Types of Rules", 
+    escape = FALSE, format = "latex",
+  longtable = TRUE) %>%
+  kable_paper(full_width = FALSE) %>%
+  column_spec(1, bold = TRUE) %>%  
+  column_spec(1, width = "2cm") %>%
+  column_spec(2, width = "2cm") %>%
+  column_spec(3, width = "2cm") %>% 
+  column_spec(4, width = "6cm")
+ 
+```
+
 
 The rule classification, originally introduced in the literature as visuospatial and logical, has been modified in the \pkg{matRiks} package to focus on constructing matrices rather than solving them.
 Consequently, the rules are reclassified into incremental and permutational categories.
@@ -626,9 +662,10 @@ For instance, consider a matrix where a set of three figures (`hexagon()`, `pent
 
 ```{r permutational, fig.cap="Example of shape rule transformation along a row."}
 a = mat_apply(cof(hexagon(),pentagon(),square()), hrules = "shape")
-par(mfrow =c(1, 3) ,
-        mar = c(6,5,5,5))
-draw(a$Sq1); draw(a$Sq2); draw(a$Sq3)
+par(mfrow =c(1, 3), mar = c(6,5,5,5))
+draw(a$Sq1)
+draw(a$Sq2)
+draw(a$Sq3)
 ```
 
 By default, the starting order of the figures is the order with which the figures are concatenated in the set defined by the user.
@@ -670,7 +707,6 @@ It is worth mentioning that the combination of the same rule horizontally and ve
 In particular, if the same rule is applied in reverse in one direction and applied direct in the other, it will result in a TL-LR directional logic.
 On the other hand if the same rule is direct (or reverse) in both horizontal and vertical directional logic they will give rise to a LL-TR logic.
 
-RIPRENDO DA QUI 24/10/2024
 
 ## Concatenation of matrices
 

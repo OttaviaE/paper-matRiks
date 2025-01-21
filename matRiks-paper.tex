@@ -2,7 +2,7 @@
 \title{matRiks: An R package for the automatic generation of rule-based matrices}
 
 
-\author{by Quietest Quokka and Bounciest Bilby}
+\author{by Ottavia M. Epifania and Bounciest Bilby}
 
 \maketitle
 
@@ -10,9 +10,10 @@
 Few resources are available for the automatic generation of Raven-like matrices. Some of them are no longer working, while others are hardly customizable without adavnced programming skills. Although an R package exists for generating stimuli for psychological assessments, it is currently confined to create rotation of the same shape. The \CRANpkg{matRiks} package has been developed with the aim of overcoming the above mentioned issues. This package generates matrices according to dufferent types of rules, from the most basic ones based on the visuo spatial features of the figures to the most complex ones, based on inferential and inductive reasoning. This unveils the possibility of generating new customizable stimuli and of systematically manipulating the complexity of the stimuli. Being developed within the R environment, the \CRANpkg{matRiks} package is completely open-source, allows for the reproducibility of the stimuli, and it can be easily used by people with basic knowledge of the R language.
 }
 
-\section{Introduction}\label{introduction}
+\hypertarget{introduction}{%
+\section{Introduction}\label{introduction}}
 
-cattell1963 defined fluid intelligence (\emph{g}) as the ability of solving novel reasoning problems that has little to do with concepts learned in schools or through acculturational processes.
+Sievert (2020) cattell1963 defined fluid intelligence (\emph{g}) as the ability of solving novel reasoning problems that has little to do with concepts learned in schools or through acculturational processes.
 The adjective ``fluid'' explicitly refers to its ability to ``flow'' into a variety of tasks and cognitive activities (Horn, 1972).
 Given this definition of fluid intelligence, it appears natural that the instruments used for its evaluation tap on the respondent's ability to solve abstract problems that involve acculturation as little as possible, such as figural analogies, figure classifications, matrices, and number and letter series (Horn, 1968).
 
@@ -55,9 +56,11 @@ The manuscript is organized as follows.
 The next section presents the rules that are usually employed in the RPM along with the specific types of error responses (i.e., distractors) that compose the response list associated with a matrix.
 A complete example of the generation of a stimulus (i.e., the matrix and the associated response list) and some final remarks on the potential applications of this package conclude the presentation.
 
-\section{Background}\label{background}
+\hypertarget{background}{%
+\section{Background}\label{background}}
 
-\subsubsection{Rule based matrices}\label{rule-based-matrices}
+\hypertarget{rule-based-matrices}{%
+\subsubsection{Rule based matrices}\label{rule-based-matrices}}
 
 Literature highlights a plethora of rules that can be manipulated for the generation of the Raven-like tasks (cit cit cit).
 Beyond the fact that some of these rules have different names in different sources but refer to the same manipulation (e.g., the rule defined as ``and problem'' in Harris el a. 2020 is called ``intersection'' rule in Arendasy et al.~2005), they can be summarized into different macro-categories, namely visuospatial rules (i.e., the manipulation concerns the graphical and spatial features of the figures, Figure \ref{fig:visuoRule}), and logical rules (i.e., the manipulation concerns the logical relationships between the figures composing the matrix, Figure \ref{fig:logiRule}).
@@ -90,13 +93,14 @@ Both visuospatial and logical rules can be manipulated according to directional 
 Specifically, the rules can be applied horizontally (i.e., the manipulation of the rule can be seen across columns but not across rows, H direction), vertically (i.e., the manipulation of the rule can be seen across rows but not across columns, V direction), or diagonally (i.e., the manipulation of the rule can be seen both across columns and across rows).
 Concerning the diagonal directional logic, it can follow either the main diagonal of the matrix (i.e., the manipulation of the rule can be seen from the top-left corner to the low-right corner, TL-LR direction) or the secondary diagonal of the matrix (i.e., the manipulation of the rule can be seen from the low-left corner to the top-right corner, LL-TR direction).
 
-\subsubsection{The response options}\label{the-response-options}
+\hypertarget{the-response-options}{%
+\subsubsection{The response options}\label{the-response-options}}
 
 A large corpus of literature has investigated the role of the distractors in the response processes involved when solving the Raven matrices, focusing on the specific error responses chosen by the respondent (fort, kunda, storme).
 The underlying logic is that the incorrect response is not chosen at random by the respondent, but it can be the result of an educated guess, or it can be chosen because the respondent is misled by a specific feature.
-In other words, the incorrect responses might reflect an incorrect solution strategy resulting in the choice of a specific type of distractor over another one {[}@kunda{]}.
+In other words, the incorrect responses might reflect an incorrect solution strategy resulting in the choice of a specific type of distractor over another one (Kunda et al. 2016).
 The distractors can be classified according to the incorrect response strategy they represent.
-@kunda present a list of criteria for the identification of the distractors in the SPM based on classification of the error types from the CPM and APM manuals {[}@raven2004{]}.
+Kunda et al. (2016) present a list of criteria for the identification of the distractors in the SPM based on classification of the error types from the CPM and APM manuals (Raven and Raven 2004).
 The distractor that is chosen in place of the correct response option can be collected into four main four conceptual errors: (i) Repetition (R) errors occur when the chosen response option is a cell adjacent to the blank space, (ii) Difference (D) errors occur when the chosen response option is completely different from any entry of the matrix, (iii) Wrong Principle (WP) errors occur when the chosen response option follows rules other than the ones used in the matrix, and (iv) Incomplete Correlate (IC) errors occur when the chosen response option is in fact the correct response with a variation on a single feature.
 
 The characteristics of the specific error response can be categorized in various ways. For example, the repetition category can be divided based on the position of the repeated cell relative to the blank cell. Three error types within the R category can be identified: R-Left, R-Top, and R-Diagonal, depending on whether the repeated cell is to the left, above, or diagonally aligned with the blank cell.
@@ -112,13 +116,15 @@ These criteria were included in the response options operator with the aim of pr
 Specifically, the response options operator generates a response list composed of the correct response, three reptition distractors, one difference distractor, two wrong principle distractors, and four incomplete correlate distractors.
 Further details on the formal definition of each of the distractors and on their generation are given in the ``Generation of the response list'' Section.
 
-\section{The matRiks package}\label{the-matriks-package}
+\hypertarget{the-matriks-package}{%
+\section{The matRiks package}\label{the-matriks-package}}
 
-The \texttt{matRiks} package {[}@matRiks{]} can generate \(2 \times 2\) and \(3 \times 3\) Raven-like matrices with their corresponding set of responses (i.e., the correct response and all the distractors described in the Generation of response list section).
+The \texttt{matRiks} package (Brancaccio, Epifania, and de Chiusole 2023) can generate \(2 \times 2\) and \(3 \times 3\) Raven-like matrices with their corresponding set of responses (i.e., the correct response and all the distractors described in the Generation of response list section).
 The Raven-like matrices are generated according to either visuospatial or logic rules, which can be concatenated with three different directional logic, namely vertically, horizontally, and diagonally.
 Finally, it is possible to print the generated matrices and set of distractors as either single images (i.e., each cell of the matrix and each distractor are printed separately) or as a complete figure with the set of single distractors.
 
-\subsection{Installation}\label{installation}
+\hypertarget{installation}{%
+\subsection{Installation}\label{installation}}
 
 The \texttt{matRiks} package is available on CRAN and can be installed as:
 
@@ -130,7 +136,8 @@ The code \texttt{vignette(package\ ="matRiks")} allows for obtaining the list of
 Each vignette can be accessed via \texttt{vignette("vignette-name",\ package="matRiks")}.
 For instance, the code \texttt{vignette("generate\_matriks",\ package\ ="matRiks")} opens the vignette that contains the instruction on how to generate an \texttt{RMarkdown} file where both the matrix and its associated response options are plotted together.
 
-\subsection{Definition of figures}\label{definition-of-figures}
+\hypertarget{definition-of-figures}{%
+\subsection{Definition of figures}\label{definition-of-figures}}
 
 The \texttt{matRiks} package contains several default figures that can be used for the generation of the matrices and of new figures.
 All figures have class \texttt{figure} and they are defined as functions, such that the syntax \texttt{figure\_name()} must be used to draw them and visualize their structures.
@@ -231,7 +238,8 @@ Figure Category & Example & Figure Category & Example & Figure Category & Exampl
 \end{tabular}
 \end{table}
 
-\subsection{Concatenation of figures}\label{concatenation-of-figures}
+\hypertarget{concatenation-of-figures}{%
+\subsection{Concatenation of figures}\label{concatenation-of-figures}}
 
 Other then the pre-existing figures, the \texttt{matRiks} package allows for the generation of new figures by concatenating the existing ones.
 The \texttt{cof()} (\textbf{C}oncatenation \textbf{O}f \textbf{F}igures) function is designed for this aim.
@@ -276,9 +284,8 @@ s_eye$shape
 
 Although this difference is trivial from a graphical standpoint (the single figure and the concatenation of two distinct figures appear exactly the same), it is relevant for the application of some of the rules that require a minimum number of figures for their application (e.g., inferential rules).
 
-MI SONO FERMATA QUI CON LE MODIFICHE 24/10/2024
-
-\subsection{Available rules and matrix generation}\label{available-rules-and-matrix-generation}
+\hypertarget{available-rules-and-matrix-generation}{%
+\subsection{Available rules and matrix generation}\label{available-rules-and-matrix-generation}}
 
 The function \texttt{mat\_apply(Sq1,\ hrules="identity",\ vrules\ ="idenity",\ mat.type=9)} is the main function for the generation of matrices based on rules.
 This function allows for the generation of matrices of different dimension, either 4-cell or 9-cell matrices.
@@ -321,8 +328,8 @@ The application of the \texttt{mat\_apply()} function results in a named list of
 The following example is based on a 9-cell matrix where the identity rule was applied both horizontally and vertically:
 
 \begin{verbatim}
-#>  [1] "Sq1"      "Sq2"      "Sq3"      "Sq4"      "Sq5"      "Sq6"     
-#>  [7] "Sq7"      "Sq8"      "Sq9"      "hrule"    "vrule"    "mat.type"
+#>  [1] "Sq1"      "Sq2"      "Sq3"      "Sq4"      "Sq5"      "Sq6"      "Sq7"      "Sq8"      "Sq9"      "hrule"    "vrule"   
+#> [12] "mat.type"
 \end{verbatim}
 
 In a matriks each cell of the matrix is an elements of the named list.Specifically, the elements which contains a cells are called \texttt{Sq} follows by the number of the cell.
@@ -372,6 +379,35 @@ By starting with the same set of figures as the one used to generate Figure \ref
 \end{figure}
 
 Logical rules \texttt{AND}, \texttt{OR} and \texttt{XOR} are a special case rules that cannot be applied in reverse.
+
+\begin{longtable}[t]{>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{6cm}}
+\caption{\label{tab:rule-types-static}Types of Rules}\\
+\hline
+Rule & Classification & Function & Definition\\
+\hline
+\textbf{Identity} &  & \texttt{identity} & Return the original figure without any transformation\\
+\hline
+\textbf{AND} & logical & \texttt{logical} & Considering the input cell \texttt{fig}, a concatenation of at least three figures is partitioned into three sets: A, B, and C. The rule transforms the figures such that each row or column in the matrix follows a specific sequence of patterns. In these patterns, the first cell displays figures $\{A, C\}$, the second cell displays $\{A, B\}$, and the third one exclusively displays figure A. The partitioning of the figures into sets A, B, and C is randomly determined with a random seed based on the \texttt{n} rows/columns of the matrix.\\
+\hline
+\textbf{OR} & logical & \texttt{logical} & Considering the input cell \texttt{fig}, a concatenation of at least three figures is partitioned into three sets: A, B, and C. The rule transforms the figures such that each row or column in the matrix follows a specific sequence of patterns. In these patterns, the first cell displays figures $\{A, C\}$, the second cell displays $\{A, B\}$, and the third one combines all of them in $\{A, B, C\}$. The partitioning of the figures into sets A, B, and C is randomly determined with a random seed based on the \texttt{n} rows/columns of the matrix.\\
+\hline
+\textbf{XOR} & logical & \texttt{logical} & Considering the input cell \texttt{fig}, a concatenation of at least three figures is partitioned into three sets: A, B, and C. The rule transforms the figures such that each row or column in the matrix follows a specific sequence pattern. In these patterns, the first elements display figures $\{A, C\}$, the second display $\{A, B\}$, and the third display $\{B, C\}$. The partitioning of the figures into sets A, B, and C is randomly determined with a random seed based on the \texttt{n} rows/columns of the matrix.\\
+\hline
+\textbf{line width} & permutational & \texttt{margin} & Considering a figure or concatenation of figures, the \texttt{lwd} rule increases the width of the lines in the figure by a constant value \texttt{n} corresponding to the number of rows or columns in the matrix. Therefore, the width can have values 1, 2, or 3 of the default width argument of the R plot. Conversely, the reverse rule \texttt{lwd.inv} decreases the line width by the same quantity.\\
+\hline
+\textbf{line type} & permutational & \texttt{margin} & Considering a figure or concatenation of figures, the \texttt{lty} rule changes the line type by manipulating the line type argument of the R plot. In the default order with the values of \texttt{n} from 1 to 3, the lines are \texttt{dashed}, \texttt{dotted}, and \texttt{solid}, respectively. Using the reverse rule, with the values of \texttt{n} from 1 to 3, \texttt{lty.inv} has the order \texttt{dashed}, \texttt{solid}, and \texttt{dotted}.\\
+\hline
+\textbf{rotate} & incremental & \texttt{rotate} & Considering a figure or concatenation of figures and an angle $\theta$, the rule rotates the figure around its center clockwise by an angle $n\theta$, where $n$ is the argument \texttt{n} of the function. The value of $\theta$ is equal to $\pi$ divided by any number from 1 to 9 included in the \texttt{rule} argument of the function. For instance, \texttt{rule=rotation.5} sets $\theta = \pi / 5$. By default, $\theta = \pi / 4$. The reverse rule \texttt{rotation.inv} rotates the figure anticlockwise.\\
+\hline
+\textbf{size} & incremental & \texttt{size} & Considering a figure or concatenation of figures and a constant $k$, the rule \texttt{size} decreases the figure size proportionally to $nk$, where $n$ is the argument \texttt{n} of the function. Specifically, the \texttt{size.x} and \texttt{size.y} arguments of the figure are divided by $nk$. The default value of $k=0.9$. The reverse rule \texttt{size.inv} increases the figure arguments \texttt{size.x} and \texttt{size.y} by $nk$ times, with a default value of $k=0.6$.\\
+\hline
+\textbf{shape} & permutational & \texttt{shape} & Considering a concatenation of three single figures denoted A, B, and C, the \texttt{shape} rule permutates which figure is visible in each cell of the matrix. The default order is figures A, B, and C from left to right in the row or from top to bottom in the column. The reverse rule \texttt{shape.inv} has the order C, B, and A.\\
+\hline
+\textbf{shade} & permutational & \texttt{shade} & Considering a figure or concatenation of figures, the \texttt{shade} rule changes the color of the filling. The argument \texttt{n} of the function goes from 1 to 3 and is mapped into \texttt{white}, \texttt{grey}, and \texttt{black}, respectively. The rule ignores any previous color present in the figure. For instance, when \texttt{n=1} and a figure has \texttt{shd=black}, the application of the rule transforms it into \texttt{white}. There is no reverse rule available at the moment.\\
+\hline
+\textbf{multi shade} & permutational & \texttt{shade} & Considering a concatenation of figures, the \texttt{multi.shade} rule changes the color of the filling of each figure separately. The rule works exactly as the normal \texttt{shade}, but a random color is assigned to each figure before the transformation. The random color is assigned with the function \texttt{sample} using \texttt{seed(n)}.\\
+\hline
+\end{longtable}
 
 The rule classification, originally introduced in the literature as visuospatial and logical, has been modified in the \pkg{matRiks} package to focus on constructing matrices rather than solving them.
 Consequently, the rules are reclassified into incremental and permutational categories.
@@ -439,9 +475,8 @@ It is worth mentioning that the combination of the same rule horizontally and ve
 In particular, if the same rule is applied in reverse in one direction and applied direct in the other, it will result in a TL-LR directional logic.
 On the other hand if the same rule is direct (or reverse) in both horizontal and vertical directional logic they will give rise to a LL-TR logic.
 
-RIPRENDO DA QUI 24/10/2024
-
-\subsection{Concatenation of matrices}\label{concatenation-of-matrices}
+\hypertarget{concatenation-of-matrices}{%
+\subsection{Concatenation of matrices}\label{concatenation-of-matrices}}
 
 The \texttt{com()} (\textbf{C}oncatenation \textbf{O}f \textbf{M}atrices) function allows for combining and layering different matrices together to generate a multi-layer matrix.
 
@@ -491,7 +526,8 @@ The matrices have to be concatenated hierarchically from the background layer to
 Generally, the manipulation of the correct response to obtain the incomplete correlate distractors is applied to the figures in the foreground layer \(M\).
 Further details on the definition and on the generation of the incomplete correlate distractors of multi-layer matrices are given in section Response list.
 
-\subsubsection{Generation of the response list}\label{generation-of-the-response-list}
+\hypertarget{generation-of-the-response-list}{%
+\subsubsection{Generation of the response list}\label{generation-of-the-response-list}}
 
 The generation of the distractors composing the response list is constrained to: (i) the type of matrix (i.e., single-layer matrix vs.~multi-layer matrix), (ii) the rule(s) manipulated for the matrix generation, and (iii) the directional logic of the rule manipulation.
 To the best of our knowledge, there is not a formal definition of the specific features of each distractor and on their applicability given the above-mentioned constrained.\\
@@ -582,9 +618,8 @@ response_list(single_matrix)
 The function \texttt{response\_list()} results in a named list of length 11 containing all the response options:
 
 \begin{verbatim}
-#>  [1] "correct"    "r_diag"     "r_left"     "r_top"      "wp_copy"   
-#>  [6] "wp_matrix"  "difference" "ic_neg"     "ic_flip"    "ic_size"   
-#> [11] "ic_inc"
+#>  [1] "correct"    "r_diag"     "r_left"     "r_top"      "wp_copy"    "wp_matrix"  "difference" "ic_neg"     "ic_flip"   
+#> [10] "ic_size"    "ic_inc"
 \end{verbatim}
 
 and it can be plotted as:
@@ -613,7 +648,8 @@ draw(response_list(multi_matrix, seed = 7),
 
 \includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-12-1.pdf}
 
-\subsection{A complete example}\label{a-complete-example}
+\hypertarget{a-complete-example}{%
+\subsection{A complete example}\label{a-complete-example}}
 
 This section presents a complete example on how to generate a multi-layer \(3 \times 3\) matrix with logical rules and its related response options.
 
@@ -643,7 +679,8 @@ Assuming that a response list of length 8 (the correct response along with seven
 
 \includegraphics{matRiks-paper_files/figure-latex/unnamed-chunk-18-1.pdf}
 
-\section{Summary}\label{summary}
+\hypertarget{summary}{%
+\section{Summary}\label{summary}}
 
 This article briefly illustrates the functioning of the \pkg{matRiks} package for the automatic generation of Raven-like stimuli.
 This package has been developed with the intention of providing the users with a flexible, open-source, and easy-to-use tool for generating Raven-like matrices according to different rules, encompassing both visuo-spatial and logical rules, along with their associated response list.
@@ -666,11 +703,31 @@ As such, the users should refer to the official documentation of the package tha
 Although the functions implemented in \pkg{matRiks} are quite straightforward and easy to use, they need a basic knowledge of the R language.
 To overcome this issue and allow for a wider use of the package even among people that are not familiar with R, a web application built with the \pkg{shiny} package (shiny) will be developed in the future.
 
+\hypertarget{references}{%
+\section*{References}\label{references}}
+\addcontentsline{toc}{section}{References}
+
+\hypertarget{refs}{}
+\begin{cslreferences}
+\leavevmode\hypertarget{ref-matRiks}{}%
+Brancaccio, Andrea, Ottavia M. Epifania, and Debora de Chiusole. 2023. \emph{MatRiks: Generates Raven-Like Matrices According to Rules}. \url{https://CRAN.R-project.org/package=matRiks}.
+
+\leavevmode\hypertarget{ref-kunda}{}%
+Kunda, Maithilee, Isabelle Soulières, Agata Rozga, and Ashok K. Goel. 2016. ``Error Patterns on the Raven's Standard Progressive Matrices Test.'' \emph{Intelligence} 59 (November): 181--98. \url{https://doi.org/10.1016/j.intell.2016.09.004}.
+
+\leavevmode\hypertarget{ref-raven2004}{}%
+Raven, John, and H. Raven. 2004. ``Manual for Raven's Progressive Matrices and Vocabulary Scales, Section 3: The Standard Progressive Matrices, Including the Parallel and Plus Versions. 2000 Edition, Updated 2004.'' In, Section 3.
+
+\leavevmode\hypertarget{ref-plotly}{}%
+Sievert, Carson. 2020. \emph{Interactive Web-Based Data Visualization with R, Plotly, and Shiny}. Chapman; Hall/CRC. \url{https://plotly-r.com}.
+\end{cslreferences}
+
+\bibliography{biblio-prova.bib}
 
 \address{%
-Quietest Quokka\\
-University of Little Mates\\%
-Department of Letter Q\\ Somewhere, Australia\\
+Ottavia M. Epifania\\
+Univerisity of Trento\\%
+Department of Psyhcology and Social Science\\ Rovereto, Italy\\
 %
 \url{https://www.britannica.com/animal/quokka}\\%
 \textit{ORCiD: \href{https://orcid.org/0000-1721-1511-1101}{0000-1721-1511-1101}}\\%
