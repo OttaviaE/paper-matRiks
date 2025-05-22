@@ -1,0 +1,145 @@
+---
+title: "A guided tutorial on the generation of Raven-like matrices with the `matRiks`
+  package"
+output: 
+  pdf_document: 
+    keep_tex: true
+abstract: 
+  Few resources are available for the automatic generation of Raven-like matrices. Some of them are no longer working, while others are hardly customizable without adavnced programming skills. Although an R package exists for generating stimuli for psychological assessments, it is currently confined to create rotation of the same shape. The matRiks package has been developed with the aim of overcoming the above mentioned issues. This package generates matrices according to dufferent types of rules, from the most basic ones based on the visuo spatial features of the figures to the most complex ones, based on inferential and inductive reasoning. This unveils the possibility of generating new customizable stimuli and of systematically manipulating the complexity of the stimuli. Being developed within the R environment, the matRiks package is completely open-source, allows for the reproducibility of the stimuli, and it can be easily used  by people with basic knowledge of the R language. 
+linestretch: 1.5
+geometry: margin=1in
+bibliography: RJreferences.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(matRiks)
+```
+
+
+# Introduction
+
+@cattell1963 defined fluid intelligence (*g*) as the ability of solving novel reasoning problems that has little to do with concepts learned in schools or through acculturation processes.
+The adjective "fluid" explicitly refers to its ability to "flow" into a variety of tasks and cognitive activities [@horn1972].
+Given this definition of fluid intelligence, it appears natural that the instruments used for its evaluation tap on the respondent's ability to solve abstract problems that involve acculturation as little as possible, such as figurative analogies, figure classifications, matrices, and number and letter series [@horn1968].
+
+The Raven's progressive matrices [RPM; @raven1938] are among the most famous tools for the assessment of *g*.
+The RPM consists in a series of non-verbal multiple-choice stimuli where respondents are required to complete a series of drawings composed of different figures by identifying the relevant features that rule the relationships between the figures.
+These drawings are often referred to as matrices.
+To pursue this aim, the respondents must choose the figure that complete the drawing among a list of other figures, the so-called distractors.
+This task should measure the ability of the respondents to identify and take into account the features (also called "rules") that govern the relationship between the figures to compose the drawing.
+Different versions of the RPM exist, according to the target population (i.e., children with less then 12 years of age or adults) to which they are administered.
+The Colored Progressive Matrices [CPM, @raven1998] are composed of sets of $2\times2$ matrices (i.e., 4-cell matrices), some of which (CONTROLLARE) includes colored figures.
+The advanced progressive matrices [APM, @raven1962] are composed of sets of $3\times3$ matrices meant for assessment in gifted population (DIRE MEGLIO).
+Finally, the RPM are meant for the assessment among the general population and are composed of both $2\times2$ and $3\times3$ matrices.
+The colored figures are present only in the CPM.
+
+The RPM and similar tasks (here denoted as Raven-like matrices or Raven-like tasks) are employed in different fields, from clinical evaluation of intelligence to the selection processes in organizational psychology (citation needed).
+Since Raven's and Raven-like tasks involve the ability to solve new abstract problems, the stimuli composing these tasks should not be spread among the general population to preserve the novelty of the tasks.
+The rules that govern the relationship between the figures of a matrix can also be used to generate new stimuli, and different resources have been developed throughout the years with this specific aim, such as Sandia [@matzen2010], Corvus [@thimbleby2018], and the R package \texttt{IMak} [@Blum2018].
+
+The stimuli generated with Sandia have been analysed in an Item Response Theory framework to validate them as a test for measuring fluid intelligence [@harris2020].
+The stimuli are available upon request to the authors, however no new stimuli can be generated because the code on which Sandia is based is no longer maintained.
+Corvus represents another possible resource for generating Raven-like tasks.
+Corvus is written in Javascript but the Author provided a nice and easy-to-use graphical interface where the user can specify the figures and the rule(s) for the generation of the matrices.
+However, Corvus provides few degrees of freedom in terms of both the figures and the number of rules that can be manipulated through the graphical interface.
+Any customization from the user, like adding other figures, modifying existing ones, or implementing new rules, require to modify the JavaScript code, which might be quite demanding for people with little to null experience in JavaScript coding.
+Finally, the `IMaK` package is an `R` package that allows for generating visual analogies.
+The code for generating such stimuli (along with their response options) is quite straightforward and easy to use.
+However, the stimuli that can be generated with the `IMaK` package are mostly based on the rotation of the same figure to which some objects can be added or removed.
+As such, the only rule that is manipulated is the spatial rotation of the figures.
+
+Given the limitations of the existing resources for generating Raven-like tasks, there is the need of an open-source, easy-to-use, and constantly maintained resource for generating such stimuli through the systematic manipulation of rules applied to different figures.
+The `matRiks` package (matRiks) has been developed to pursue these aims.
+The package enables the generation of matrices by manipulating one or multiple rules on one or multiple figures.
+Additionally, it automatically generates the response list associated with the matrix.
+Beyond the default settings, the matRiks package allows for the generation of new figures and customization of matrices and response lists.
+The systematic manipulation of both the rules and the figures for the matrix generation should grant the possibility of grading the granularity of the complexity of the matrices by varying one element at the time.
+In a similar vein, the package should allow for generating matrices that can be considered equivalent in terms of rules employed for their generation but that differ in terms of figures composing the drawing.
+In what follows, the term stimulus is used to identify the matrix with its associated response list.
+
+The manuscript is organized as follows.
+The next section presents the rules that are usually employed in the RPM along with the specific types of error responses (i.e., distractors) that compose the response list associated with a matrix.
+A complete example of the generation of a stimulus (i.e., the matrix and the associated response list) and some final remarks on the potential applications of this package conclude the presentation.
+
+# Background
+
+### Rule based matrices
+
+Literature highlights a plethora of rules that can be manipulated for the generation of the Raven-like tasks (cit cit cit).
+<!-- Beyond the fact that some of these rules have different names in different sources but refer to the same manipulation (e.g., the rule defined as "and problem" in Harris el a. 2020 is called "intersection" rule in Arendasy et al. 2005). -->
+Some of the rules have different names, but they do refer to the same manipulation. For instance, the rule defined as "and problem" in Harris el a. 2020 is called "intersection" rule in Arendasy et al. 2005. CONTROLLA IL PAPER SE LA REGOLA E' CORRETTA E LE CITAZIONI SONO CORRETTE.
+
+they can be summarized into different macro-categories, namely visuospatial rules (i.e., the manipulation concerns the graphical and spatial features of the figures, Figure \@ref(fig:visuoRule)), and logical rules (i.e., the manipulation concerns the logical relationships between the figures composing the matrix, Figure \@ref(fig:logiRule)).
+The rules can be used to manipulate different figures to generate a matrix.
+
+```{r visuoRule, out.width="70%", fig.align="center", fig.cap="Example of visuospatial rule: Changes in size"}
+a = mat_apply(maxi(), hrules = "size")
+
+par(mfrow =c(1, 3) ,
+        mar = c(6,5,5,5))
+
+draw(a$Sq1); draw(a$Sq2); draw(a$Sq3)
+```
+
+```{r logiRule, out.width="70%", fig.align="center", fig.cap="Example of logical rule: Insiemistic Interscetion AND"}
+size.x = 8 
+size.y = 4 
+pos.x = 0 
+shd = NA 
+lty = 1 
+lwd = 3
+
+par(mfrow =c(1, 3) ,
+        mar = c(6,5,5,5))
+
+a = mat_apply(cof(luck(pos.x = pos.x + size.x, pos.y = pos.x, rot = pi, 
+        size.x = size.x, size.y = size.y, shd = shd, lty = lty, 
+        lwd = lwd), luck(pos.x = pos.x - size.x, pos.y = pos.x, 
+        rot = -pi, size.x = size.x, size.y = size.y, shd = shd, 
+        lty = lty, lwd = lwd), luck(pos.x = pos.x, pos.y = pos.x + 
+        size.x, rot = -pi, size.x = size.y, size.y = size.x, 
+        shd = shd, lty = lty, lwd = lwd), luck(pos.x = pos.x, 
+        pos.y = pos.x - size.x, rot = -pi, size.x = size.y, size.y = size.x, 
+        shd = shd, lty = lty, lwd = lwd)), hrules = "AND")
+
+draw(a$Sq1); draw(a$Sq2); draw(a$Sq3)
+```
+
+In Figure \@ref(fig:visuoRule), the manipulation concerns a specif feature of the figure, that is its size, and it can be observed as the the figure decreases its size across the cells.
+The leftmost cell contains the figure with its original size, the middle cell contains a smaller figure, while the rightmost cells contains the smallest one.
+In Figure \@ref(fig:logiRule), the manipulation concerns the relationships between the objects composing the figures, which are combined together according to a logical rule based on the insiemistic intersection of the objects.
+Specifically, the figure in the rightmost cell results from the intersection between the figures in the leftmost cell and those in the middle cell.
+
+Both visuospatial and logical rules can be manipulated according to directional logic.
+Specifically, the rules can be applied horizontally (i.e., the manipulation of the rule can be seen across columns but not across rows, H direction), vertically (i.e., the manipulation of the rule can be seen across rows but not across columns, V direction), or diagonally (i.e., the manipulation of the rule can be seen both across columns and across rows).
+Concerning the diagonal directional logic, it can follow either the main diagonal of the matrix (i.e., the manipulation of the rule can be seen from the top-left corner to the low-right corner, TL-LR direction) or the secondary diagonal of the matrix (i.e., the manipulation of the rule can be seen from the low-left corner to the top-right corner, LL-TR direction).
+
+### The response options
+
+A large corpus of literature has investigated the role of the distractors in the response processes involved when solving the Raven matrices, focusing on the specific error responses chosen by the respondent (fort, kunda, storme).
+The underlying logic is that the incorrect response is not chosen at random by the respondent, but it can be the result of an educated guess, or it can be chosen because the respondent is misled by a specific feature.
+In other words, the incorrect responses might reflect an incorrect solution strategy resulting in the choice of a specific type of distractor over another one [@kunda].
+The distractors can be classified according to the incorrect response strategy they represent.
+@kunda present a list of criteria for the identification of the distractors in the SPM based on classification of the error types from the CPM and APM manuals [@raven2004].
+The distractor that is chosen in place of the correct response option can be collected into four main four conceptual errors: (i) Repetition (R) errors occur when the chosen response option is a cell adjacent to the blank space, (ii) Difference (D) errors occur when the chosen response option is completely different from any entry of the matrix, (iii) Wrong Principle (WP) errors occur when the chosen response option follows rules other than the ones used in the matrix, and (iv) Incomplete Correlate (IC) errors occur when the chosen response option is in fact the correct response with a variation on a single feature. 
+
+The characteristics of the specific error response can be categorized in various ways. For example, the repetition category can be divided based on the position of the repeated cell relative to the blank cell. Three error types within the R category can be identified: R-Left, R-Top, and R-Diagonal, depending on whether the repeated cell is to the left, above, or diagonally aligned with the blank cell.
+
+Regarding the wrong principle macro category, some specific error types might involve the repetition of a cell that is not adjacent to the blank space (e.g., WP-Copy) or the combination of elements from different cells in a way that does not follow the rules used for creating the matrix.
+
+Some specific errors in the incomplete correlate macro category include changes to the orientation of the correct response (i.e., IC-flip), changes in the color of the correct response (i.e., IC-Neg), changes in the size of the correct response (i.e., IC-Size), or the omission of an element from the correct response (i.e., IC-Inc).
+
+Finally, regarding the difference macro category, specific errors might include a cell being completely white or black (D-Blank) or the merging of different cells within the matrix (D-Union).
+
+The criteria for the classification of the error types were used for the formal definition and generation of the distractors implemented in the `matRiks` package.
+These criteria were included in the response options operator with the aim of providing the user with a response list composed of 11 elements (ten distractors and the correct response) among which they could choose the most appropriate ones.
+Specifically, the response options operator generates a response list composed of the correct response, three reptition distractors, one difference distractor, two wrong principle distractors, and four incomplete correlate distractors.
+Further details on the formal definition of each of the distractors and on their generation are given in the "Generation of the response list" Section.
+
+# The matRiks package
+
+The `matRiks` package [@matRiks] can generate $2 \times 2$ and $3 \times 3$ Raven-like matrices with their corresponding set of responses (i.e., the correct response and all the distractors described in the Generation of response list section).
+The Raven-like matrices are generated according to either visuospatial or logic rules, which can be concatenated with three different directional logic, namely vertically, horizontally, and diagonally.
+Finally, it is possible to print the generated matrices and set of distractors as either single images (i.e., each cell of the matrix and each distractor are printed separately) or as a complete figure with the set of single distractors.
+
